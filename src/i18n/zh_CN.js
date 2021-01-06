@@ -17,7 +17,7 @@ const zh_CN = {
     qin: '秦',
     han: '汉',
     APY: '年化利率',
-    home: '首页',
+    home: 'YUAN',
     Staking: '挖矿',
     Vote: '投票',
     Connect: '连接钱包',
@@ -80,6 +80,12 @@ const zh_CN = {
     Action: '行动',
 
     View_Etherscan: "在Etherscan上查看",
-    Buy_Uniswap: "交易Yuan"
+    Buy_Uniswap: "交易Yuan",
+    eBTC: "eBTC",
+    eETH: "eETH",
+    eBTC_In_Reserves:'eBTC数量',
+    eETH_In_Reserves:'eETH数量',
+    BTC_USD:"BTC / USD",
+    ETH_USD:"ETH / USD",
 }
 export default zh_CN;

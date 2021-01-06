@@ -35,16 +35,17 @@ const YamProvider: React.FC = ({ children }) => {
       const yamLib = new Yam(
         ethereum,
         chainId,
-        false, {
-        defaultAccount: "",
-        defaultConfirmations: 1,
-        autoGasMultiplier: 1.5,
-        testing: false,
-        defaultGas: "6000000",
-        defaultGasPrice: "1000000000000",
-        accounts: account,
-        ethereumNodeTimeout: 10000
-      }
+        false,
+        {
+          defaultAccount: "",
+          defaultConfirmations: 1,
+          autoGasMultiplier: 1.5,
+          testing: false,
+          defaultGas: "6000000",
+          defaultGasPrice: "1000000000000",
+          accounts: account,
+          ethereumNodeTimeout: 10000
+        }
       )
       setYam(yamLib)
       window.yamsauce = yamLib

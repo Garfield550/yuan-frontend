@@ -23,6 +23,8 @@ import { GovernanceProvider } from './contexts/Governance'
 import Farms from './views/Farms'
 import Home from './views/Home'
 import Governance from './views/Governance'
+import EBTC from './views/eBTC'
+import EETH from './views/eETH'
 
 import theme from './theme'
 
@@ -63,6 +65,14 @@ const App: React.FC = () => {
           <Switch>
             <Route path="/" exact>
               <Home setLanguage={setCurLanguage__before} cur_language={cur_language} />
+            </Route>
+
+            <Route path="/eBTC" exact>
+              <EBTC setLanguage={setCurLanguage__before} cur_language={cur_language} />
+            </Route>
+
+            <Route path="/eETH" exact>
+              <EETH setLanguage={setCurLanguage__before} cur_language={cur_language} />
             </Route>
 
             <Route path="/distribution">

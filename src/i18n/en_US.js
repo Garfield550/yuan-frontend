@@ -17,7 +17,7 @@ const en_US = {
     qin: 'QIN',
     han: 'HAN',
     APY: 'APY',
-    home: 'Home',
+    home: 'YUAN',
     Staking: 'Staking',
     Vote: 'Vote',
     Connect: 'Connect',
@@ -80,6 +80,12 @@ const en_US = {
     Action: 'Action',
 
     View_Etherscan: "View on Etherscan",
-    Buy_Uniswap: "Buy yuan now"
+    Buy_Uniswap: "Buy yuan now",
+    eBTC: "eBTC",
+    eETH: "eETH",
+    eBTC_In_Reserves:'eBTC in reserves',
+    eETH_In_Reserves:'eETH in reserves',
+    BTC_USD:"BTC / USD",
+    ETH_USD:"ETH / USD",
 }
 export default en_US;

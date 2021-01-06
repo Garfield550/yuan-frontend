@@ -21,6 +21,14 @@ const Nav: React.FC<PageProps> = ({ setLanguage, cur_language, setShow }) => {
         <FormattedMessage id={'home'} />
       </StyledLink>
 
+      <StyledLink exact activeClassName="active" to="/eBTC">
+        <FormattedMessage id={'eBTC'} />
+      </StyledLink>
+
+      <StyledLink exact activeClassName="active" to="/eETH">
+        <FormattedMessage id={'eETH'} />
+      </StyledLink>
+
       <StyledLink exact activeClassName="active" to="/distribution">
         <FormattedMessage id={'Distribution'} />
       </StyledLink>
