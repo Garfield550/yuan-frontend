@@ -14,7 +14,7 @@ const useApprove = (tokenContract: Contract, poolContract: Contract, setShowPopu
     } catch (e) {
       return false
     }
-  }, [account, tokenContract, poolContract])
+  }, [tokenContract, poolContract, account, setShowPopup, showPopup])
 
   return { onApprove: handleApprove }
 }

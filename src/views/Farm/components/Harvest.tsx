@@ -4,8 +4,8 @@ import styled from 'styled-components'
 import { Contract } from 'web3-eth-contract'
 
 import Button from '../../../components/Button'
-import Card from '../../../components/Card'
-import CardContent from '../../../components/CardContent'
+// import Card from '../../../components/Card'
+// import CardContent from '../../../components/CardContent'
 import CardIcon from '../../../components/CardIcon'
 import Label from '../../../components/Label'
 import Value from '../../../components/Value'
@@ -13,7 +13,7 @@ import Value from '../../../components/Value'
 import useEarnings from '../../../hooks/useEarnings'
 import useReward from '../../../hooks/useReward'
 
-import { getDisplayBalance, format_Balance_to_K } from '../../../utils/formatBalance'
+import { format_Balance_to_K } from '../../../utils/formatBalance'
 
 import Earn from "../../../assets/img/stake/Earn.svg"
 import pool_bg from '../../../assets/img/stake/pool_bg.svg'
@@ -33,7 +33,7 @@ const Harvest: React.FC<HarvestProps> = ({ poolContract, cur_language, setShowPo
   return (
     <StyledCardContentInner>
       <StyledCardHeader>
-        <CardIcon noBorder={true}>{<img src={Earn} height="100" border-radius="100" />}</CardIcon>
+        <CardIcon noBorder={true}>{<img src={Earn} height="100" border-radius="100" alt="earn" />}</CardIcon>
         <Value value={format_Balance_to_K(earnings)} />
         <Label cur_language={cur_language} text="earn__YUAN" />
       </StyledCardHeader>
@@ -65,10 +65,10 @@ const StyledCardActions = styled.div`
   width: 100%;
 `
 
-const StyledSpacer = styled.div`
-  height: ${props => props.theme.spacing[4]}px;
-  width: ${props => props.theme.spacing[4]}px;
-`
+// const StyledSpacer = styled.div`
+//   height: ${props => props.theme.spacing[4]}px;
+//   width: ${props => props.theme.spacing[4]}px;
+// `
 
 const StyledCardContentInner = styled.div`
   align-items: center;

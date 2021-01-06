@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import Button from '../Button'
+// import Button from '../Button'
 import Input, { InputProps } from '../Input'
 import { IntlProvider, FormattedMessage } from 'react-intl'
 import en_US from '../../i18n/en_US.js'
@@ -25,9 +25,9 @@ const TokenInput: React.FC<TokenInputProps> = ({ max, symbol, onChange, onSelect
             <StyledTokenAdornmentWrapper>
               {/* <StyledTokenSymbol>{symbol}</StyledTokenSymbol> */}
               <StyledSpacer />
-              <Max__btn onClick={onSelectMax}>
+              <MaxBtn onClick={onSelectMax}>
                 <FormattedMessage id={'max'} />
-              </Max__btn>
+              </MaxBtn>
             </StyledTokenAdornmentWrapper>
           )}
           onChange={onChange}
@@ -39,7 +39,7 @@ const TokenInput: React.FC<TokenInputProps> = ({ max, symbol, onChange, onSelect
   )
 }
 
-const Max__btn = styled.div`
+const MaxBtn = styled.div`
   background: #476065;
   padding: 3px 10px;
   cursor: pointer;
@@ -49,7 +49,7 @@ const Max__btn = styled.div`
 
 const StyledTokenInput = styled.div`
   @media(max-width: 767px) {
-  // background: red;
+  /* background: red; */
   width: 86%;
   margin-left: 7%;
 }
@@ -64,8 +64,8 @@ const StyledTokenAdornmentWrapper = styled.div`
   display: flex; 
   
   @media(max-width: 767px) {
-    // background: red;
-    // flex: 3;
+    /* background: red; */
+    /* flex: 3; */
     position: absolute;
     right: 5px;
   }
@@ -81,9 +81,9 @@ const StyledMaxText = styled.div`
   justify-content: flex-end;
 `
 
-const StyledTokenSymbol = styled.span`
-  color: ${props => props.theme.color.grey[600]};
-  font-weight: 700;
-`
+// const StyledTokenSymbol = styled.span`
+//   color: ${props => props.theme.color.grey[600]};
+//   font-weight: 700;
+// `
 
 export default TokenInput

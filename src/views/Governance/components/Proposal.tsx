@@ -1,13 +1,13 @@
-import React, { useCallback, useMemo, useState, Fragment } from 'react'
+import React, { useCallback, useState, Fragment } from 'react'
 
-import BigNumber from 'bignumber.js'
+// import BigNumber from 'bignumber.js'
 import {
   Button,
-  Notice,
-  NoticeContent,
-  NoticeIcon,
-  Spacer,
-  Surface
+  // Notice,
+  // NoticeContent,
+  // NoticeIcon,
+  // Spacer,
+  // Surface
 } from 'react-neu'
 
 // import Button from '../../../components/Button'
@@ -18,7 +18,7 @@ import useModal from '../../../hooks/useModal'
 import useGovernance from '../../../hooks/useGovernance'
 
 import styled from 'styled-components'
-import { Proposal, ProposalVotingPower } from "../../../contexts/Governance/types"
+import { Proposal } from "../../../contexts/Governance/types"
 import VoteModal from './VoteModal'
 
 interface ProposalProps {
@@ -32,7 +32,8 @@ export const ProposalEntry: React.FC<ProposalProps> = ({
   onVote,
   onRegister
 }) => {
-  const { isRegistered, isRegistering, isVoting, votingPowers, currentPower } = useGovernance();
+  const { isRegistered, isRegistering, isVoting, votingPowers } = useGovernance();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [voteModalIsOpen, setVoteModalIsOpen] = useState(false)
   const handleDismissVoteModal = useCallback(() => {
     setVoteModalIsOpen(false)
@@ -41,9 +42,9 @@ export const ProposalEntry: React.FC<ProposalProps> = ({
     onVote(proposal, side, onDismiss)
   }, [onVote])
 
-  const handleOnRegister = useCallback(() => {
-    onRegister()
-  }, [onRegister])
+  // const handleOnRegister = useCallback(() => {
+  //   onRegister()
+  // }, [onRegister])
 
   // const handleVoteClick = useCallback(() => {
   //   setVoteModalIsOpen(true)
@@ -64,51 +65,51 @@ export const ProposalEntry: React.FC<ProposalProps> = ({
   )
   return (
     <Fragment>
-         <Box
-           display="grid"
-           alignItems="center"
-           padding={4}
-           row
-         >
+        <Box
+            display="grid"
+            alignItems="center"
+            padding={4}
+            row
+        >
           <StyledProposalContentInner>
             <StyledDescription>{prop.description ? prop.description.replace("Kill", "Pause") : ""}</StyledDescription>
             <SeparatorGrid orientation={'vertical'} stretch={true} gridArea={'spacer1'}/>
             <StyledState>{prop.state}</StyledState>
             <SeparatorGrid orientation={'vertical'} stretch={true} gridArea={'spacer2'}/>
             <StyledButton votingPowers={votingPowers}>
-              { (  prop.state != "Active" ) && (<Button
-                // widthProps={96}
-                // heightProps={24}
-                disabled={!votingPowers}
-                size="sm"
-                onClick={handleVoteClick}
-                text="View"
-                variant="tertiary"
-               />)
-               || (prop.state == "Active") && (
-                   <Button
-                  //  widthProps={96}
-                  //  heightProps={24}
+              {((prop.state !== "Active" ) && (
+                <Button
+                  // widthProps={96}
+                  // heightProps={24}
                   disabled={!votingPowers}
-                   size="sm"
-                   text="Vote"
-                   onClick={handleVoteClick}
+                  size="sm"
+                  onClick={handleVoteClick}
+                  text="View"
+                  variant="tertiary"
+                />))
+              || ((prop.state === "Active") && (
+                  <Button
+                    //  widthProps={96}
+                    //  heightProps={24}
+                    disabled={!votingPowers}
+                    size="sm"
+                    text="Vote"
+                    onClick={handleVoteClick}
                   />
-                )
+                ))
               }
             </StyledButton>
           </StyledProposalContentInner>
-         </Box>
-         {/* <VoteModal
+        </Box>
+        {/* <VoteModal
             key={prop.id.toString()}
             prop={prop}
             isOpen={false}
             onDismiss={handleDismissVoteModal}
             onVote={handleOnVote}
           /> */}
-   </Fragment>
-  )
-}
+  </Fragment>
+)}
 
 interface StyledButtonProps {
   votingPowers: any,

@@ -94,10 +94,10 @@ const StyledTitle = styled.h1`
   color: #476065;
   font-size: 30px;
   line-height:40px;
-  // font-weight: 700;
+  /* font-weight: 700; */
   margin: 0;
   padding: 0;
-  // margin-bottom:10px
+  /* margin-bottom:10px */
 `
 
 const StyledSubtitle = styled.h3`

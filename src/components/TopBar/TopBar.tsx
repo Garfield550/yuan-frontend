@@ -2,11 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 
 import Container from '../Container'
-import Logo from '../Logo'
+// import Logo from '../Logo'
 
 import AccountButton from './components/AccountButton'
 import Nav from './components/Nav'
-import TxButton from './components/TxButton'
+// import TxButton from './components/TxButton'
 
 import menu__top_bg from '../../assets/img/Page/mune-top-bg.svg'
 import LOGO from '../../assets/img/Page/LOGO.png'
@@ -27,16 +27,17 @@ const TopBar: React.FC<PageProps> = ({ setLanguage, cur_language, showStatus, se
     <StyledTopBar showStatus={showStatus}>
       <Container size="lg">
         <StyledTopBarInner>
-          <MENU__top_bg></MENU__top_bg>
+          <MenuTopBg></MenuTopBg>
           {/* <img src={menu__top_bg} width='209' height='39' alt="menu" /> */}
-          <PC_only>
+          <PCOnly>
+            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
             <a style={{ marginTop: '15px' }}>
               <img src={LOGO} width='50' height='74' alt="logo" />
             </a>
             <AccountButton cur_language={cur_language} showStatus={showStatus} />
-          </PC_only>
+          </PCOnly>
           <Nav setLanguage={setLanguage} cur_language={cur_language} setShow={setShow} />
-          <MENU__bottom_bg></MENU__bottom_bg>
+          <MenuBottonBg></MenuBottonBg>
           {/* <img src={menu__bottom_bg} width='209' height='246' style={{ marginTop: 'auto' }} alt="menu1" /> */}
         </StyledTopBarInner>
       </Container>
@@ -77,11 +78,11 @@ const StyledTopBarInner = styled.div`
     padding:15px
   }
 `
-const MENU__top_bg = styled.div`
+const MenuTopBg = styled.div`
 width:209px;
 height:39px;
-// width:calc(100% + 60px);
-// height:calc((100% + 60px) / 209 * 39);
+/* width:calc(100% + 60px); */
+/* height:calc((100% + 60px) / 209 * 39); */
 background: url(${menu__top_bg}) no-repeat;
 background-size: 100% 100%;
 @media(max-width: 767px) {
@@ -91,11 +92,11 @@ background-size: 100% 100%;
   background-size: 100% 100%;
 }
 `
-const MENU__bottom_bg = styled.div`
+const MenuBottonBg = styled.div`
 width:209px;
 height:246px;
-// width:calc(100% + 60px);
-// height:calc((100% + 60px) / 209 * 246);
+/* width:calc(100% + 60px); */
+/* height:calc((100% + 60px) / 209 * 246); */
 background: url(${menu__bottom_bg}) no-repeat;
 background-size: 100% 100%;
 margin-top:auto;
@@ -106,7 +107,7 @@ margin-top:auto;
   background-size: 100% 100%;
 }
 `
-const PC_only = styled.div`
+const PCOnly = styled.div`
 align-items: center;
 display: flex;
 flex-direction: column;

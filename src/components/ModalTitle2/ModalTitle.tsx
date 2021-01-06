@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { IntlProvider, FormattedMessage } from 'react-intl'
-import en_US from '../../i18n/en_US.js'
-import zh_CN from '../../i18n/zh_CN.js'
+// import { IntlProvider, FormattedMessage } from 'react-intl'
+// import en_US from '../../i18n/en_US.js'
+// import zh_CN from '../../i18n/zh_CN.js'
 
 interface ModalTitleProps {
   text?: string,
@@ -49,12 +49,12 @@ const StyledModalTitle = styled.div`
   font-weight: 700;
   height: 40px;
   justify-content: center;
-  // margin-top: ${props => -props.theme.spacing[4]}px;
+  /* margin-top: ${props => -props.theme.spacing[4]}px; */
   @media(max-width: 767px) {
-    // align-item:flex-end;
+    /* align-item:flex-end; */
     height: 40px;
-    margin-bottom:-20px
-    // display:none
+    margin-bottom:-20px;
+    /* display:none; */
   }
 `
 

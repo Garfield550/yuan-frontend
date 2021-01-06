@@ -1,10 +1,10 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { BrowserRouter as Router, Route, Switch, } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
-import { useWallet, UseWalletProvider } from 'use-wallet'
+import { UseWalletProvider } from 'use-wallet'
 
-import DisclaimerModal from './components/DisclaimerModal'
-import { IntlProvider, FormattedMessage } from 'react-intl'
+// import DisclaimerModal from './components/DisclaimerModal'
+import { IntlProvider } from 'react-intl'
 import en_US from './i18n/en_US.js'
 import zh_CN from './i18n/zh_CN.js'
 
@@ -18,7 +18,7 @@ import { MigrationProvider } from './contexts/Migration'
 // import { VestingProvider } from './contexts/Vesting'
 import { GovernanceProvider } from './contexts/Governance'
 
-import useModal from './hooks/useModal'
+// import useModal from './hooks/useModal'
 
 import Farms from './views/Farms'
 import Home from './views/Home'
@@ -53,7 +53,7 @@ const App: React.FC = () => {
     } else if (lang === '中文') {
       document.body.style.fontFamily = 'yuanFont'
     }
-  }, [cur_language])
+  }, [])
   setFontFamily();
 
   return (
@@ -125,9 +125,9 @@ const Providers: React.FC = ({ children }) => {
 
 const Disclaimer: React.FC = () => {
 
-  const markSeen = useCallback(() => {
-    localStorage.setItem('disclaimer', 'seen')
-  }, [])
+  // const markSeen = useCallback(() => {
+  //   localStorage.setItem('disclaimer', 'seen')
+  // }, [])
 
   // const [onPresentDisclaimerModal] = useModal(<DisclaimerModal onConfirm={markSeen} />)
 

@@ -15,7 +15,7 @@ const useUnstake = (poolContract: Contract, tokenContract: Contract, setShowPopu
 
     let tokenDecimals = await tokenContract.methods.decimals().call()
     await unstake(poolContract, tokenDecimals, amount, account, onDismiss, setShowPopup, showPopup)
-  }, [account, poolContract])
+  }, [account, poolContract, tokenContract.methods])
 
   return { onUnstake: handleUnstake }
 }

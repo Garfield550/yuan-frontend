@@ -8,7 +8,7 @@ const useNotify = () => {
     // let tokenDecimals = await tokenContract.methods.decimals().call()
     // const txHash = await stake(poolContract, tokenDecimals, amount, account)
     setNum(v);
-  }, [num, setNum])
+  }, [setNum])
 
   return { num, handleNum }
 }

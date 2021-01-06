@@ -1,7 +1,7 @@
-import React, { useCallback, useMemo, useState, useEffect } from 'react'
+import React, { useCallback } from 'react'
 
 // import { Line } from 'rc-progress';
-import BigNumber from 'bignumber.js'
+// import BigNumber from 'bignumber.js'
 import numeral from 'numeral'
 import {
   Button,
@@ -26,10 +26,10 @@ import Spacer from '../../../components/Spacer2'
 
 import styled from 'styled-components'
 
-import useYam from '../../../hooks/useYam'
-import useGovernance from '../../../hooks/useGovernance'
-import { useWallet } from 'use-wallet'
-import { delegate, didDelegate } from '../../../yam-sdk/utils'
+// import useYam from '../../../hooks/useYam'
+// import useGovernance from '../../../hooks/useGovernance'
+// import { useWallet } from 'use-wallet'
+// import { delegate, didDelegate } from '../../../yam-sdk/utils'
 
 import { Proposal } from "../../../contexts/Governance/types"
 import Split from '../../../components/Split'
@@ -60,29 +60,29 @@ const VoteModal: React.FC<VoteModalProps> = ({
   console.log(prop)
   const handleVoteClickTrue = useCallback(async () => {
     onVote(prop.id, true, onDismiss);
-  }, [onVote])
+  }, [onDismiss, onVote, prop.id])
 
   const handleVoteClickFalse = useCallback(async () => {
     onVote(prop.id, false, onDismiss);
-  }, [onVote])
+  }, [onDismiss, onVote, prop.id])
 
-  const { account } = useWallet()
-  const yam = useYam()
+  // const { account } = useWallet()
+  // const yam = useYam()
 
-  let percFor = prop.forVotes / (prop.forVotes + prop.againstVotes) * 100;
-  let percAgainst = prop.againstVotes / (prop.forVotes + prop.againstVotes) * 100;
+  // let percFor = prop.forVotes / (prop.forVotes + prop.againstVotes) * 100;
+  // let percAgainst = prop.againstVotes / (prop.forVotes + prop.againstVotes) * 100;
 
   let votePower;
   let voted;
   let side;
   if (votingPowers) {
     for (let i = 0; i < votingPowers.length; i++) {
-       if (prop.hash == votingPowers[i].hash) {
-         let votingPower = votingPowers[i];
-         votePower = votingPower.power;
-         voted = votingPower.voted;
-         side = votingPower.side;
-       }
+      if (prop.hash === votingPowers[i].hash) {
+          let votingPower = votingPowers[i];
+          votePower = votingPower.power;
+          voted = votingPower.voted;
+          side = votingPower.side;
+      }
     }
   }
   return (
@@ -90,13 +90,13 @@ const VoteModal: React.FC<VoteModalProps> = ({
       <ModalTitle text="Proposal Overview" />
       <ModalContent>
         <CardContent>
-        { (voted) && (
+        {((voted) && (
           <StyledTitle>
             Your vote:
             <Spacer size="sm" />
             <StyledSubtitle>{side ? '"For"' : '"Against"'} with {numeral(votePower).format('0a')} votes.</StyledSubtitle>
           </StyledTitle>
-        ) || (
+        )) || (
           <StyledTitle>
             Your vote:
             <Spacer size="sm" />
@@ -112,14 +112,14 @@ const VoteModal: React.FC<VoteModalProps> = ({
               href={"https://etherscan.io/tx/" + prop.hash}
               text="View On Etherscan"
               variant="tertiary"
-             />
+            />
             {/* { (prop.more) && (<Spacer size="sm" />) } */}
             { (prop.more) && (
               <Button
-               size="sm"
-               href={prop.more}
-               text="Read More & See Off-Chain Vote"
-               variant="tertiary"
+                size="sm"
+                href={prop.more}
+                text="Read More & See Off-Chain Vote"
+                variant="tertiary"
               />
             )}
           </CardContent>
@@ -194,7 +194,7 @@ const VoteModal: React.FC<VoteModalProps> = ({
         </Card>
       </ModalContent>
       <ModalActions>
-        { (prop.state == "Active") && (!voted) && (isRegistered) && (votePower && votePower > 0) && (
+        {((prop.state === "Active") && (!voted) && (isRegistered) && (votePower && votePower > 0) && (
           //{ (prop.state == "Defeated") && (
           <div style={{display: 'flex',flexDirection: 'row'}}>
             <Button
@@ -208,18 +208,18 @@ const VoteModal: React.FC<VoteModalProps> = ({
               onClick={handleVoteClickFalse}
               text="Against"
             />
-          </div>) || (prop.state == "Active") && (!voted) && (isRegistered) && (
+          </div>)) || ((prop.state === "Active") && (!voted) && (isRegistered) && (
             <span style={{display:'inline-block',width:'100%',marginBottom:'15px'}}>
               Unable To Vote. You were either not delegating or did not have YUAN in your wallet at the time of this proposal.
             </span>
-          ) || (prop.state == "Pending") && (!isRegistered) && (!voted) && (
+          )) || ((prop.state === "Pending") && (!isRegistered) && (!voted) && (
             // ) || (prop.state == "Defeated") && (
             <Button
               disabled={isRegistering}
               onClick={onRegister}
               text="Register"
             />
-          )
+          ))
         }
         <Button
           onClick={onDismiss}

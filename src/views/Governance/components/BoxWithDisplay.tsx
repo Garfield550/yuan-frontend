@@ -84,7 +84,7 @@ const Box: React.FC<BoxProps> = ({
       return 'column'
     }
     return undefined
-  }, [column])
+  }, [column, reverse, row])
 
   const boxHeight = useMemo(() => {
     if (height) {

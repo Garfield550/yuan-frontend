@@ -22,7 +22,7 @@ const useAllowance = (tokenContract: Contract, poolContract: Contract) => {
     }
     let refreshInterval = setInterval(fetchAllowance, 10000)
     return () => clearInterval(refreshInterval)
-  }, [account, poolContract, tokenContract])
+  }, [account, fetchAllowance, poolContract, tokenContract])
 
   return allowance
 }

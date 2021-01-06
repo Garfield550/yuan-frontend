@@ -10,7 +10,7 @@ const useReward = (poolContract: Contract, setShowPopup: any, showPopup: any) =>
 
   const handleReward = useCallback(async () => {
     await harvest(poolContract, account, setShowPopup, showPopup)
-  }, [account, poolContract])
+  }, [account, poolContract, setShowPopup, showPopup])
 
   return { onReward: handleReward }
 }

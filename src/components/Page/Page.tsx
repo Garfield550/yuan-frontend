@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
 import Footer from '../Footer'
@@ -7,13 +7,13 @@ import AccountButton from '../TopBar/components/AccountButton'
 import img__sun from '../../assets/img/Page/left-bg.svg'
 import img__ship from '../../assets/img/Page/left-bottom-bg.svg'
 import img__logo from '../../assets/img/Page/logo-bg.svg'
-import img__bg from '../../assets/img/Page/bg-repeat.svg'
-import LOGO from '../../assets/img/Page/LOGO.png'
+// import img__bg from '../../assets/img/Page/bg-repeat.svg'
+// import LOGO from '../../assets/img/Page/LOGO.png'
 import m_LOGO from '../../assets/img/Page/m-logo1.svg'
 import m_LOGO2 from '../../assets/img/Page/m_logo2.svg'
 import m_close from '../../assets/img/Page/m_close.svg'
 import m_sidebar from '../../assets/img/Page/m_sidebar.svg'
-import { IntlProvider, FormattedMessage } from 'react-intl'
+// import { IntlProvider, FormattedMessage } from 'react-intl'
 
 interface PageProps {
   setLanguage?: any
@@ -28,25 +28,25 @@ const Page: React.FC<PageProps> = ({ children, setLanguage, cur_language }) => {
   //   }
   // }, [show,setShow])
   return (
-    <Page__wrap>
+    <PageWrap>
       <StyledPage>
-        <Styled__img_1 src={img__sun} />
-        <Styled__img_2 src={img__ship} />
-        <Styled__img_3 src={img__logo} />
+        <StyledImg1 src={img__sun} />
+        <StyledImg2 src={img__ship} />
+        <StyledImg3 src={img__logo} />
 
         <BodyWrap>
-          <M__topBar style={{ backgroundColor: !show ? '' : '#476065' }}>
-            <M_topleft src={show ? m_LOGO : m_LOGO2} alt="logo"></M_topleft>
+          <MTopBar style={{ backgroundColor: !show ? '' : '#476065' }}>
+            <MTopLeft src={show ? m_LOGO : m_LOGO2} alt="logo"></MTopLeft>
             {/* <M_text>Staking</M_text> */}
             <AccountButton cur_language={cur_language} showStatus={show} />
-            <M_topright src={!show ? m_sidebar : m_close} onClick={() => setShow(!show)}></M_topright>
-          </M__topBar>
-          <Body__left style={{ display: show ? 'none' : 'block' }}>
+            <MTopRight src={!show ? m_sidebar : m_close} onClick={() => setShow(!show)}></MTopRight>
+          </MTopBar>
+          <BodyLeft style={{ display: show ? 'none' : 'block' }}>
             <StyledMain>
               {children}
             </StyledMain>
             <Footer cur_language={cur_language} />
-          </Body__left>
+          </BodyLeft>
           {/* <div onClick={() => { setLanguage('English') }}>
           <FormattedMessage id={'goldx_detail'} />
         </div> */}
@@ -54,10 +54,10 @@ const Page: React.FC<PageProps> = ({ children, setLanguage, cur_language }) => {
 
         </BodyWrap>
       </StyledPage>
-    </Page__wrap>
+    </PageWrap>
   )
 }
-const M__topBar = styled.div`
+const MTopBar = styled.div`
 display:none;
 @media(max-width: 767px) {
   display:flex;
@@ -68,22 +68,22 @@ display:none;
   padding-bottom: 30px;
 }
 `
-const M_topleft = styled.img`
+const MTopLeft = styled.img`
 width:60px;
 height:20px
 `
-const M_text = styled.p`
-font-size:16px;
-font-weight:bold;
-line-height:19px;
-color:#476065;
-margin:0 15px 0 auto
-`
-const M_topright = styled.img`
+// const M_text = styled.p`
+// font-size:16px;
+// font-weight:bold;
+// line-height:19px;
+// color:#476065;
+// margin:0 15px 0 auto
+// `
+const MTopRight = styled.img`
 width:26px;
 height:26px
 `
-const Styled__img_3 = styled.img`
+const StyledImg3 = styled.img`
 position: absolute;
 bottom: 212px;
 right:286px;
@@ -93,7 +93,7 @@ height: 263px;
   display:none
 }
 `
-const Styled__img_2 = styled.img`
+const StyledImg2 = styled.img`
 position: absolute;
 bottom: 83px;
 left:122px;
@@ -103,7 +103,7 @@ height: 28px;
   display:none
 }
 `
-const Styled__img_1 = styled.img`
+const StyledImg1 = styled.img`
 position: absolute;
 left: 10px;
 top:10px;
@@ -114,7 +114,7 @@ height: 289px;
 }
 `
 
-const Page__wrap = styled.div`
+const PageWrap = styled.div`
 width:100%;
 position: relative;
 min-height: 100vh;
@@ -131,7 +131,7 @@ min-height: 100vh;
   flex-direction: column;
 }
 `
-const Body__left = styled.div`
+const BodyLeft = styled.div`
 flex:1;
 margin-right:30px;
 position: relative;

@@ -1,18 +1,18 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
 import { useWallet } from 'use-wallet'
 
 import useModal from '../../../hooks/useModal'
-import { formatAddress } from '../../../utils'
+// import { formatAddress } from '../../../utils'
 
-import Button from '../../Button'
+// import Button from '../../Button'
 
 import AccountModal from './AccountModal'
-import WalletProviderModal from './WalletProviderModal'
+// import WalletProviderModal from './WalletProviderModal'
 
 import btn__bg from '../../../assets/img/Page/btn-bg.svg'
-import { IntlProvider, FormattedMessage } from 'react-intl'
+import { FormattedMessage } from 'react-intl'
 
 
 interface AccountButtonProps {
@@ -37,19 +37,19 @@ const AccountButton: React.FC<AccountButtonProps> = ({ cur_language,showStatus }
       {
         !account ?
           // <Styled__btn onClick={onPresentWalletProviderModal}>
-          <Styled__btn onClick={connectInjected}>
+          <StyledBtn onClick={connectInjected}>
             <FormattedMessage id={'Connect'} />
-          </Styled__btn>
+          </StyledBtn>
           :
-          <Styled__btn onClick={onPresentAccountModal}>
+          <StyledBtn onClick={onPresentAccountModal}>
             <FormattedMessage id={'My_Wallet'} />
-          </Styled__btn>
+          </StyledBtn>
       }
     </StyledAccountButton>
   )
 }
 
-const Styled__btn = styled.div`
+const StyledBtn = styled.div`
 background: red;
 background: url(${btn__bg});
 width: 160px;

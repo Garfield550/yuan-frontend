@@ -48,10 +48,10 @@ export function toNumber(input) {
 }
 
 
-function partial(
-  target,
-  numerator,
-  denominator,
-){
-  return target.times(numerator).div(denominator).integerValue(BigNumber.ROUND_DOWN);
-}
+// function partial(
+//   target,
+//   numerator,
+//   denominator,
+// ){
+//   return target.times(numerator).div(denominator).integerValue(BigNumber.ROUND_DOWN);
+// }

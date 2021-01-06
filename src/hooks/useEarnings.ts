@@ -21,7 +21,7 @@ const useEarnings = (pool: Contract) => {
     if (account && pool && yam) {
       fetchBalance()
     }
-  }, [account, pool, setBalance, yam, balance])
+  }, [account, pool, setBalance, yam, balance, fetchBalance])
 
   return balance
 }

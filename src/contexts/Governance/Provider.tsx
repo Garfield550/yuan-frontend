@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
 
-import BigNumber from 'bignumber.js'
+// import BigNumber from 'bignumber.js'
 import { useWallet } from 'use-wallet'
 
 import useYam from '../../hooks/useYam'
@@ -21,10 +21,12 @@ const Provider: React.FC = ({ children }) => {
   const { account } = useWallet()
   const yam = useYam()
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [confirmTxModalIsOpen, setConfirmTxModalIsOpen] = useState(false)
   const [isVoting, setIsVoting] = useState(false)
   const [proposals, setProposals] = useState<Proposal[]>()
   const [votingPowers, setVotingPowers] = useState<ProposalVotingPower[]>()
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [currentPower, setCurrentPower] = useState<number>()
 
   const fetchProposals = useCallback(async () => {
@@ -33,7 +35,7 @@ const Provider: React.FC = ({ children }) => {
 
     props = props.sort((a, b) => {
       if (a && b && a.end && b.end) {
-        if (a.end == b.end) {
+        if (a.end === b.end) {
           return 0
         }
         if (a.end < b.end) {
@@ -50,20 +52,13 @@ const Provider: React.FC = ({ children }) => {
     let votingPowers: ProposalVotingPower[] = await getVotingPowers(yam, props, account);
     
     setVotingPowers(votingPowers);
-  }, [
-    setProposals,
-    setVotingPowers,
-    yam,
-  ])
+  }, [account, yam])
 
   const fetchCurrentPower = useCallback(async () => {
     if (!yam) return;
     let votingPower: number = await getCurrentVotingPower(yam, account);
     setCurrentPower(votingPower);
-  }, [
-    setCurrentPower,
-    yam,
-  ])
+  }, [account, yam])
 
   const handleVote = useCallback(async (proposal: number, side: boolean, onDismiss) => {
     if (!yam) return
@@ -74,12 +69,7 @@ const Provider: React.FC = ({ children }) => {
     })
     fetchProposals()
     setIsVoting(false)
-  }, [
-    account,
-    setConfirmTxModalIsOpen,
-    setIsVoting,
-    yam
-  ])
+  }, [account, fetchProposals, yam])
 
   const [isRegistered, setIsRegistered] = useState<boolean>()
   const [isRegistering, setIsRegistering] = useState<boolean>()

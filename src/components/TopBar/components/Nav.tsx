@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
-import { IntlProvider, FormattedMessage } from 'react-intl'
+import { FormattedMessage } from 'react-intl'
 
 interface PageProps {
   setLanguage?: any
@@ -36,14 +36,14 @@ const Nav: React.FC<PageProps> = ({ setLanguage, cur_language, setShow }) => {
         <FormattedMessage id={'Vote'} />
       </Styled__a> */}
 
-      <Styled__language onClick={() => { setLanguage('English') }}>
+      <StyledLanguage onClick={() => { setLanguage('English') }}>
         <span style={{ color: cur_language === '中文' ? '#fff' : '#A2C1C6' }}>中文</span> / <span style={{ color: cur_language === 'English' ? '#fff' : '#A2C1C6' }}>EN</span>
-      </Styled__language>
+      </StyledLanguage>
     </StyledNav>
   )
 }
 
-const Styled__language = styled.div`
+const StyledLanguage = styled.div`
   color: #A2C1C6;
   font-weight: 700;
   padding-left: ${props => props.theme.spacing[3]}px;
@@ -64,43 +64,43 @@ const StyledNav = styled.nav`
   flex-direction: column;
 `
 
-const Styled__a = styled.a`
-  color: #A2C1C6;
-  font-weight: 700;
-  padding-left: ${props => props.theme.spacing[3]}px;
-  padding-right: ${props => props.theme.spacing[3]}px;
-  text-decoration: none;
+// const Styled__a = styled.a`
+//   color: #A2C1C6;
+//   font-weight: 700;
+//   padding-left: ${props => props.theme.spacing[3]}px;
+//   padding-right: ${props => props.theme.spacing[3]}px;
+//   text-decoration: none;
 
-  &::before{
-    content:'';
-    display: inline-block;
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: #476065;
-    margin-right: 5px;
-    margin-bottom: 3px;
-  }
+//   &::before{
+//     content:'';
+//     display: inline-block;
+//     width: 5px;
+//     height: 5px;
+//     border-radius: 50%;
+//     background: #476065;
+//     margin-right: 5px;
+//     margin-bottom: 3px;
+//   }
 
-  &:hover {
-    color: #fff;
+//   &:hover {
+//     color: #fff;
 
-    &::before{
-      background: #fff;
-      margin-top: -3px;
-    }
-  }
-  &.active {
-    color: #fff;
+//     &::before{
+//       background: #fff;
+//       margin-top: -3px;
+//     }
+//   }
+//   &.active {
+//     color: #fff;
 
-    &::before{
-      background: #fff;
-      margin-top: -3px;
-    }
-  }
+//     &::before{
+//       background: #fff;
+//       margin-top: -3px;
+//     }
+//   }
 
-  line-height: 58px;
-`
+//   line-height: 58px;
+// `
 
 const StyledLink = styled(NavLink)`
   color: #A2C1C6;

@@ -3,12 +3,12 @@ import styled from 'styled-components'
 import { useWallet } from 'use-wallet'
 import { yam as yamAddress } from '../../../constants/tokenAddresses'
 import useTokenBalance from '../../../hooks/useTokenBalance'
-import { getDisplayBalance, format_Balance_to_K } from '../../../utils/formatBalance'
+import { format_Balance_to_K } from '../../../utils/formatBalance'
 
 import Button from '../../Button'
 import CardIcon from '../../CardIcon'
-import IconButton from '../../IconButton'
-import { AddIcon, RemoveIcon } from '../../icons'
+// import IconButton from '../../IconButton'
+// import { AddIcon, RemoveIcon } from '../../icons'
 import Label from '../../Label'
 import Modal, { ModalProps } from '../../Modal'
 import ModalTitle from '../../ModalTitle'
@@ -36,7 +36,7 @@ const AccountModal: React.FC<ModalProps> = ({ onDismiss, cur_language }) => {
       <ModalTitle cur_language={cur_language} text="My_Account" />
 
       <StyledBalanceWrapper>
-        <CardIcon noBorder={true}>{<img src={Earn} height="100" border-radius="100" />}</CardIcon>
+        <CardIcon noBorder={true}>{<img src={Earn} height="100" border-radius="100" alt="earn" />}</CardIcon>
         <StyledBalance>
           <StyledValue>{displayBalance}</StyledValue>
           <Label cur_language={cur_language} text="YUAN_Balance" />
@@ -57,7 +57,7 @@ const AccountModal: React.FC<ModalProps> = ({ onDismiss, cur_language }) => {
 
       <StyledSpacer />
 
-      <Btn__wrap>
+      <BtnWrap>
         <Button
           cur_language={cur_language}
           onClick={handleSignOutClick}
@@ -67,12 +67,12 @@ const AccountModal: React.FC<ModalProps> = ({ onDismiss, cur_language }) => {
           imageBg={'LoginOut'}
         />
         <StyledSpacer />
-      </Btn__wrap>
+      </BtnWrap>
     </Modal>
   )
 }
 
-const Btn__wrap = styled.div`
+const BtnWrap = styled.div`
 display: flex;
 flex-direction: column;
 justify-content: center;
@@ -114,15 +114,15 @@ const StyledBalanceWrapper = styled.div`
   }
 `
 
-const StyledBalanceIcon = styled.div`
-  font-size: 36px;
-  margin-right: ${props => props.theme.spacing[3]}px;
-`
+// const StyledBalanceIcon = styled.div`
+//   font-size: 36px;
+//   margin-right: ${props => props.theme.spacing[3]}px;
+// `
 
-const StyledBalanceActions = styled.div`
-  align-items: center;
-  display: flex;
-  margin-top: ${props => props.theme.spacing[4]}px;
-`
+// const StyledBalanceActions = styled.div`
+//   align-items: center;
+//   display: flex;
+//   margin-top: ${props => props.theme.spacing[4]}px;
+// `
 
 export default AccountModal

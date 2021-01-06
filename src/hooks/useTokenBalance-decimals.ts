@@ -13,7 +13,7 @@ const useGet__decimals = (tokenContract: any, token_address: string) => {
       // console.log(decimals)
       setDecimals(decimals)
     }
-  }, [account, ethereum, token_address])
+  }, [tokenContract.methods, token_address])
 
   useEffect(() => {
     if (account && ethereum) {
@@ -21,7 +21,7 @@ const useGet__decimals = (tokenContract: any, token_address: string) => {
       let refreshInterval = setInterval(fetchBalance, 10000)
       return () => clearInterval(refreshInterval)
     }
-  }, [account, ethereum, setDecimals, token_address])
+  }, [account, ethereum, fetchBalance, setDecimals, token_address])
 
   return decimals
 }

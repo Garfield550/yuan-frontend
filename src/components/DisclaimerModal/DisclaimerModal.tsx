@@ -55,7 +55,9 @@ const DisclaimerModal: React.FC<DisclaimerModal> = ({ onConfirm, onDismiss }) =>
   return (
     <Modal>
       <ModalTitle text={`Warning`} />
-      <CardIcon>⚠️</CardIcon>
+      <CardIcon>
+        <span role="img" aria-label="warning">⚠️</span>
+      </CardIcon>
       {modalContent}
       <ModalActions>
         {button}

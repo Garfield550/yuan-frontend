@@ -25,7 +25,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, sho
 
   const fullBalance = useMemo(() => {
     return getFullDisplayBalance(max, token_decimals)
-  }, [max])
+  }, [max, token_decimals])
 
   const handleChange = useCallback((e: React.FormEvent<HTMLInputElement>) => {
     setVal(e.currentTarget.value)

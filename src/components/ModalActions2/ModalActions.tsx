@@ -22,7 +22,7 @@ const StyledModalActions = styled.div`
   background-color: ${props => props.theme.color.grey[100]}00;
   display: flex;
   margin:0 auto 15px;
-  // margin: ${props => props.theme.spacing[4]}px ${props => -props.theme.spacing[4]}px ${props => -props.theme.spacing[4]}px;
+  /* margin: ${props => props.theme.spacing[4]}px ${props => -props.theme.spacing[4]}px ${props => -props.theme.spacing[4]}px; */
   padding: 0 ${props => props.theme.spacing[4]}px;
   flex-direction: inherit;
   justify-content: flex-end;

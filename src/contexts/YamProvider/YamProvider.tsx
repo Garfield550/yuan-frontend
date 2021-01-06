@@ -49,7 +49,7 @@ const YamProvider: React.FC = ({ children }) => {
       setYam(yamLib)
       window.yamsauce = yamLib
     }
-  }, [ethereum, account])
+  }, [ethereum, account, chainId])
 
   return (
     <Context.Provider value={{ yam }}>

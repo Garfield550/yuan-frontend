@@ -1,7 +1,7 @@
 import React, { useContext, useMemo, useState, useEffect } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import Stake from '../../assets/img/stake/stake_btn.svg'
 import Harvest_disabled from '../../assets/img/stake/Harvest_disabled.svg'
 import Rebase from '../../assets/img/Page/Rebase.svg'
@@ -107,7 +107,7 @@ const Button: React.FC<ButtonProps> = ({ cur_language, widthProps, heightProps, 
     } else {
       return <FormattedMessage id={text} />
     }
-  }, [href, text, to])
+  }, [disabled, href, text, to])
 
   return (
     <IntlProvider locale={'en'} messages={cur_language === '中文' ? zh_CN : en_US} >
@@ -170,18 +170,18 @@ interface StyledLinkProps {
   disabled?: boolean,
 }
 
-const StyledLink = styled(Link)<StyledLinkProps>`
-  align-items: center;
-  color: inherit;
-  display: flex;
-  flex: 1;
-  height: 56px;
-  justify-content: center;
-  margin: 0 ${props => -props.theme.spacing[4]}px;
-  padding: 0 ${props => props.theme.spacing[4]}px;
-  text-decoration: none;
-  cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'};
-`
+// const StyledLink = styled(Link)<StyledLinkProps>`
+//   align-items: center;
+//   color: inherit;
+//   display: flex;
+//   flex: 1;
+//   height: 56px;
+//   justify-content: center;
+//   margin: 0 ${props => -props.theme.spacing[4]}px;
+//   padding: 0 ${props => props.theme.spacing[4]}px;
+//   text-decoration: none;
+//   cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'};
+// `
 
 const StyledExternalLink = styled.a<StyledLinkProps>`
   align-items: center;

@@ -1,5 +1,5 @@
-import React, { useContext,useState,useEffect} from 'react'
-import styled, { ThemeContext } from 'styled-components'
+import React, { useState, useEffect} from 'react'
+import styled from 'styled-components'
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar'
 import {interval} from '../../yamUtils'
 import img__bg from '../../assets/img/Page/bg-repeat.svg'
@@ -12,13 +12,14 @@ interface DialProps {
 }
 
 const Dial: React.FC<DialProps> = ({ children, disabled, size = 256, value}) => {
-  const { color } = useContext(ThemeContext)
+  // const { color } = useContext(ThemeContext)
   const [calculateValue, setacalculateValue] = useState(value / (1000 * interval) * 100)
   let num =0
   useEffect(() => {
     const timerId = setInterval(async ()=>{
       num++
       if(value - 1000*num <=0){
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         num=0
         setacalculateValue(0)
         clearInterval(timerId)
@@ -65,7 +66,7 @@ const StyledDial = styled.div<StyledInnerProps>`
   width: ${props => props.size}px;
   margin:0 auto;
   @media(max-width: 767px) {
-    // padding:30px;
+    /* padding:30px; */
     width:130px;
     height:130px;
     margin-top:25px
@@ -74,8 +75,8 @@ const StyledDial = styled.div<StyledInnerProps>`
 
 const StyledInner = styled.div<StyledInnerProps>`
   align-items: center;
-  // background-color: ${props => props.theme.color.grey[200]};
-  // background: url(${img__bg});
+  /* background-color: ${props => props.theme.color.grey[200]}; */
+  /* background: url(${img__bg}); */
   border-radius: ${props => props.size}px;
   display: flex;
   justify-content: center;

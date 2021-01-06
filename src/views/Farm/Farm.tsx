@@ -24,8 +24,8 @@ interface HomeProps {
 
 const Farm: React.FC<HomeProps> = ({ cur_language }) => {
   const [showPopup, setShowPopup] = useState({ show: false, status: '', hash: '', text: '' })
-  const { farmId } = useParams()
-  const { contract, depositToken, depositTokenAddress, earnToken, name, icon, } = useFarm(farmId) || {
+  const { farmId } = useParams<{ farmId: string }>()
+  const { contract, depositToken, depositTokenAddress, earnToken, icon, } = useFarm(farmId) || {
     depositToken: '',
     depositTokenAddress: '',
     earnToken: '',

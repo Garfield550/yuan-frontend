@@ -16,20 +16,20 @@ interface FancyValueProps {
 }
 
 const FancyValue: React.FC<FancyValueProps> = ({ icon, label, value, wrap, hint, tooltip }) => {
-  const { darkMode, colors } = useTheme();
+  const { darkMode } = useTheme();
 
-  let labelColor: string;
-  let borderColor: string;
-  let backgroundColor: string;
-  if (darkMode) {
-    labelColor = colors.primary.main;
-    borderColor = colors.primary.main;
-    backgroundColor = colors.grey[800];
-  } else {
-    labelColor = colors.grey[600];
-    borderColor = colors.grey[600];
-    backgroundColor = colors.grey[400];
-  }
+  // let labelColor: string;
+  // let borderColor: string;
+  // let backgroundColor: string;
+  // if (darkMode) {
+  //   labelColor = colors.primary.main;
+  //   borderColor = colors.primary.main;
+  //   backgroundColor = colors.grey[800];
+  // } else {
+  //   labelColor = colors.grey[600];
+  //   borderColor = colors.grey[600];
+  //   backgroundColor = colors.grey[400];
+  // }
 
   const DisplayHint = useMemo(() => {
     if (hint) {
@@ -51,10 +51,7 @@ const FancyValue: React.FC<FancyValueProps> = ({ icon, label, value, wrap, hint,
         </>
       );
     }
-  }, [
-    hint,
-    darkMode,
-  ]);
+  }, [hint, tooltip, darkMode]);
   
   const FancyLabelDisplay = useMemo(() => {
     if (wrap) {
@@ -74,13 +71,7 @@ const FancyValue: React.FC<FancyValueProps> = ({ icon, label, value, wrap, hint,
         </>
       );
     }
-  }, [
-    darkMode,
-    icon,
-    label,
-    value,
-    hint,
-  ]);
+  }, [wrap, DisplayHint, label]);
 
   return (
     <>

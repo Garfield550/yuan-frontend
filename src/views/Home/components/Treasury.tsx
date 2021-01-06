@@ -1,11 +1,11 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import numeral from 'numeral'
 import {
   Box,
   // Button,
   // Card,
-  CardActions,
+  // CardActions,
   // CardContent,
   // CardTitle,
   // Spacer,
@@ -20,15 +20,15 @@ import CardTitle from '../../../components/CardTitle3'
 import Spacer from '../../../components/Spacer'
 
 
-import FancyValue from '../../../components/FancyValue'
+// import FancyValue from '../../../components/FancyValue'
 import Split from '../../../components/Split'
 
 import useTreasury from '../../../hooks/useTreasury'
 // import { getDPIPrice } from 'yam-sdk/utils'
-import { useWallet } from 'use-wallet'
+// import { useWallet } from 'use-wallet'
 
 import Label from '../../../components/Label'
-import StatsBg from '../../../assets/img/Page/Stats.svg'
+// import StatsBg from '../../../assets/img/Page/Stats.svg'
 import StatsUsdx from '../../../assets/img/Page/StatsUsdx.svg'
 import StatsYUAN from '../../../assets/img/Page/StatsYUAN.svg'
 import StatsOracle from '../../../assets/img/Page/StatsOracle.svg'
@@ -38,7 +38,7 @@ interface TreasuryProps {
 }
 
 const Treasury: React.FC<TreasuryProps> = ({cur_language}) => {
-  const { status } = useWallet();
+  // const { status } = useWallet();
   // const [dpiPrice, setDPIPrice] = useState<number>();
   const { usdxBalance, yuanBalance, oraclePrice } = useTreasury()
   
@@ -156,14 +156,14 @@ const Treasury: React.FC<TreasuryProps> = ({cur_language}) => {
 }
 
 const StyledStats = styled.div`
-  // width: 100%;
+  /* width: 100%; */
   flex:1;
   display:flex;
   flex-direction:row;
   justify-content: space-between;
   margin-bottom:-10px;
   @media(max-width: 767px) {
-    // width:100%;
+    /* width:100%; */
     flex:1;
     flex-direction: column;
     box-sizing:border-box;
@@ -174,7 +174,7 @@ const StyledStats = styled.div`
 const StyledStat = styled.div`
   display: flex;
   flex-direction: row;
-  align-item:center;  
+  align-items:center;  
   &:last-child{
     margin-bottom:0
   }

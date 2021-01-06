@@ -27,7 +27,7 @@ const SeparatorGrid: React.FC<SeparatorProps> = ({ orientation, stretch, gridAre
       return <StyledSeparator boxShadow={boxShadow} orientation={orientation} />
     }
 
-  }, [boxShadow, orientation])
+  }, [boxShadow, gridArea, orientation, stretch])
 
   if (stretch && gridArea) {
     return (

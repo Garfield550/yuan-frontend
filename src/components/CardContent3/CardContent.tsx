@@ -9,7 +9,7 @@ const CardContent: React.FC = ({ children }) => (
 
 const StyledCardContent = styled.div`
   display: flex;
-  // flex: 1;
+  /* flex: 1; */
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;

@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useMemo, useState }  from 'react'
+import React from 'react'
 import {
   // Container,
   // Spacer,
@@ -17,9 +17,9 @@ import CardTitle from '../../components/CardTitle'
 import CardContent from '../../components/CardContent'
 import Button from '../../components/Button'
 
-import { IntlProvider, FormattedMessage } from 'react-intl'
-import en_US from '../../i18n/en_US'
-import zh_CN from '../../i18n/zh_CN'
+import { FormattedMessage } from 'react-intl'
+// import en_US from '../../i18n/en_US'
+// import zh_CN from '../../i18n/zh_CN'
 import Page from '../../components/Page'
 import PageHeader from '../../components/PageHeader'
 import Split from '../../components/Split'
@@ -30,13 +30,13 @@ import Box from "./components/BoxWithDisplay"
 import styled from 'styled-components'
 
 import useGovernance from '../../hooks/useGovernance'
-import { useWallet } from 'use-wallet'
+// import { useWallet } from 'use-wallet'
 
 import {
   ProposalEntry,
-  StyledDescription,
-  StyledState,
-  StyledButton,
+  // StyledDescription,
+  // StyledState,
+  // StyledButton,
   StyledProposalContentInner
 }  from './components/Proposal'
 
@@ -68,7 +68,7 @@ interface GovernanceProps {
 // ]
 
 const Governance: React.FC<GovernanceProps> = ({ setLanguage,cur_language }) => {
-  const { proposals, isRegistered, onVote, onRegister } = useGovernance();
+  const { proposals, onVote, onRegister } = useGovernance();
   // const [astronaut, setAstronaut] = useState('👨‍🚀')
 
 
@@ -137,20 +137,20 @@ const Governance: React.FC<GovernanceProps> = ({ setLanguage,cur_language }) => 
               paddingBottom={1}
               row
             >
-             <StyledProposalContentInner>
-               <StyledDescriptionMain><FormattedMessage id='Description' /></StyledDescriptionMain>
-               <SeparatorGrid orientation={'vertical'} stretch={true} gridArea={'spacer1'}/>
-               <StyledStateMain><FormattedMessage id='State' /></StyledStateMain>
-               <SeparatorGrid orientation={'vertical'} stretch={true} gridArea={'spacer2'}/>
-               <StyledButtonMain><FormattedMessage id='Action' /></StyledButtonMain>
-             </StyledProposalContentInner>
+            <StyledProposalContentInner>
+                <StyledDescriptionMain><FormattedMessage id='Description' /></StyledDescriptionMain>
+                <SeparatorGrid orientation={'vertical'} stretch={true} gridArea={'spacer1'}/>
+                <StyledStateMain><FormattedMessage id='State' /></StyledStateMain>
+                <SeparatorGrid orientation={'vertical'} stretch={true} gridArea={'spacer2'}/>
+                <StyledButtonMain><FormattedMessage id='Action' /></StyledButtonMain>
+            </StyledProposalContentInner>
             </Box>
             <Spacer size="sm"/>
             { (proposals) &&
               (<Surface>
                 {
                   proposals.map((prop, i) => {
-                    if (i == 0) {
+                    if (i === 0) {
                       return <ProposalEntry key={prop.hash} prop={prop} onVote={onVote} onRegister={onRegister}/>
                     } else {
                       return [<Separator key={prop.id} />, <ProposalEntry key={prop.hash} prop={prop} onVote={onVote} onRegister={onRegister}/>]

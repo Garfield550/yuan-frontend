@@ -38,7 +38,7 @@ const WalletProviderModal: React.FC<ModalProps> = ({ onDismiss, cur_language }) 
           <Card>
             <CardContent>
               <CardIcon noBorder={false}>
-                <img src={metamaskLogo} style={{ height: 32 }} />
+                <img src={metamaskLogo} style={{ height: 32 }} alt="metamask logo" />
               </CardIcon>
               <CardTitle text="Metamask" />
               <Spacer />
@@ -51,7 +51,7 @@ const WalletProviderModal: React.FC<ModalProps> = ({ onDismiss, cur_language }) 
           <Card>
             <CardContent>
               <CardIcon noBorder={false}>
-                <img src={walletConnectLogo} style={{ height: 24 }} />
+                <img src={walletConnectLogo} style={{ height: 24 }} alt="wallet connet logo" />
               </CardIcon>
               <CardTitle text="WalletConnect" />
               <Spacer />

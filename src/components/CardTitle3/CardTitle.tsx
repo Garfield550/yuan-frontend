@@ -20,7 +20,7 @@ const StyledCardTitle = styled.div`
   color: ${props => props.theme.color.grey[600]};
   font-size: 18px;
   font-weight: 700;
-  // padding: ${props => props.theme.spacing[4]}px;
+  /* padding: ${props => props.theme.spacing[4]}px; */
   margin:15px 0 15px;
   text-align: center;
   @media(max-width: 767px) {

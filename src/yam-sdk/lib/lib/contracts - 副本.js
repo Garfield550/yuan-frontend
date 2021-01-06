@@ -1,5 +1,5 @@
 import BigNumber from 'bignumber.js/bignumber';
-import Web3 from 'web3';
+// import Web3 from 'web3';
 import * as Types from "./types.js";
 import { SUBTRACT_GAS_LIMIT, addressMap, addressMapJSON } from './constants.js';
 

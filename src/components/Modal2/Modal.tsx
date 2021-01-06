@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import Card from '../Card'
-import CardContent from '../CardContent'
+// import Card from '../Card'
+// import CardContent from '../CardContent'
 import Container from '../Container'
 
 export interface ModalProps {
@@ -39,9 +39,9 @@ const StyledModal = styled.div<StyledModalProps>`
   background: #fff;
   z-index:1000;
   min-width: 600px;
-  // display: ${props => props.isOpen ? 'block' : 'none'};
+  /* display: ${props => props.isOpen ? 'block' : 'none'}; */
   @media(max-width: 767px) {
-    // background: red;
+    /* background: red; */
     width: 100%;
     min-width:100%;
     min-height:100vh;
@@ -51,7 +51,7 @@ const StyledModal = styled.div<StyledModalProps>`
     padding-right: 0px;
     bottom:0;
     right:0;
-    // display: ${props => props.isOpen ? 'block' : 'none'};
+    /* display: ${props => props.isOpen ? 'block' : 'none'}; */
   }
 `
 export default Modal

@@ -223,7 +223,7 @@ export const getCirculatingSupply = async (yam) => {
     return 0;
   }
   let yamsDistributed = yam.toBigN(8 * timePassed * 250000 / 625000); //yams from first 8 pools
-  let starttimePool2 = yam.toBigN(await yam.contracts.USDx_USDC_pool.methods.starttime().call()).toNumber();
+  // let starttimePool2 = yam.toBigN(await yam.contracts.USDx_USDC_pool.methods.starttime().call()).toNumber();
   timePassed = now["timestamp"] - starttime;
   let pool2Yams = yam.toBigN(timePassed * 1500000 / 625000); // yams from second pool. note: just accounts for first week
   let circulating = pool2Yams.plus(yamsDistributed).times(scalingFactor).div(10 ** 36).toFixed(2)
@@ -270,7 +270,7 @@ export const getNextRebaseTimestamp = async (yam) => {
         return now + 13 * 60 * 60; // just know that its greater than 12 hours away
       }
     }
-    return new Array(secondsToRebase, rebasable)
+    return [secondsToRebase, rebasable]
   } catch (e) {
     console.log(e)
   }

@@ -27,7 +27,7 @@ const StyledModalActions = styled.div`
   justify-content: space-between;
 
   @media(max-width: 767px) {
-    // background: red;
+    /* background: red; */
     margin: 0 0 0 0;
     padding: 0 0 0 0;
     width: 86%;
@@ -38,10 +38,10 @@ const StyledModalActions = styled.div`
 `
 
 const StyledModalAction = styled.div`
-  // flex: 1;
+  /* flex: 1; */
 
   @media(max-width: 767px) {
-    // background: red;
+    /* background: red; */
     padding-top: 23px;
     flex: 1;
   }

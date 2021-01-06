@@ -21,20 +21,20 @@ const Input: React.FC<InputProps> = ({ endAdornment, onChange, placeholder, star
 
 const StyledInputWrapper = styled.div`
   align-items: center;
-  // background-color: ${props => props.theme.color.grey[200]};
+  /* background-color: ${props => props.theme.color.grey[200]}; */
   border-radius: ${props => props.theme.borderRadius}px;
-  // box-shadow: inset 4px 4px 8px ${props => props.theme.color.grey[300]},
-  //   inset -6px -6px 12px ${props => props.theme.color.grey[100]};
+  /* box-shadow: inset 4px 4px 8px ${props => props.theme.color.grey[300]},
+    inset -6px -6px 12px ${props => props.theme.color.grey[100]}; */
   display: flex;
   height: 72px;
   padding: 0 ${props => props.theme.spacing[3]}px;
   border: 1px solid #8C9C9F;
 
   @media(max-width: 767px) {
-    // background: red;
+    /* background: red; */
     height: 50px;
-    // width: 86%;
-    // margin-left: 7%;
+    /* width: 86%; */
+    /* margin-left: 7%; */
     position: relative;
   }
 `
@@ -51,8 +51,8 @@ const StyledInput = styled.input`
   outline: none;
   
   @media(max-width: 767px) {
-    // background: green;
-    // flex: 3;
+    /* background: green; */
+    /* flex: 3; */
     width: 100%;
   }
 `

@@ -16,7 +16,7 @@ const StyledCardContent = styled.div`
   padding: ${props => props.theme.spacing[4]}px;
   @media(max-width: 767px) {
     padding: ${props => props.theme.spacing[2]}px;
-    // margin-bottom:-15px
+    /* margin-bottom:-15px */
   }
 `
 

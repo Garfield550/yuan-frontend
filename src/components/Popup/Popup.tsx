@@ -1,6 +1,6 @@
-import React, { useContext, useMemo } from 'react'
-import styled, { ThemeContext } from 'styled-components'
-import { Link } from 'react-router-dom'
+import React from 'react'
+import styled from 'styled-components'
+// import { Link } from 'react-router-dom'
 import { IntlProvider, FormattedMessage } from 'react-intl'
 import en_US from '../../i18n/en_US.js'
 import zh_CN from '../../i18n/zh_CN.js'
@@ -42,8 +42,8 @@ const Popup: React.FC<PopupProps> = ({ showPopup, cur_language }) => {
           {
             showPopup.hash &&
             <StyledA
-              href={'https://' + `${chainId === 42 ? 'kovan.' : ''}` + 'etherscan.io/tx/' + showPopup.hash}
-              target='_blank'>view < StyledImg_arrow alt="" src={popup_arrow} />
+              href={`https://${chainId === 42 ? 'kovan.' : ''}etherscan.io/tx/${showPopup.hash}`}
+              target='_blank'>view <StyledImgArrow alt="" src={popup_arrow} />
             </StyledA>
           }
         </StyledPopup>
@@ -72,7 +72,7 @@ padding-left: 15px;
 line-height: 34px;
 `
 
-const StyledImg_arrow = styled.img`
+const StyledImgArrow = styled.img`
 width: 10px;
 height: 10px;
 `

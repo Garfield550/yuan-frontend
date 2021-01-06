@@ -4,12 +4,12 @@ import styled from 'styled-components'
 import { Contract } from 'web3-eth-contract'
 
 import Button from '../../../components/Button'
-import Card from '../../../components/Card'
-import CardContent from '../../../components/CardContent'
+// import Card from '../../../components/Card'
+// import CardContent from '../../../components/CardContent'
 import CardIcon from '../../../components/CardIcon'
 import { AddIcon, RemoveIcon } from '../../../components/icons'
 import IconButton from '../../../components/IconButton'
-import Label from '../../../components/Label'
+// import Label from '../../../components/Label'
 import LabelSub from '../../../components/Label/LabelSub'
 import Value from '../../../components/Value'
 
@@ -17,14 +17,14 @@ import useAllowance from '../../../hooks/useAllowance'
 import useApprove from '../../../hooks/useApprove'
 import useModal from '../../../hooks/useModal'
 import useStake from '../../../hooks/useStake'
-import useNotify from '../../../hooks/useNotify'
+// import useNotify from '../../../hooks/useNotify'
 import useStakedBalance from '../../../hooks/useStakedBalance'
 import useTokenBalance from '../../../hooks/useTokenBalance'
 import useGet__decimals from '../../../hooks/useTokenBalance-decimals'
 
 import useUnstake from '../../../hooks/useUnstake'
 
-import { getDisplayBalance, format_Balance_to_K } from '../../../utils/formatBalance'
+import { format_Balance_to_K } from '../../../utils/formatBalance'
 
 import DepositModal from './DepositModal'
 import WithdrawModal from './WithdrawModal'
@@ -56,7 +56,7 @@ const Stake: React.FC<StakeProps> = ({ poolContract, tokenContract, tokenName, c
   const { onStake } = useStake(poolContract, tokenContract, setShowPopup, showPopup)
   const { onUnstake } = useUnstake(poolContract, tokenContract, setShowPopup, showPopup)
 
-  const { num, handleNum } = useNotify();
+  // const { num, handleNum } = useNotify();
   // handleNum(123456789);
   // console.log(num);
 
@@ -118,13 +118,13 @@ const Stake: React.FC<StakeProps> = ({ poolContract, tokenContract, tokenName, c
       handleDisabledAddAction()
     }, 1000);
     return () => clearInterval(timer);
-  }, [poolContract])
+  }, [handleDisabledAddAction, poolContract])
 
 
   return (
     <StyledCardContentInner>
       <StyledCardHeader>
-        <CardIcon noBorder={true}>{<img src={Deposit} height="100" border-radius="100" />}</CardIcon>
+        <CardIcon noBorder={true}>{<img src={Deposit} height="100" border-radius="100" alt="deposit" />}</CardIcon>
         <Value value={format_Balance_to_K(stakedBalance, token_decimals)} />
         <LabelSub cur_language={cur_language} text={`${tokenName}`} />
       </StyledCardHeader>

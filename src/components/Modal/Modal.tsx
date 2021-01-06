@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import Card from '../Card'
-import CardContent from '../CardContent'
+// import Card from '../Card'
+// import CardContent from '../CardContent'
 import Container from '../Container'
 
 export interface ModalProps {
@@ -30,7 +30,7 @@ const StyledModal = styled.div`
   margin-top: 30vh;
 
   @media(max-width: 767px) {
-    // background: red;
+    /* background: red; */
     width: 86%;
     margin-left: 7%;
     padding-left: 0px;

@@ -4,7 +4,7 @@ import BigNumber from 'bignumber.js'
 import { useWallet } from 'use-wallet'
 import { provider } from 'web3-core'
 
-import { bnToDec, getBalance,getOraclePrice } from '../utils'
+import { bnToDec, getOraclePrice } from '../utils'
 
 const useTokenBalance = (accountAddress?: string, tokenAddress?: string, decimals = 18) => {
 
@@ -26,12 +26,7 @@ const useTokenBalance = (accountAddress?: string, tokenAddress?: string, decimal
 
   useEffect(() => {
     fetchBalance()
-  }, [
-    accountAddress,
-    decimals,
-    ethereum,
-    tokenAddress,
-  ])
+  }, [accountAddress, decimals, ethereum, fetchBalance, tokenAddress])
   return balance
 }
 

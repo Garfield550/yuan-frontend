@@ -9,8 +9,8 @@ const Card: React.FC = ({ children }) => (
 
 const StyledCard = styled.div`
   display: flex;
-  // width:93%;
-  // margin-left:-33px;
+  /* width:93%; */
+  /* margin-left:-33px; */
   width:100%;
   flex-direction: column;
   overflow: hidden;

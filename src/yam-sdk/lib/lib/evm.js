@@ -39,7 +39,7 @@ export class EVM {
    * @param provider a valid web3 provider
    * @returns null
    */
-   async resetEVM(resetSnapshotId = '0x1') {
+  async resetEVM(resetSnapshotId = '0x1') {
     const id = await this.snapshot();
 
     if (id !== resetSnapshotId) {
@@ -47,7 +47,7 @@ export class EVM {
     }
   }
 
-   async reset(id) {
+  async reset(id) {
     if (!id) {
       throw new Error('id must be set');
     }
@@ -57,31 +57,31 @@ export class EVM {
     return this.snapshot();
   }
 
-   async snapshot() {
+  async snapshot() {
     return this.callJsonrpcMethod('evm_snapshot');
   }
 
-   async evmRevert(id) {
+  async evmRevert(id) {
     return this.callJsonrpcMethod('evm_revert', [id]);
   }
 
-   async stopMining() {
+  async stopMining() {
     return this.callJsonrpcMethod('miner_stop');
   }
 
-   async startMining() {
+  async startMining() {
     return this.callJsonrpcMethod('miner_start');
   }
 
-   async mineBlock() {
+  async mineBlock() {
     return this.callJsonrpcMethod('evm_mine');
   }
 
-   async increaseTime(duration) {
+  async increaseTime(duration) {
     return this.callJsonrpcMethod('evm_increaseTime', [duration]);
   }
 
-   async callJsonrpcMethod(method, params) {
+  async callJsonrpcMethod(method, params) {
     const args= {
       method,
       params,
@@ -94,7 +94,7 @@ export class EVM {
     return response.result;
   }
 
-   async send(args) {
+  async send(args) {
     return new Promise((resolve, reject) => {
       const callback = (error, val)=> {
         if (error) {
@@ -145,7 +145,4 @@ export class EVM {
       this.assertCertainError(e, ASSERT_MSG);
     }
   }
-
-
-
 }

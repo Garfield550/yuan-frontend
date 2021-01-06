@@ -13,7 +13,7 @@ const useRedeem = (poolContract: Contract, setShowPopup: any, showPopup: any) =>
     } catch (error) {
       console.log(error)
     }
-  }, [account, poolContract])
+  }, [account, poolContract, setShowPopup, showPopup])
 
   return { onRedeem: handleRedeem }
 }

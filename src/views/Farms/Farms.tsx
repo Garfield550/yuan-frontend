@@ -1,13 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Route, Switch, useRouteMatch, } from 'react-router-dom'
-import { useWallet } from 'use-wallet'
+// import { useWallet } from 'use-wallet'
 
-import farmer from '../../assets/img/farmer.png'
+// import farmer from '../../assets/img/farmer.png'
 
-import Button from '../../components/Button'
+// import Button from '../../components/Button'
 import Page from '../../components/Page'
-import PageHeader from '../../components/PageHeader'
+// import PageHeader from '../../components/PageHeader'
 
 import Farm from '../Farm'
 
@@ -21,14 +21,14 @@ interface HomeProps {
 
 const Farms: React.FC<HomeProps> = ({ setLanguage, cur_language, is_staking }) => {
   const { path } = useRouteMatch()
-  const { account, connect } = useWallet()
+  // const { account, connect } = useWallet()
   return (
     <Switch>
       <Page setLanguage={setLanguage} cur_language={cur_language}>
         {
           // !!account &&
           <>
-            <Farm__wrap>
+            <FarmWrap>
               <Route exact path={path}>
                 <FarmCards cur_language={cur_language} is_staking={is_staking} />
               </Route>
@@ -36,7 +36,7 @@ const Farms: React.FC<HomeProps> = ({ setLanguage, cur_language, is_staking }) =
               <Route path={`${path}/:farmId`}>
                 <Farm cur_language={cur_language} />
               </Route>
-            </Farm__wrap>
+            </FarmWrap>
           </>
           // <div style={{ alignItems: 'center', display: 'flex', flex: 1, justifyContent: 'center' }}>
           //   <Button
@@ -51,9 +51,7 @@ const Farms: React.FC<HomeProps> = ({ setLanguage, cur_language, is_staking }) =
   )
 }
 
-const Farm__wrap = styled.div`
-
-`
+const FarmWrap = styled.div``
 
 
 export default Farms

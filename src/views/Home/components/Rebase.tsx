@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react'
 import styled from 'styled-components'
 import { useWallet } from 'use-wallet'
-import { Contract } from 'web3-eth-contract'
+// import { Contract } from 'web3-eth-contract'
 import Countdown, { CountdownRenderProps } from 'react-countdown'
 
 import Button from '../../../components/Button'
@@ -22,7 +22,7 @@ const Rebase: React.FC<RebaseProps> = ({ nextRebase, nextRebable, yam, cur_langu
   const { account, reset } = useWallet()
 
   const renderer = (countdownProps: CountdownRenderProps) => {
-    const { hours, minutes, seconds, total } = countdownProps
+    const { hours, minutes, seconds, } = countdownProps
     // if (total === 0) {
     //   reset()
     // }
@@ -67,13 +67,13 @@ const Rebase: React.FC<RebaseProps> = ({ nextRebase, nextRebable, yam, cur_langu
     } catch (e) {
       console.log(e)
     }
-  }, [account, yam])
+  }, [account, reset, showPopup.hash, yam])
 
   // to be update
   // const dialValue = nextRebase / (1000 * 60 * 60 * 12) * 100
   // const dialValue = nextRebase / (1000 * 1800) * 100
   // get second timestamp.
-  let curTime = (new Date().getTime()) - (new Date().getTime() % 1000)
+  // let curTime = (new Date().getTime()) - (new Date().getTime() % 1000)
   return (
     <StyledRebase>
 

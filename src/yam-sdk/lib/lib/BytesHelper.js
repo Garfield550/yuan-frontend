@@ -2,7 +2,6 @@ import ethers from 'ethers';
 import Web3 from 'web3';
 import BigNumber from 'bignumber.js/bignumber';
 
-
 export function hexStringToBytes(hex) {
   if (!hex || hex === '0x') {
     return [];

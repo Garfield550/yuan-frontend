@@ -33,11 +33,11 @@ const Home: React.FC<HomeProps> = ({ setLanguage, cur_language }) => {
     if (yam) {
       fetchStats()
     }
-  }, [yam])
+  }, [fetchStats, yam])
 
   return (
     <Page setLanguage={setLanguage} cur_language={cur_language}>
-      <Top__bg></Top__bg>
+      <TopBg></TopBg>
 
       <HomeWrap>
         <StyledTreasury>
@@ -62,7 +62,7 @@ const Home: React.FC<HomeProps> = ({ setLanguage, cur_language }) => {
   )
 }
 
-const Top__bg = styled.div`
+const TopBg = styled.div`
   width:741px;
   height:170px; 
   margin: 49px 0 29px;
@@ -92,12 +92,12 @@ const StyledTreasury = styled.div`
   background: url(${treasuryBg_pc}) no-repeat;
   background-size: 100%;
   padding-bottom: 20px;
-  // padding-left:66px;
-  // margin-left:30px;
+  /* padding-left: 66px; */
+  /* margin-left: 30px; */
   margin-bottom:10px;
   box-sizing: border-box;
   @media(max-width: 767px) {
-    // width:100%;
+    /* width: 100%; */
     width: calc(100vw - 30px);
     height: calc((100vw - 30px)/692*647);
     flex-direction: column;
@@ -118,7 +118,7 @@ const StyledOverview = styled.div`
   background-size: 100% 100%;
   padding-top: 66px;
   padding-bottom: 63px;
-  // padding-left:66px;
+  /* padding-left:66px; */
   box-sizing: border-box;
   justify-content: flex-end;
   @media(max-width: 767px) {

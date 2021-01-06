@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 
 
-import { Contract } from 'web3-eth-contract'
+// import { Contract } from 'web3-eth-contract'
 
 import { yam as yamAddress } from '../../constants/tokenAddresses'
 import useYam from '../../hooks/useYam'

@@ -1,11 +1,11 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import Countdown, { CountdownRenderProps } from 'react-countdown'
 import { useWallet } from 'use-wallet'
 
 import Button from '../../../components/Button'
-import Card from '../../../components/Card'
-import CardContent from '../../../components/CardContent'
+// import Card from '../../../components/Card'
+// import CardContent from '../../../components/CardContent'
 import CardIcon from '../../../components/CardIcon'
 import Loader from '../../../components/Loader'
 
@@ -16,12 +16,12 @@ import { Farm } from '../../../contexts/Farms'
 import { getPoolStartTime } from '../../../yamUtils'
 import pool_bg from '../../../assets/img/stake/pool_bg.svg'
 // import stake_btn from '../../../assets/img/stake/stake_btn.svg'
-import { IntlProvider, FormattedMessage } from 'react-intl'
+import { FormattedMessage } from 'react-intl'
 
 import { getAPYContract } from '../../../utils/erc20js'
 import { abi } from '../../../utils/apy.json'
 import { networks } from '../../../utils/apy.json'
-import long_line from '../../../assets/img/Page/long-line.png'
+// import long_line from '../../../assets/img/Page/long-line.png'
 import USDC_ETH from '../../../assets/img/Page/USDC-ETH.svg'
 import USDT_ETH from '../../../assets/img/Page/USDT-ETH.svg'
 import USDx_ETH from '../../../assets/img/Page/USDx-ETH.svg'
@@ -78,14 +78,14 @@ const FarmCards: React.FC<FarmCardsProps> = ({ cur_language, is_staking }) => {
 
   return (
     <StyledCards>
-      <Farm_header>
-        <Farm_header_h1>
+      <FarmHeader>
+        <FarmHeaderH1>
           <FormattedMessage id={'select_a_pool'} />
-        </Farm_header_h1>
-        <Farm_header_p>
+        </FarmHeaderH1>
+        <FarmHeaderP>
           <FormattedMessage id={'select_a_pool__sub'} />
-        </Farm_header_p>
-      </Farm_header>
+        </FarmHeaderP>
+      </FarmHeader>
 
       {
         !!rows[0].length ?
@@ -95,11 +95,11 @@ const FarmCards: React.FC<FarmCardsProps> = ({ cur_language, is_staking }) => {
               {
                 is_staking &&
                 <>
-                  <StyledLong_line>
-                    <StyledLong_line__text>
+                  <StyledLongLine>
+                    <StyledLongLineText>
                       <FormattedMessage id={'title_shiqian'} />
-                    </StyledLong_line__text>
-                  </StyledLong_line>
+                    </StyledLongLineText>
+                  </StyledLongLine>
                   <StyledRow key={i}>
                     {farmRow.map((farm, j) => {
                       if (j > 2) {
@@ -115,11 +115,11 @@ const FarmCards: React.FC<FarmCardsProps> = ({ cur_language, is_staking }) => {
                     })}
                   </StyledRow>
 
-                  <StyledLong_line>
-                    <StyledLong_line__text>
+                  <StyledLongLine>
+                    <StyledLongLineText>
                       <FormattedMessage id={'title_qin'} />
-                    </StyledLong_line__text>
-                  </StyledLong_line>
+                    </StyledLongLineText>
+                  </StyledLongLine>
                   <StyledRow key={i + 1}>
                     {farmRow.map((farm, j) => {
                       if (j > 2 && j < 7) {
@@ -135,11 +135,11 @@ const FarmCards: React.FC<FarmCardsProps> = ({ cur_language, is_staking }) => {
                     })}
                   </StyledRow>
 
-                  <StyledLong_line>
-                    <StyledLong_line__text>
+                  <StyledLongLine>
+                    <StyledLongLineText>
                       <FormattedMessage id={'title_han'} />
-                    </StyledLong_line__text>
-                  </StyledLong_line>
+                    </StyledLongLineText>
+                  </StyledLongLine>
                   <StyledRow key={i + 2}>
                     {farmRow.map((farm, j) => {
                       if (j > 6 && j < 9) {
@@ -155,11 +155,11 @@ const FarmCards: React.FC<FarmCardsProps> = ({ cur_language, is_staking }) => {
                     })}
                   </StyledRow>
 
-                  <StyledLong_line>
-                    <StyledLong_line__text>
+                  <StyledLongLine>
+                    <StyledLongLineText>
                       <FormattedMessage id={'title_tang'} />
-                    </StyledLong_line__text>
-                  </StyledLong_line>
+                    </StyledLongLineText>
+                  </StyledLongLine>
                   <StyledRow key={i + 3}>
                     {farmRow.map((farm, j) => {
                       if (j > 8 && j < 15) {
@@ -181,11 +181,11 @@ const FarmCards: React.FC<FarmCardsProps> = ({ cur_language, is_staking }) => {
               {
                 !is_staking &&
                 <>
-                  <StyledLong_line>
-                    <StyledLong_line__text>
+                  <StyledLongLine>
+                    <StyledLongLineText>
                       <FormattedMessage id={'zhengcheng'} />
-                    </StyledLong_line__text>
-                  </StyledLong_line>
+                    </StyledLongLineText>
+                  </StyledLongLine>
                   <StyledRow key={i + 4}>
                     {farmRow.map((farm, j) => {
                       if (j > 14) {
@@ -237,7 +237,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, cur_language, show_images, is
     const now_apy = await getAPYContract(ethereum, abi, networks, chainId, farm.contract);
     // console.log(ethereum, abi, networks, chainId, farm.contract)
     setNow_apy(now_apy)
-  }, [farm.contract])
+  }, [chainId, ethereum, farm.contract])
   get_now_apy();
 
   const getStartTime = useCallback(async () => {
@@ -294,6 +294,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, cur_language, show_images, is
           text={poolActive ? 'Select' : undefined}
           to={
             (!poolActive || farm.contract === null) ?
+              // eslint-disable-next-line no-script-url
               "javascript:void(0);"
               :
               is_staking ? `/staking/${farm.id}` : `/distribution/${farm.id}`
@@ -331,13 +332,13 @@ margin-top: 20px;
 margin-bottom: 14px;
 `
 
-const StyledLong_line = styled.div`
+const StyledLongLine = styled.div`
 margin-top: 50px;
 width: 100%;
 background: url(${long_line_left}) no-repeat 0 10px;
 position: relative;
 `
-const StyledLong_line__text = styled.div`
+const StyledLongLineText = styled.div`
   display: inline-block;
   margin-left: 40px;
   text-align: center;
@@ -385,17 +386,17 @@ const StyledCardAccent = styled.div`
     top: -2px; right: 22px; bottom: -2px; left: 22px;
   }
 `
-const Farm_header = styled.div`
+const FarmHeader = styled.div`
   margin-top:49px;
   text-align:center;
   color:#476065
 `
-const Farm_header_h1 = styled.h1`
+const FarmHeaderH1 = styled.h1`
   font-size:40px;
   line-height:44px;
   margin:0
 `
-const Farm_header_p = styled.h1`
+const FarmHeaderP = styled.h1`
   font-size:16px;
   line-height:38px;
   margin:0 0 26px 0
@@ -435,13 +436,13 @@ const StyledCardWrapper = styled.div`
   }
 `
 
-const StyledTitle = styled.h4`
-  color: ${props => props.theme.color.grey[600]};
-  font-size: 24px;
-  font-weight: 700;
-  margin: ${props => props.theme.spacing[2]}px 0 0;
-  padding: 0;
-`
+// const StyledTitle = styled.h4`
+//   color: ${props => props.theme.color.grey[600]};
+//   font-size: 24px;
+//   font-weight: 700;
+//   margin: ${props => props.theme.spacing[2]}px 0 0;
+//   padding: 0;
+// `
 
 const StyledContent = styled.div`
   align-items: center;

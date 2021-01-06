@@ -1,10 +1,10 @@
 import React, { useMemo } from 'react'
 import styled from 'styled-components'
 
-import numeral from 'numeral'
+// import numeral from 'numeral'
 
-import Card from '../../../components/Card'
-import CardContent from '../../../components/CardContent'
+// import Card from '../../../components/Card'
+// import CardContent from '../../../components/CardContent'
 import Label from '../../../components/Label'
 
 import { getDisplayBalance, format_Balance_to_K } from '../../../utils/formatBalance'
@@ -81,7 +81,7 @@ const StyledStat = styled.div`
     margin-bottom:0
   }
   @media(max-width: 767px) {
-    // width:100%;
+    /* width:100%; */
     width:calc(100vw - 30px);
     height:calc((100vw - 30px)/692*197);
     background: url(${StatsBg}) no-repeat;

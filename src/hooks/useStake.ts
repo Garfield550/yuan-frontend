@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useCallback } from 'react'
 
 import { useWallet } from 'use-wallet'
 import { Contract } from "web3-eth-contract"
@@ -15,7 +15,7 @@ const useStake = (poolContract: Contract, tokenContract: Contract, setShowPopup:
 
     let tokenDecimals = await tokenContract.methods.decimals().call()
     await stake(poolContract, tokenDecimals, amount, account, onDismiss, setShowPopup, showPopup)
-  }, [account, poolContract])
+  }, [account, poolContract, tokenContract.methods])
 
   return { onStake: handleStake }
 }
