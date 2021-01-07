@@ -215,18 +215,18 @@ export const getScalingFactor = async (yam, pool, account) => {
 }
 
 export const getCirculatingSupply = async (yam) => {
-  let now = await yam.web3.eth.getBlock('latest');
-  let scalingFactor = yam.toBigN(await yam.contracts.yam.methods.yuansScalingFactor().call());
-  let starttime = yam.toBigN(await yam.contracts.USDx_USDC_pool.methods.starttime().call()).toNumber();
-  let timePassed = now["timestamp"] - starttime;
-  if (timePassed < 0) {
-    return '0';
-  }
-  let yamsDistributed = yam.toBigN(8 * timePassed * 250000 / 625000); //yams from first 8 pools
-  // let starttimePool2 = yam.toBigN(await yam.contracts.USDx_USDC_pool.methods.starttime().call()).toNumber();
-  timePassed = now["timestamp"] - starttime;
-  let pool2Yams = yam.toBigN(timePassed * 1500000 / 625000); // yams from second pool. note: just accounts for first week
-  let circulating = pool2Yams.plus(yamsDistributed).times(scalingFactor).div(10 ** 36).toFixed(2)
+  // let now = await yam.web3.eth.getBlock('latest');
+  // let scalingFactor = yam.toBigN(await yam.contracts.yam.methods.yuansScalingFactor().call());
+  // let starttime = yam.toBigN(await yam.contracts.USDx_USDC_pool.methods.starttime().call()).toNumber();
+  // let timePassed = now["timestamp"] - starttime;
+  // if (timePassed < 0) {
+  //   return '0';
+  // }
+  // let yamsDistributed = yam.toBigN(8 * timePassed * 250000 / 625000); //yams from first 8 pools
+  // // let starttimePool2 = yam.toBigN(await yam.contracts.USDx_USDC_pool.methods.starttime().call()).toNumber();
+  // timePassed = now["timestamp"] - starttime;
+  // let pool2Yams = yam.toBigN(timePassed * 1500000 / 625000); // yams from second pool. note: just accounts for first week
+  // let circulating = pool2Yams.plus(yamsDistributed).times(scalingFactor).div(10 ** 36).toFixed(2)
   // return circulating
   return '30000000'
 }
