@@ -17,6 +17,7 @@ const useTreasury = () => {
   const usdxBalance = useTokenBalance(TreasuryAddress, USDX_Address)
   const yuanBalance = useTokenBalance(TreasuryAddress, YUAN_Address)
   const oraclePrice = useTokenBalance(USDX_Address, ORACLE_address)
+  console.log('usdxBalance:', usdxBalance, 'yuanBalance:', yuanBalance, 'oraclePrice:', oraclePrice)
   // const totalYUsdValue = useMemo(() => {
   //   const yamYUsdValue = yamTwap && yamBalance ? yamTwap * yamBalance : 0
   //   return yUsdBalance ? yUsdBalance + yamYUsdValue : yamYUsdValue

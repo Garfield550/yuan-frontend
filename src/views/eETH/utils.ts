@@ -57,6 +57,7 @@ export const getStats = async (yam: typeof Yam) => {
   const targetPrice = await getTargetPrice(yam)
   const totalSupply = await getTotalSupply(yam)
   const scalingFactor =await getScalingFactor(yam)
+  console.log('curPrice:', curPrice, 'circSupply:', circSupply, 'nextRebase:', nextRebase, 'nextRebable:', nextRebable, 'targetPrice:', targetPrice, 'totalSupply:', totalSupply, 'scalingFactor:', scalingFactor)
   return {
     circSupply,
     curPrice,

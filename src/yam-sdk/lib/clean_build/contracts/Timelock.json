@@ -335,9 +335,14 @@
       "transactionHash": "0xd526e7a9f7398c9bd63493da61c1d73edff818d0eadb57162000f78478176350"
     },
     "42": {
-        "links": [{}],
-        "address": "0xBBD883773a40b69aF339105f5b1Cedd493009c15",
-        "transactionHash": "0xd526e7a9f7398c9bd63493da61c1d73edff818d0eadb57162000f78478176350"
-      }
+      "links": [{}],
+      "address": "0xBBD883773a40b69aF339105f5b1Cedd493009c15",
+      "transactionHash": "0xd526e7a9f7398c9bd63493da61c1d73edff818d0eadb57162000f78478176350"
+    },
+    "97": {
+      "links": [{}],
+      "address": "0x0531bcA3F7defd0E24a924f29BFe80735f6084f6",
+      "transactionHash": "0x46b1a30712f974a8897f2797024bd35874d2e9e83fd70cedb17a15ab6e9c63ef"
+    }
   }
 }

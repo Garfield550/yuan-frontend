@@ -85,7 +85,7 @@ const Treasury: React.FC<TreasuryProps> = ({cur_language}) => {
             <StatIcon src={StatsUsdx} />
             <StatInfo>
               <StyledValue>{usdxValue}</StyledValue>
-              <Label cur_language={cur_language} text={'eETC_In_Reserves'} size={16}/>
+              <Label cur_language={cur_language} text={'eETH_In_Reserves'} size={16}/>
             </StatInfo>
           </StyledStat>
 
@@ -107,7 +107,7 @@ const Treasury: React.FC<TreasuryProps> = ({cur_language}) => {
               <StyledValue>
                 {oracleValue}
               </StyledValue>
-              <Label cur_language={cur_language} text={'ETC_USD'} size={16}/>
+              <Label cur_language={cur_language} text={'ETH_USD'} size={16}/>
             </StatInfo>
           </StyledStat>
         </StyledStats>
