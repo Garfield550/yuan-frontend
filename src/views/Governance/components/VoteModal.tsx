@@ -195,7 +195,6 @@ const VoteModal: React.FC<VoteModalProps> = ({
       </ModalContent>
       <ModalActions>
         {((prop.state === "Active") && (!voted) && (isRegistered) && (votePower && votePower > 0) && (
-          //{ (prop.state == "Defeated") && (
           <div style={{display: 'flex',flexDirection: 'row'}}>
             <Button
               disabled={isVoting}
@@ -213,7 +212,6 @@ const VoteModal: React.FC<VoteModalProps> = ({
               Unable To Vote. You were either not delegating or did not have YUAN in your wallet at the time of this proposal.
             </span>
           )) || ((prop.state === "Pending") && (!isRegistered) && (!voted) && (
-            // ) || (prop.state == "Defeated") && (
             <Button
               disabled={isRegistering}
               onClick={onRegister}

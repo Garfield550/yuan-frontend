@@ -10,10 +10,12 @@ interface CardTitleProps {
 }
 
 const CardTitle: React.FC<CardTitleProps> = ({ text,cur_language }) => (
-  // <StyledCardTitle>{text}</StyledCardTitle>
-  <IntlProvider locale={'en'} messages={cur_language === '中文' ? zh_CN : en_US} >
-    <StyledCardTitle><FormattedMessage id={text}></FormattedMessage></StyledCardTitle>
-  </IntlProvider>
+  <>
+    {/* <StyledCardTitle>{text}</StyledCardTitle> */}
+    <IntlProvider locale={'en'} messages={cur_language === '中文' ? zh_CN : en_US} >
+      <StyledCardTitle><FormattedMessage id={text}></FormattedMessage></StyledCardTitle>
+    </IntlProvider>
+  </>
 )
 
 const StyledCardTitle = styled.div`
