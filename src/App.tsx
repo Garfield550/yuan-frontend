@@ -103,7 +103,7 @@ const Providers: React.FC = ({ children }) => {
     <ThemeProvider theme={theme}>
       <UseWalletProvider
         // (to be change)
-        chainId={97}
+        chainId={42}
         connectors={{
           walletconnect:
             // { rpcUrl: 'https://kovan.eth.aragon.network/' },

@@ -201,7 +201,7 @@ export const getStaked = async (yam, pool, account) => {
 
 export const getCurrentPrice = async (yam) => {
   // FORBROCK: get current YAM price
-  return yam.toBigN(await yam.contracts.rebaser.methods.getCurrentTWAP().call())
+  return yam.toBigN(await yam.contracts.rebaser.methods.getCurrentExchangeRate().call())
 }
 
 export const getTargetPrice = async (yam) => {
