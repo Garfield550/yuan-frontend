@@ -44,6 +44,9 @@ export type Pool = {
   poolAddr: string
 }
 
+export interface Contracts {
+  [contractName: string]: any;
+}
 export class Contracts {
   public web3: Web3;
   public defaultConfirmations: any;

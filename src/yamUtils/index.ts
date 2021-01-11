@@ -1,30 +1,41 @@
-import { ethers } from 'ethers'
-
-import BigNumber from 'bignumber.js'
+import { ethers } from 'ethers';
+import { TransactionReceipt } from 'web3-core';
+import { Contract as Web3Contract } from 'web3-eth-contract';
+import BigNumber from 'bignumber.js';
+import { Yam } from '../yam-sdk/lib';
+import { Contract } from '../yam-sdk/lib/lib/contracts';
 
 BigNumber.config({
   EXPONENTIAL_AT: 1000,
   DECIMAL_PLACES: 80,
 });
 
-export const getPoolStartTime = async (poolContract) => {
+export const getPoolStartTime = async (poolContract: Web3Contract) => {
   return await poolContract.methods.starttime().call()
 }
 
-export const stake = async (poolContract, tokenDecimals, amount, account, onDismiss, setShowPopup, showPopup) => {
+export const stake = async (
+  poolContract: Web3Contract,
+  tokenDecimals: BigNumber,
+  amount: number | string,
+  account: string,
+  onDismiss: Function,
+  setShowPopup: Function,
+  showPopup: boolean
+) => {
   let now = new Date().getTime() / 1000;
   if (now >= 1597172400) {
     return poolContract.methods
       .stake((new BigNumber(amount).times(new BigNumber(10).pow(tokenDecimals))).toString())
       .send({ from: account })
-      .on('transactionHash', tx => {
+      .on('transactionHash', (tx: TransactionReceipt) => {
         console.log('transactionHash: ', tx)
         onDismiss();
         setShowPopup({ show: true, status: 'pendding', hash: tx, text: 'stake' })
         return tx.transactionHash
       })
       // tx 交易成功
-      .on('receipt', function (receipt) {
+      .on('receipt', function (receipt: TransactionReceipt) {
         console.log('receipt: ', receipt);
         setShowPopup({ show: true, status: 'success', hash: receipt.transactionHash, text: 'stake' })
         setTimeout(() => {
@@ -32,7 +43,7 @@ export const stake = async (poolContract, tokenDecimals, amount, account, onDism
         }, 3000)
       })
       // error
-      .on('error', function (error) {
+      .on('error', function (error: Error) {
         console.log('error', error)
         let str_err = JSON.stringify(error);
         let str_err__txHash = str_err.slice(str_err.indexOf('transactionHash') + 18, str_err.indexOf('transactionIndex') - 3);
@@ -46,20 +57,28 @@ export const stake = async (poolContract, tokenDecimals, amount, account, onDism
   }
 }
 
-export const unstake = async (poolContract, tokenDecimals, amount, account, onDismiss, setShowPopup, showPopup) => {
+export const unstake = async (
+  poolContract: Web3Contract,
+  tokenDecimals: BigNumber,
+  amount: number | string,
+  account: string,
+  onDismiss: Function,
+  setShowPopup: Function,
+  showPopup: boolean
+) => {
   let now = new Date().getTime() / 1000;
   if (now >= 1597172400) {
     return poolContract.methods
       .withdraw((new BigNumber(amount).times(new BigNumber(10).pow(tokenDecimals))).toString())
       .send({ from: account })
-      .on('transactionHash', tx => {
+      .on('transactionHash', (tx: TransactionReceipt) => {
         console.log(tx)
         onDismiss();
         setShowPopup({ show: true, status: 'pendding', hash: tx, text: 'unstake' })
         return tx.transactionHash
       })
       // tx 交易成功
-      .on('receipt', function (receipt) {
+      .on('receipt', function (receipt: TransactionReceipt) {
         console.log(receipt);
         setShowPopup({ show: true, status: 'success', hash: receipt.transactionHash, text: 'unstake' })
         setTimeout(() => {
@@ -67,7 +86,7 @@ export const unstake = async (poolContract, tokenDecimals, amount, account, onDi
         }, 3000)
       })
       // error
-      .on('error', function (error) {
+      .on('error', function (error: Error) {
         console.log('error', error)
         let str_err = JSON.stringify(error);
         let str_err__txHash = str_err.slice(str_err.indexOf('transactionHash') + 18, str_err.indexOf('transactionIndex') - 3);
@@ -81,19 +100,19 @@ export const unstake = async (poolContract, tokenDecimals, amount, account, onDi
   }
 }
 
-export const harvest = async (poolContract, account, setShowPopup, showPopup) => {
+export const harvest = async (poolContract: Web3Contract, account: string, setShowPopup: Function, showPopup: boolean) => {
   let now = new Date().getTime() / 1000;
   if (now >= 1597172400) {
     return poolContract.methods
       .getReward()
       .send({ from: account })
-      .on('transactionHash', tx => {
+      .on('transactionHash', (tx: TransactionReceipt) => {
         console.log(tx)
         setShowPopup({ show: true, status: 'pendding', hash: tx, text: 'harvest' })
         return tx.transactionHash
       })
       // tx 交易成功
-      .on('receipt', function (receipt) {
+      .on('receipt', function (receipt: TransactionReceipt) {
         console.log(receipt);
         setShowPopup({ show: true, status: 'success', hash: receipt.transactionHash, text: 'harvest' })
         setTimeout(() => {
@@ -101,7 +120,7 @@ export const harvest = async (poolContract, account, setShowPopup, showPopup) =>
         }, 3000)
       })
       // error
-      .on('error', function (error) {
+      .on('error', function (error: Error) {
         console.log('error', error)
         let str_err = JSON.stringify(error);
         let str_err__txHash = str_err.slice(str_err.indexOf('transactionHash') + 18, str_err.indexOf('transactionIndex') - 3);
@@ -115,19 +134,19 @@ export const harvest = async (poolContract, account, setShowPopup, showPopup) =>
   }
 }
 
-export const redeem = async (poolContract, account, setShowPopup, showPopup) => {
+export const redeem = async (poolContract: Web3Contract, account: string, setShowPopup: Function, showPopup: boolean) => {
   let now = new Date().getTime() / 1000;
   if (now >= 1597172400) {
     return poolContract.methods
       .exit()
       .send({ from: account })
-      .on('transactionHash', tx => {
+      .on('transactionHash', (tx: TransactionReceipt) => {
         console.log(tx)
         setShowPopup({ show: true, status: 'pendding', hash: tx, text: 'harvest__withdraw' })
         return tx.transactionHash
       })
       // tx 交易成功
-      .on('receipt', function (receipt) {
+      .on('receipt', function (receipt: TransactionReceipt) {
         console.log(receipt);
         setShowPopup({ show: true, status: 'success', hash: receipt.transactionHash, text: 'harvest__withdraw' })
         setTimeout(() => {
@@ -135,7 +154,7 @@ export const redeem = async (poolContract, account, setShowPopup, showPopup) => 
         }, 3000)
       })
       // error
-      .on('error', function (error) {
+      .on('error', function (error: Error) {
         let str_err = JSON.stringify(error);
         let str_err__txHash = str_err.slice(str_err.indexOf('transactionHash') + 18, str_err.indexOf('transactionIndex') - 3);
         // console.log(str_err.slice(str_err.indexOf('transactionHash') + 18, str_err.indexOf('transactionIndex') - 3))
@@ -150,16 +169,16 @@ export const redeem = async (poolContract, account, setShowPopup, showPopup) => 
   }
 }
 
-export const approve = async (tokenContract, poolContract, account, setShowPopup, showPopup) => {
+export const approve = async (tokenContract: Web3Contract, poolContract: Web3Contract, account: string, setShowPopup: Function, showPopup: boolean) => {
   return tokenContract.methods
     .approve(poolContract.options.address, ethers.constants.MaxUint256)
     .send({ from: account })
-    .on('transactionHash', tx => {
+    .on('transactionHash', (tx: TransactionReceipt) => {
       console.log(tx)
       setShowPopup({ show: true, status: 'pendding', hash: tx, text: 'approve' })
     })
     // tx 交易成功
-    .on('receipt', function (receipt) {
+    .on('receipt', function (receipt: TransactionReceipt) {
       console.log(receipt);
       setShowPopup({ show: true, status: 'success', hash: receipt.transactionHash, text: 'approve' })
       setTimeout(() => {
@@ -167,7 +186,7 @@ export const approve = async (tokenContract, poolContract, account, setShowPopup
       }, 3000)
     })
     // error
-    .on('error', function (error) {
+    .on('error', function (error: Error) {
       console.log('error', error)
       let str_err = JSON.stringify(error);
       let str_err__txHash = str_err.slice(str_err.indexOf('transactionHash') + 18, str_err.indexOf('transactionIndex') - 3);
@@ -178,10 +197,12 @@ export const approve = async (tokenContract, poolContract, account, setShowPopup
     });
 }
 
-export const getPoolContracts = async (yam) => {
+export const getPoolContracts = async (yam: Yam) => {
   const pools = Object.keys(yam.contracts)
     .filter(c => c.indexOf('_pool') !== -1)
-    .reduce((acc, cur) => {
+    .reduce((acc: {
+      [contractName: string]: Contract
+    }, cur) => {
       const newAcc = { ...acc }
       newAcc[cur] = yam.contracts[cur]
       return newAcc
@@ -189,41 +210,41 @@ export const getPoolContracts = async (yam) => {
   return pools
 }
 
-export const getEarned = async (yam, pool, account) => {
+export const getEarned = async (yam: Yam, pool: Web3Contract, account: string) => {
   const scalingFactor = new BigNumber(await yam.contracts.yam.methods.yuansScalingFactor().call())
   const earned = new BigNumber(await pool.methods.earned(account).call())
   return earned.multipliedBy(scalingFactor.dividedBy(new BigNumber(10).pow(18)))
 }
 
-export const getStaked = async (yam, pool, account) => {
+export const getStaked = async (yam: Yam, pool: Web3Contract, account: string) => {
   return yam.toBigN(await pool.methods.balanceOf(account).call())
 }
 
-export const getCurrentPrice = async (yam) => {
+export const getCurrentPrice = async (yam: Yam) => {
   // FORBROCK: get current YAM price
   return yam.toBigN(await yam.contracts.rebaser.methods.getCurrentExchangeRate().call())
 }
 
-export const getTargetPrice = async (yam) => {
+export const getTargetPrice = async (yam: Yam) => {
   return yam.toBigN(1).toFixed(2);
 }
 
-export const getScalingFactor = async (yam, pool, account) => {
+export const getScalingFactor = async (yam: Yam) => {
   const scalingFactor = new BigNumber(await yam.contracts.yam.methods.yuansScalingFactor().call())
   return scalingFactor.dividedBy(new BigNumber(10).pow(18)).toFixed(2)
 }
 
-export const getCirculatingSupply = async (yam) => {
+export const getCirculatingSupply = async (yam: Yam) => {
   let now = await yam.web3.eth.getBlock('latest');
   let scalingFactor = yam.toBigN(await yam.contracts.yam.methods.yuansScalingFactor().call());
   let starttime = yam.toBigN(await yam.contracts.USDx_USDC_pool.methods.starttime().call()).toNumber();
-  let timePassed = now["timestamp"] - starttime;
+  let timePassed = Number(now.timestamp) - starttime;
   if (timePassed < 0) {
     return '0';
   }
   let yamsDistributed = yam.toBigN(8 * timePassed * 250000 / 625000); //yams from first 8 pools
   // let starttimePool2 = yam.toBigN(await yam.contracts.USDx_USDC_pool.methods.starttime().call()).toNumber();
-  timePassed = now["timestamp"] - starttime;
+  timePassed = Number(now.timestamp) - starttime;
   let pool2Yams = yam.toBigN(timePassed * 1500000 / 625000); // yams from second pool. note: just accounts for first week
   let circulating = pool2Yams.plus(yamsDistributed).times(scalingFactor).div(10 ** 36).toFixed(2)
   return circulating
@@ -231,9 +252,9 @@ export const getCirculatingSupply = async (yam) => {
 //配置 rebase 时间轴
 export const interval = 43200
 //配置 rebase 时间轴
-export const getNextRebaseTimestamp = async (yam) => {
+export const getNextRebaseTimestamp = async (yam: Yam): Promise<[number, boolean]> =>  {
   try {
-    let now = await yam.web3.eth.getBlock('latest').then(res => res.timestamp);
+    let now = Number(await yam.web3.eth.getBlock('latest').then(res => res.timestamp));
     // let interval = 1800; // 12 hours
     // let offset = 300; // 8am/8pm utc
     // let secondsToRebase = 0;
@@ -264,9 +285,9 @@ export const getNextRebaseTimestamp = async (yam) => {
         } else {
           secondsToRebase = offset - (endTime % interval);
         }
-        return endTime + secondsToRebase;
+        return [endTime + secondsToRebase, rebasable];
       } else {
-        return now + 13 * 60 * 60; // just know that its greater than 12 hours away
+        return [now + 13 * 60 * 60, rebasable]; // just know that its greater than 12 hours away
       }
     }
     return [secondsToRebase, rebasable]
@@ -275,11 +296,11 @@ export const getNextRebaseTimestamp = async (yam) => {
   }
 }
 
-export const getTotalSupply = async (yam) => {
+export const getTotalSupply = async (yam: Yam) => {
   return await yam.contracts.yam.methods.totalSupply().call();
 }
 
-export const getStats = async (yam) => {
+export const getStats = async (yam: Yam) => {
   const curPrice = await getCurrentPrice(yam)
   const circSupply = await getCirculatingSupply(yam)
   const nextRebase = await getNextRebaseTimestamp(yam)
