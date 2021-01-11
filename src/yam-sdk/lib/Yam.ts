@@ -1,23 +1,38 @@
 import Web3 from 'web3';
-import BigNumber from 'bignumber.js'
+import { provider as Provider } from 'web3-core';
+import BigNumber from 'bignumber.js';
 import {
   Contracts
-} from './lib/contracts.js';
+} from './lib/contracts';
 import {
   Account
-} from './lib/accounts.js';
+} from './lib/accounts';
 import {
   EVM
-} from "./lib/evm.js";
+} from "./lib/evm";
 
 // const oneEther = 1000000000000000000;
 
 export class Yam {
+  public web3: Web3;
+  public testing: EVM;
+  public snapshot: Promise<any>;
+  public contracts: Contracts;
+  public accounts: Account[];
+  public markets: any[];
+  public prices: any;
+  public allocations: any;
+  public rates: any;
+  public aprs: any;
+  public poolWeis: any;
+  public platformInfo: any;
+  public operation: any;
+
   constructor(
-    provider,
-    networkId,
-    testing,
-    options
+    provider: Provider,
+    networkId: number,
+    testing: EVM | boolean,
+    options: any
   ) {
     var realProvider;
 
@@ -59,16 +74,16 @@ export class Yam {
   }
 
   async resetEVM() {
-    this.testing.resetEVM(this.snapshot);
+    this.testing.resetEVM(await this.snapshot);
   }
 
-  addAccount(address, number) {
-    this.accounts.push(new Account(this.contracts, address, number));
+  addAccount(address: string) {
+    this.accounts.push(new Account(this.contracts, address));
   }
 
   setProvider(
-    provider,
-    networkId
+    provider: Provider,
+    networkId: number
   ) {
     this.web3.setProvider(provider);
     this.contracts.setProvider(provider, networkId);
@@ -76,7 +91,7 @@ export class Yam {
   }
 
   setDefaultAccount(
-    account
+    account: string
   ) {
     this.web3.eth.defaultAccount = account;
     this.contracts.setDefaultAccount(account);
@@ -86,7 +101,7 @@ export class Yam {
     return this.web3.eth.defaultAccount;
   }
 
-  loadAccount(account) {
+  loadAccount(account: any) {
     const newAccount = this.web3.eth.accounts.wallet.add(
       account.privateKey,
     );
@@ -103,7 +118,7 @@ export class Yam {
     }
   }
 
-  toBigN(a) {
-    return BigNumber(a);
+  toBigN(a: number) {
+    return new BigNumber(a);
   }
 }

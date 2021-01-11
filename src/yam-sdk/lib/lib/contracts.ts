@@ -1,7 +1,10 @@
 import BigNumber from 'bignumber.js/bignumber';
-// import Web3 from 'web3';
+import Web3 from 'web3';
+import { provider as Provider } from 'web3-core';
+import { AbiItem } from 'web3-utils';
+import { Contract as Web3Contract } from 'web3-eth-contract';
 import * as Types from "./types.js";
-import { SUBTRACT_GAS_LIMIT, addressMap, addressMapJSON } from './constants.js';
+import { SUBTRACT_GAS_LIMIT, addressMap, addressMapJSON, AddressMapJsonItem } from './constants';
 
 import ERC20Json from '../clean_build/contracts/IERC20.json';
 import YAMJson from '../clean_build/contracts/YAMDelegator.json';
@@ -16,7 +19,6 @@ import UNIPairJson from './uni2.json';
 import UNIRouterJson from './uniR.json';
 import LENDPoolJson from '../clean_build/contracts/YAMLENDPool.json';
 
-
 // (to be change)
 import MKRPoolJson from '../clean_build/contracts/YAMMKRPool.json';
 import DFPoolJson from '../clean_build/contracts/YAMDFPool.json';
@@ -29,8 +31,75 @@ import MigratorJson from "../clean_build/contracts/Migrator.json"
 import YAMv3Json from "../clean_build/contracts/YAMDelegatorV3.json"
 //增加 governance vote end
 
+export type Contract = Web3Contract & {
+  setProvider?: (provider: Provider) => void
+}
+
+export type AddressNames = {
+  [address: string]: string
+}
+
+export type Pool = {
+  tokenAddr: string
+  poolAddr: string
+}
+
 export class Contracts {
-  constructor(provider, networkId, web3, options) {
+  public web3: Web3;
+  public defaultConfirmations: any;
+  public autoGasMultiplier: number;
+  public confirmationType: number;
+  public defaultGas: number;
+  public defaultGasPrice: number;
+  public uni_pair: Contract;
+  public uni_router: Contract;
+  public uni_fact: Contract;
+  public yfi: Contract;
+  public UNIAmpl: Contract;
+  public ycrv: Contract;
+  public yam: Contract;
+  public USDx_USDC_pool: Contract;
+  public USDx_YUAN_pool: Contract;
+  public ETH_YUAN_pool: Contract;
+  public USDC_ETH_pool: Contract;
+  public DAI_ETH_pool: Contract;
+  public USDT_ETH_pool: Contract;
+  public USDx_ETH_pool: Contract;
+  public YAM_ETH_pool: Contract;
+  public AMPL_ETH_pool: Contract;
+  public UNI_ETH_pool: Contract;
+  public YFI_ETH_pool: Contract;
+  public DF_ETH_pool: Contract;
+  public LINK_ETH_pool: Contract;
+  public BAND_ETH_pool: Contract;
+  public YFII_ETH_pool: Contract;
+  public YUAN_ETH_pool: Contract;
+  public YUAN_USDx_pool: Contract;
+  public comp: Contract;
+  public link: Contract;
+  public lend: Contract;
+  public USDx_USDC: Contract;
+  public yam_ycrv_uni_lp: Contract;
+  public erc20: Contract;
+  public pool: Contract;
+  public USDx_YUAN: Contract;
+  public ETH_YUAN: Contract;
+  public rebaser: Contract;
+  public reserves: Contract;
+  public gov: Contract;
+  public gov003: Contract;
+  public timelock: Contract;
+  public weth: Contract;
+  public yamV2: Contract;
+  public yamV2migration: Contract;
+  public yamV3: Contract;
+  public migrator: Contract;
+  public pools: Pool[];
+  public names: AddressNames;
+  public blockGasLimit: number;
+  public notifier: any;
+
+  constructor(provider: Provider, networkId: number, web3: Web3, options: any) {
     this.web3 = web3;
     this.defaultConfirmations = options.defaultConfirmations;
     this.autoGasMultiplier = options.autoGasMultiplier || 1.5;
@@ -38,73 +107,72 @@ export class Contracts {
     this.defaultGas = options.defaultGas;
     this.defaultGasPrice = options.defaultGasPrice;
 
-    this.uni_pair = new this.web3.eth.Contract(UNIPairJson);
-    this.uni_router = new this.web3.eth.Contract(UNIRouterJson);
-    this.uni_fact = new this.web3.eth.Contract(UNIFactJson);
-    this.yfi = new this.web3.eth.Contract(ERC20Json.abi);
-    this.UNIAmpl = new this.web3.eth.Contract(ERC20Json.abi);
-    this.ycrv = new this.web3.eth.Contract(ERC20Json.abi);
-    this.yam = new this.web3.eth.Contract(YAMJson.abi);
+    this.uni_pair = new this.web3.eth.Contract(UNIPairJson as AbiItem[]);
+    this.uni_router = new this.web3.eth.Contract(UNIRouterJson as AbiItem[]);
+    this.uni_fact = new this.web3.eth.Contract(UNIFactJson as AbiItem[]);
+    this.yfi = new this.web3.eth.Contract(ERC20Json.abi as AbiItem[]);
+    this.UNIAmpl = new this.web3.eth.Contract(ERC20Json.abi as AbiItem[]);
+    this.ycrv = new this.web3.eth.Contract(ERC20Json.abi as AbiItem[]);
+    this.yam = new this.web3.eth.Contract(YAMJson.abi as AbiItem[]);
 
     // 夏 商 周
-    this.USDx_USDC_pool = new this.web3.eth.Contract(MKRPoolJson.abi);
-    this.USDx_YUAN_pool = new this.web3.eth.Contract(DFPoolJson.abi);
-    this.ETH_YUAN_pool = new this.web3.eth.Contract(DUSDTPoolJson.abi);
+    this.USDx_USDC_pool = new this.web3.eth.Contract(MKRPoolJson.abi as AbiItem[]);
+    this.USDx_YUAN_pool = new this.web3.eth.Contract(DFPoolJson.abi as AbiItem[]);
+    this.ETH_YUAN_pool = new this.web3.eth.Contract(DUSDTPoolJson.abi as AbiItem[]);
     // qin
-    this.USDC_ETH_pool = new this.web3.eth.Contract(DUSDTPoolJson.abi);
-    this.DAI_ETH_pool = new this.web3.eth.Contract(DUSDTPoolJson.abi);
-    this.USDT_ETH_pool = new this.web3.eth.Contract(DUSDTPoolJson.abi);
-    this.USDx_ETH_pool = new this.web3.eth.Contract(DUSDTPoolJson.abi);
+    this.USDC_ETH_pool = new this.web3.eth.Contract(DUSDTPoolJson.abi as AbiItem[]);
+    this.DAI_ETH_pool = new this.web3.eth.Contract(DUSDTPoolJson.abi as AbiItem[]);
+    this.USDT_ETH_pool = new this.web3.eth.Contract(DUSDTPoolJson.abi as AbiItem[]);
+    this.USDx_ETH_pool = new this.web3.eth.Contract(DUSDTPoolJson.abi as AbiItem[]);
     // han
-    this.YAM_ETH_pool = new this.web3.eth.Contract(DUSDTPoolJson.abi);
-    this.AMPL_ETH_pool = new this.web3.eth.Contract(DUSDTPoolJson.abi);
+    this.YAM_ETH_pool = new this.web3.eth.Contract(DUSDTPoolJson.abi as AbiItem[]);
+    this.AMPL_ETH_pool = new this.web3.eth.Contract(DUSDTPoolJson.abi as AbiItem[]);
     // tang
-    this.UNI_ETH_pool = new this.web3.eth.Contract(DUSDTPoolJson.abi);
-    this.YFI_ETH_pool = new this.web3.eth.Contract(DUSDTPoolJson.abi);
-    this.DF_ETH_pool = new this.web3.eth.Contract(DUSDTPoolJson.abi);
-    this.LINK_ETH_pool = new this.web3.eth.Contract(DUSDTPoolJson.abi);
-    this.BAND_ETH_pool = new this.web3.eth.Contract(DUSDTPoolJson.abi);
-    this.YFII_ETH_pool = new this.web3.eth.Contract(DUSDTPoolJson.abi);
+    this.UNI_ETH_pool = new this.web3.eth.Contract(DUSDTPoolJson.abi as AbiItem[]);
+    this.YFI_ETH_pool = new this.web3.eth.Contract(DUSDTPoolJson.abi as AbiItem[]);
+    this.DF_ETH_pool = new this.web3.eth.Contract(DUSDTPoolJson.abi as AbiItem[]);
+    this.LINK_ETH_pool = new this.web3.eth.Contract(DUSDTPoolJson.abi as AbiItem[]);
+    this.BAND_ETH_pool = new this.web3.eth.Contract(DUSDTPoolJson.abi as AbiItem[]);
+    this.YFII_ETH_pool = new this.web3.eth.Contract(DUSDTPoolJson.abi as AbiItem[]);
     // 远大征程
-    this.YUAN_ETH_pool = new this.web3.eth.Contract(DUSDTPoolJson.abi);
-    this.YUAN_USDx_pool = new this.web3.eth.Contract(DUSDTPoolJson.abi);
+    this.YUAN_ETH_pool = new this.web3.eth.Contract(DUSDTPoolJson.abi as AbiItem[]);
+    this.YUAN_USDx_pool = new this.web3.eth.Contract(DUSDTPoolJson.abi as AbiItem[]);
 
-    this.comp = new this.web3.eth.Contract(ERC20Json.abi);
-    this.link = new this.web3.eth.Contract(ERC20Json.abi);
-    this.lend = new this.web3.eth.Contract(ERC20Json.abi);
-    this.USDx_USDC = new this.web3.eth.Contract(ERC20Json.abi);
-    this.yam_ycrv_uni_lp = new this.web3.eth.Contract(ERC20Json.abi);
+    this.comp = new this.web3.eth.Contract(ERC20Json.abi as AbiItem[]);
+    this.link = new this.web3.eth.Contract(ERC20Json.abi as AbiItem[]);
+    this.lend = new this.web3.eth.Contract(ERC20Json.abi as AbiItem[]);
+    this.USDx_USDC = new this.web3.eth.Contract(ERC20Json.abi as AbiItem[]);
+    this.yam_ycrv_uni_lp = new this.web3.eth.Contract(ERC20Json.abi as AbiItem[]);
     // this.yam_yycrv_uni_lp = new this.web3.eth.Contract(ERC20Json.abi);
 
-    this.erc20 = new this.web3.eth.Contract(ERC20Json.abi);
-    this.pool = new this.web3.eth.Contract(LENDPoolJson.abi);
+    this.erc20 = new this.web3.eth.Contract(ERC20Json.abi as AbiItem[]);
+    this.pool = new this.web3.eth.Contract(LENDPoolJson.abi as AbiItem[]);
 
-    this.USDx_YUAN = new this.web3.eth.Contract(ERC20Json.abi);
-    this.ETH_YUAN = new this.web3.eth.Contract(ERC20Json.abi);
+    this.USDx_YUAN = new this.web3.eth.Contract(ERC20Json.abi as AbiItem[]);
+    this.ETH_YUAN = new this.web3.eth.Contract(ERC20Json.abi as AbiItem[]);
 
-    this.rebaser = new this.web3.eth.Contract(YAMRebaserJson.abi);
-    this.reserves = new this.web3.eth.Contract(YAMReservesJson.abi);
-    this.gov = new this.web3.eth.Contract(YAMGovJson.abi);
-    this.gov003 = new this.web3.eth.Contract(YAMGovJson_YIP003.abi);
-    this.timelock = new this.web3.eth.Contract(YAMTimelockJson.abi);
-    this.weth = new this.web3.eth.Contract(WETHJson);
+    this.rebaser = new this.web3.eth.Contract(YAMRebaserJson.abi as AbiItem[]);
+    this.reserves = new this.web3.eth.Contract(YAMReservesJson.abi as AbiItem[]);
+    this.gov = new this.web3.eth.Contract(YAMGovJson.abi as AbiItem[]);
+    this.gov003 = new this.web3.eth.Contract(YAMGovJson_YIP003.abi as AbiItem[]);
+    this.timelock = new this.web3.eth.Contract(YAMTimelockJson.abi as AbiItem[]);
+    this.weth = new this.web3.eth.Contract(WETHJson as AbiItem[]);
 
     //增加 gov vote start
-    this.yamV2 = new this.web3.eth.Contract(YAMv2Json.abi);
-    this.yamV2migration = new this.web3.eth.Contract(YAMv2MigrationJson.abi);
+    this.yamV2 = new this.web3.eth.Contract(YAMv2Json.abi as AbiItem[]);
+    this.yamV2migration = new this.web3.eth.Contract(YAMv2MigrationJson.abi as AbiItem[]);
 
-    this.yamV3 = new this.web3.eth.Contract(YAMv3Json.abi);
-    this.migrator = new this.web3.eth.Contract(MigratorJson.abi);
+    this.yamV3 = new this.web3.eth.Contract(YAMv3Json.abi as AbiItem[]);
+    this.migrator = new this.web3.eth.Contract(MigratorJson.abi as AbiItem[]);
     //增加 gov vote end
 
     this.setProvider(provider, networkId);
     this.setDefaultAccount(this.web3.eth.defaultAccount);
   }
 
-
   setProvider(
-    provider,
-    networkId
+    provider: Provider,
+    networkId: number
   ) {
     this.yam.setProvider(provider);
     this.rebaser.setProvider(provider);
@@ -189,14 +257,14 @@ export class Contracts {
     this.names[this.migrator.options.address] = "Migrator";
   }
 
-  setDefaultAccount(account) {
+  setDefaultAccount(account: string) {
     this.yfi.options.from = account;
     this.ycrv.options.from = account;
     this.yam.options.from = account;
     this.weth.options.from = account;
   }
 
-  async callContractFunction(method, options) {
+  async callContractFunction(method: any, options: any) {
     const { confirmations, confirmationType, autoGasMultiplier, ...txOptions } = options;
 
     if (!this.blockGasLimit) {
@@ -263,7 +331,7 @@ export class Contracts {
     if (t === Types.ConfirmationType.Hash || t === Types.ConfirmationType.Both) {
       hashPromise = new Promise(
         (resolve, reject) => {
-          promi.on('error', (error) => {
+          promi.on('error', (error: Error) => {
             if (hashOutcome === OUTCOMES.INITIAL) {
               hashOutcome = OUTCOMES.REJECTED;
               reject(error);
@@ -272,7 +340,7 @@ export class Contracts {
             }
           });
 
-          promi.on('transactionHash', (txHash) => {
+          promi.on('transactionHash', (txHash: string) => {
             if (hashOutcome === OUTCOMES.INITIAL) {
               hashOutcome = OUTCOMES.RESOLVED;
               resolve(txHash);
@@ -289,7 +357,7 @@ export class Contracts {
     if (t === Types.ConfirmationType.Confirmed || t === Types.ConfirmationType.Both) {
       confirmationPromise = new Promise(
         (resolve, reject) => {
-          promi.on('error', (error) => {
+          promi.on('error', (error: Error) => {
             if (
               (t === Types.ConfirmationType.Confirmed || hashOutcome === OUTCOMES.RESOLVED)
               && confirmationOutcome === OUTCOMES.INITIAL
@@ -303,7 +371,7 @@ export class Contracts {
 
           const desiredConf = confirmations || this.defaultConfirmations;
           if (desiredConf) {
-            promi.on('confirmation', (confNumber, receipt) => {
+            promi.on('confirmation', (confNumber: number, receipt: any) => {
               if (confNumber >= desiredConf) {
                 if (confirmationOutcome === OUTCOMES.INITIAL) {
                   confirmationOutcome = OUTCOMES.RESOLVED;
@@ -314,7 +382,7 @@ export class Contracts {
               }
             });
           } else {
-            promi.on('receipt', (receipt) => {
+            promi.on('receipt', (receipt: any) => {
               confirmationOutcome = OUTCOMES.RESOLVED;
               resolve(receipt);
               const anyPromi = promi;
@@ -348,8 +416,8 @@ export class Contracts {
   }
 
   async callConstantContractFunction(
-    method,
-    options
+    method: any,
+    options: any
   ) {
     const m2 = method;
     const { blockNumber, ...txOptions } = options;
@@ -362,10 +430,10 @@ export class Contracts {
   }
 
   setContractProvider(
-    contract,
-    contractJson,
-    provider,
-    networkId,
+    contract: Contract,
+    contractJson: AddressMapJsonItem,
+    provider: Provider,
+    networkId: number,
   ) {
     contract.setProvider(provider);
     try {

@@ -9,27 +9,27 @@ import {
   getScalingFactor as gSF
 } from '../../yamUtils'
 
-const getCurrentPrice = async (yam: typeof Yam): Promise<number> => {
+const getCurrentPrice = async (yam: Yam): Promise<number> => {
   // FORBROCK: get current YAM price
   return gCP(yam)
 }
 
-const getTargetPrice = async (yam: typeof Yam): Promise<number> => {
+const getTargetPrice = async (yam: Yam): Promise<number> => {
   // FORBROCK: get target YAM price
   return gTP(yam)
 }
 
-const getCirculatingSupply = async (yam: typeof Yam): Promise<string> => {
+const getCirculatingSupply = async (yam: Yam): Promise<string> => {
   // FORBROCK: get circulating supply
   return gCS(yam)
 }
 
-const getScalingFactor = async (yam: typeof Yam): Promise<string> => {
+const getScalingFactor = async (yam: Yam): Promise<string> => {
   // FORBROCK: get circulating supply
   return gSF(yam)
 }
 
-const getNextRebaseTimestamp = async (yam: typeof Yam): Promise<number> => {
+const getNextRebaseTimestamp = async (yam: Yam): Promise<number> => {
   // FORBROCK: get next rebase timestamp
   // const nextRebase = await gNRT(yam) as number
   const nextRebase = (await gNRT(yam))[0]
@@ -37,19 +37,19 @@ const getNextRebaseTimestamp = async (yam: typeof Yam): Promise<number> => {
   return nextRebase * 1000
 }
 
-const getNextRebaseTimestamp1 = async (yam: typeof Yam): Promise<boolean> => {
+const getNextRebaseTimestamp1 = async (yam: Yam): Promise<boolean> => {
   // FORBROCK: get next rebase timestamp
   // const nextRebase = await gNRT(yam) as number
   const rebasable = (await gNRT(yam))[1]
   return rebasable
 }
 
-const getTotalSupply = async (yam: typeof Yam): Promise<string> => {
+const getTotalSupply = async (yam: Yam): Promise<string> => {
   // FORBROCK: get total supply
   return gTS(yam)
 }
 
-export const getStats = async (yam: typeof Yam) => {
+export const getStats = async (yam: Yam) => {
   const curPrice = await getCurrentPrice(yam)
   const circSupply = await getCirculatingSupply(yam)
   const nextRebase = await getNextRebaseTimestamp(yam)

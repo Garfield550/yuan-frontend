@@ -17,7 +17,11 @@ export const INTEGERS = {
   INTEREST_RATE_BASE: new BigNumber('1e18'),
 };
 
-export const addressMap = {
+export type AddressMap = {
+  [tokenName: string]: string
+}
+
+export const addressMap: AddressMap = {
   uniswapFactory: "0xc0a47dFe034B400B47bDaD5FecDa2621de6c4d95",
   uniswapFactoryV2: "0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f",
   UNIRouter: "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D",
@@ -69,10 +73,19 @@ export const addressMap = {
   YUAN_ETH: "0xA270Df522F3353d11C21fC3C71596582d4178bFC",
 }
 
+export type AddressMapJson = {
+  [poolName: string]: AddressMapJsonItem
+}
 
+export type AddressMapJsonItem = {
+  networks: {
+    [networkId: string]: {
+      address: string
+    }
+  }
+}
 
-
-export const addressMapJSON = {
+export const addressMapJSON: AddressMapJson = {
   // qin
   USDC_ETH: {
     networks: {

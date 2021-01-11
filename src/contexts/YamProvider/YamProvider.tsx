@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react'
-
+import { provider as Provider } from 'web3-core';
 import { useWallet } from 'use-wallet'
 
 // import { Yam } from '../../yam'
@@ -8,7 +8,7 @@ import { Yam } from '../../yam-sdk/lib'
 
 export interface YamContext {
   // yam?: typeof Yam
-  yam?: any
+  yam?: Yam
 }
 
 export const Context = createContext<YamContext>({
@@ -17,13 +17,13 @@ export const Context = createContext<YamContext>({
 
 declare global {
   interface Window {
-    yamsauce: any
+    yamsauce: Yam
   }
 }
 
 
 const YamProvider: React.FC = ({ children }) => {
-  const { ethereum, chainId, account, connect, connector, status } = useWallet()
+  const { ethereum, chainId, account, connect, connector, status } = useWallet<Provider>()
   const [yam, setYam] = useState<any>()
   // alert(window.ethereum.isImToken);
   const signout = window.sessionStorage.getItem("SignOut")
