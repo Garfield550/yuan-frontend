@@ -1,0 +1,65 @@
+{
+  "abi": [
+    {
+      "inputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "last_completed_migration",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "completed",
+          "type": "uint256"
+        }
+      ],
+      "name": "setCompleted",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "networks": {
+    "42": {
+      "address": "0x1875fcC416a92e04Ee23d2077203B02f3a51D0C0",
+      "transactionHash": "0x95a1e8478722b98dfe48a6ec2f3f08b60a2d1e6b25e1f1248dcdb85b81a7493e"
+    },
+    "97": {
+      "address": "0x51aA531875092693E44fB289FAa6585C693243fa",
+      "transactionHash": "0x9058ce402f0f59b5e5566d9755e982942288e1bc64cf1b0d6e932b887ff4b480"
+    }
+  }
+}
