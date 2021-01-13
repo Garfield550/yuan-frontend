@@ -486,5 +486,12 @@
       "type": "function"
     }
   ],
-  "networks": {}
+  "networks": {
+    "1": {
+      "address": "0x920Cf86777D9443D4A85Fb82c1022a7E55B93528"
+    },
+    "42": {
+      "address": "0xa4571726FC8720c08Aa0A36b91f9dC6E98B446f9"
+    }
+  }
 }

@@ -567,5 +567,14 @@
       "type": "function"
     }
   ],
-  "networks": {}
+  "networks": {
+    "1": {
+      "address": "0x21De9D787C9c27cC276e92e8D75678B2651b67E2",
+      "transactionHash": "0xa509530fe862ba42bf84f4c05fb4231dd57b244771d9fb3a8687ec34d13ffbaa"
+    },
+    "42": {
+      "address": "0x55cF49a5e6880AD776b3F8FeeFEDC0f07705ad14",
+      "transactionHash": "0x566295fff11a52448b3ce0820dbefbd6b479d2e7b15e918a7572136a7cf61fec"
+    }
+  }
 }

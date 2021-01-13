@@ -7,12 +7,18 @@ import * as Types from "./types.js";
 import { SUBTRACT_GAS_LIMIT, addressMap, addressMapJSON, AddressMapJsonItem } from './constants';
 
 import ERC20Json from '../clean_build/contracts/IERC20.json';
-import YAMJson from '../clean_build/contracts/YAMDelegator.json';
-import YAMRebaserJson from '../clean_build/contracts/YAMRebaser.json';
-import YAMReservesJson from '../clean_build/contracts/YAMReserves.json';
-import YAMGovJson from '../clean_build/contracts/GovernorAlpha.json';
-import YAMGovJson_YIP003 from '../clean_build/contracts/GovernorAlpha_YIP003.json';
-import YAMTimelockJson from '../clean_build/contracts/Timelock.json';
+// import YAMJson from '../clean_build/contracts/YAMDelegator.json';
+import YUANJson from '../clean_build/contracts/YUANDelegator.json';
+// import YAMRebaserJson from '../clean_build/contracts/YAMRebaser.json';
+import YUANRebaserJson from '../clean_build/contracts/YUANRebaser.json';
+// import YAMReservesJson from '../clean_build/contracts/YAMReserves.json';
+import YUANReservesJson from '../clean_build/contracts/YUANReserves.json';
+// import YAMGovJson from '../clean_build/contracts/GovernorAlpha.json';
+import YUANGovJson from '../clean_build/contracts/GovernorAlpha.json';
+// import YAMGovJson_YIP003 from '../clean_build/contracts/GovernorAlpha_YIP003.json';
+import YUANGovJson_YIP003 from '../clean_build/contracts/GovernorAlphaV2.json';
+// import YAMTimelockJson from '../clean_build/contracts/Timelock.json';
+import YUANTimelockJson from '../clean_build/contracts/Timelock.json';
 import WETHJson from './weth.json';
 import UNIFactJson from './unifact2.json';
 import UNIPairJson from './uni2.json';
@@ -20,9 +26,28 @@ import UNIRouterJson from './uniR.json';
 import LENDPoolJson from '../clean_build/contracts/YAMLENDPool.json';
 
 // (to be change)
-import MKRPoolJson from '../clean_build/contracts/YAMMKRPool.json';
-import DFPoolJson from '../clean_build/contracts/YAMDFPool.json';
-import DUSDTPoolJson from '../clean_build/contracts/YAMdUSDTPool.json';
+// import MKRPoolJson from '../clean_build/contracts/YAMMKRPool.json';
+import USDxUSDCPoolJson from '../clean_build/contracts/YUANUSDxUSDCPool.json';
+// import DFPoolJson from '../clean_build/contracts/YAMDFPool.json';
+import USDxYUANPoolJson from '../clean_build/contracts/YUANUSDxYUANPool.json';
+// import DUSDTPoolJson from '../clean_build/contracts/YAMdUSDTPool.json';
+import ETHYUANPoolJson from '../clean_build/contracts/YUANETHYUANPool.json';
+// Qin
+import ETHUSDCPoolJson from '../clean_build/contracts/YUANETHUSDCPool.json';
+import ETHDAIPoolJson from '../clean_build/contracts/YUANETHDAIPool.json';
+import ETHUSDTPoolJson from '../clean_build/contracts/YUANETHUSDTPool.json';
+import ETHUSDxPoolJson from '../clean_build/contracts/YUANETHUSDxPool.json';
+// Han
+import ETHYAMPoolJson from '../clean_build/contracts/YUANETHYAMPool.json';
+import ETHAMPLPoolJson from '../clean_build/contracts/YUANETHAMPLPool.json';
+// Tang
+import ETHUNIPoolJson from '../clean_build/contracts/YUANETHUNIPool.json';
+import ETHYFIPoolJson from '../clean_build/contracts/YUANETHYFIPool.json';
+import ETHDFPoolJson from '../clean_build/contracts/YUANETHDFPool.json';
+import ETHLINKPoolJson from '../clean_build/contracts/YUANETHLINKPool.json';
+import ETHBANDPoolJson from '../clean_build/contracts/YUANETHBANDPool.json';
+import ETHYFIIPoolJson from '../clean_build/contracts/YUANETHYFIIPool.json';
+// 远大征程
 
 //增加 governance vote start
 import YAMv2Json from '../clean_build/contracts/YAMv2.json';
@@ -116,30 +141,30 @@ export class Contracts {
     this.yfi = new this.web3.eth.Contract(ERC20Json.abi as AbiItem[]);
     this.UNIAmpl = new this.web3.eth.Contract(ERC20Json.abi as AbiItem[]);
     this.ycrv = new this.web3.eth.Contract(ERC20Json.abi as AbiItem[]);
-    this.yam = new this.web3.eth.Contract(YAMJson.abi as AbiItem[]);
+    this.yam = new this.web3.eth.Contract(YUANJson.abi as AbiItem[]);
 
     // 夏 商 周
-    this.USDx_USDC_pool = new this.web3.eth.Contract(MKRPoolJson.abi as AbiItem[]);
-    this.USDx_YUAN_pool = new this.web3.eth.Contract(DFPoolJson.abi as AbiItem[]);
-    this.ETH_YUAN_pool = new this.web3.eth.Contract(DUSDTPoolJson.abi as AbiItem[]);
+    this.USDx_USDC_pool = new this.web3.eth.Contract(USDxUSDCPoolJson.abi as AbiItem[]);
+    this.USDx_YUAN_pool = new this.web3.eth.Contract(USDxYUANPoolJson.abi as AbiItem[]);
+    this.ETH_YUAN_pool = new this.web3.eth.Contract(ETHYUANPoolJson.abi as AbiItem[]);
     // qin
-    this.USDC_ETH_pool = new this.web3.eth.Contract(DUSDTPoolJson.abi as AbiItem[]);
-    this.DAI_ETH_pool = new this.web3.eth.Contract(DUSDTPoolJson.abi as AbiItem[]);
-    this.USDT_ETH_pool = new this.web3.eth.Contract(DUSDTPoolJson.abi as AbiItem[]);
-    this.USDx_ETH_pool = new this.web3.eth.Contract(DUSDTPoolJson.abi as AbiItem[]);
+    this.USDC_ETH_pool = new this.web3.eth.Contract(ETHUSDCPoolJson.abi as AbiItem[]);
+    this.DAI_ETH_pool = new this.web3.eth.Contract(ETHDAIPoolJson.abi as AbiItem[]);
+    this.USDT_ETH_pool = new this.web3.eth.Contract(ETHUSDTPoolJson.abi as AbiItem[]);
+    this.USDx_ETH_pool = new this.web3.eth.Contract(ETHUSDxPoolJson.abi as AbiItem[]);
     // han
-    this.YAM_ETH_pool = new this.web3.eth.Contract(DUSDTPoolJson.abi as AbiItem[]);
-    this.AMPL_ETH_pool = new this.web3.eth.Contract(DUSDTPoolJson.abi as AbiItem[]);
+    this.YAM_ETH_pool = new this.web3.eth.Contract(ETHYAMPoolJson.abi as AbiItem[]);
+    this.AMPL_ETH_pool = new this.web3.eth.Contract(ETHAMPLPoolJson.abi as AbiItem[]);
     // tang
-    this.UNI_ETH_pool = new this.web3.eth.Contract(DUSDTPoolJson.abi as AbiItem[]);
-    this.YFI_ETH_pool = new this.web3.eth.Contract(DUSDTPoolJson.abi as AbiItem[]);
-    this.DF_ETH_pool = new this.web3.eth.Contract(DUSDTPoolJson.abi as AbiItem[]);
-    this.LINK_ETH_pool = new this.web3.eth.Contract(DUSDTPoolJson.abi as AbiItem[]);
-    this.BAND_ETH_pool = new this.web3.eth.Contract(DUSDTPoolJson.abi as AbiItem[]);
-    this.YFII_ETH_pool = new this.web3.eth.Contract(DUSDTPoolJson.abi as AbiItem[]);
+    this.UNI_ETH_pool = new this.web3.eth.Contract(ETHUNIPoolJson.abi as AbiItem[]);
+    this.YFI_ETH_pool = new this.web3.eth.Contract(ETHYFIPoolJson.abi as AbiItem[]);
+    this.DF_ETH_pool = new this.web3.eth.Contract(ETHDFPoolJson.abi as AbiItem[]);
+    this.LINK_ETH_pool = new this.web3.eth.Contract(ETHLINKPoolJson.abi as AbiItem[]);
+    this.BAND_ETH_pool = new this.web3.eth.Contract(ETHBANDPoolJson.abi as AbiItem[]);
+    this.YFII_ETH_pool = new this.web3.eth.Contract(ETHYFIIPoolJson.abi as AbiItem[]);
     // 远大征程
-    this.YUAN_ETH_pool = new this.web3.eth.Contract(DUSDTPoolJson.abi as AbiItem[]);
-    this.YUAN_USDx_pool = new this.web3.eth.Contract(DUSDTPoolJson.abi as AbiItem[]);
+    this.YUAN_ETH_pool = new this.web3.eth.Contract(ETHYUANPoolJson.abi as AbiItem[]);
+    this.YUAN_USDx_pool = new this.web3.eth.Contract(USDxYUANPoolJson.abi as AbiItem[]);
 
     this.comp = new this.web3.eth.Contract(ERC20Json.abi as AbiItem[]);
     this.link = new this.web3.eth.Contract(ERC20Json.abi as AbiItem[]);
@@ -154,11 +179,11 @@ export class Contracts {
     this.USDx_YUAN = new this.web3.eth.Contract(ERC20Json.abi as AbiItem[]);
     this.ETH_YUAN = new this.web3.eth.Contract(ERC20Json.abi as AbiItem[]);
 
-    this.rebaser = new this.web3.eth.Contract(YAMRebaserJson.abi as AbiItem[]);
-    this.reserves = new this.web3.eth.Contract(YAMReservesJson.abi as AbiItem[]);
-    this.gov = new this.web3.eth.Contract(YAMGovJson.abi as AbiItem[]);
-    this.gov003 = new this.web3.eth.Contract(YAMGovJson_YIP003.abi as AbiItem[]);
-    this.timelock = new this.web3.eth.Contract(YAMTimelockJson.abi as AbiItem[]);
+    this.rebaser = new this.web3.eth.Contract(YUANRebaserJson.abi as AbiItem[]);
+    this.reserves = new this.web3.eth.Contract(YUANReservesJson.abi as AbiItem[]);
+    this.gov = new this.web3.eth.Contract(YUANGovJson.abi as AbiItem[]);
+    this.gov003 = new this.web3.eth.Contract(YUANGovJson_YIP003.abi as AbiItem[]);
+    this.timelock = new this.web3.eth.Contract(YUANTimelockJson.abi as AbiItem[]);
     this.weth = new this.web3.eth.Contract(WETHJson as AbiItem[]);
 
     //增加 gov vote start
@@ -185,33 +210,45 @@ export class Contracts {
     this.timelock.setProvider(provider);
 
     const contracts = [
-      { contract: this.yam, json: YAMJson },
-      { contract: this.rebaser, json: YAMRebaserJson },
-      { contract: this.reserves, json: YAMReservesJson },
-      { contract: this.gov, json: YAMGovJson },
-      { contract: this.gov003, json: YAMGovJson_YIP003 },
-      { contract: this.timelock, json: YAMTimelockJson },
+      { contract: this.yam, json: YUANJson },
+      { contract: this.rebaser, json: YUANRebaserJson },
+      { contract: this.reserves, json: YUANReservesJson },
+      { contract: this.gov, json: YUANGovJson },
+      { contract: this.gov003, json: YUANGovJson_YIP003 },
+      { contract: this.timelock, json: YUANTimelockJson },
 
       // (to be change)
       // 夏 商 周
-      { contract: this.USDx_USDC_pool, json: MKRPoolJson },
-      { contract: this.USDx_YUAN_pool, json: DFPoolJson },
-      { contract: this.ETH_YUAN_pool, json: DUSDTPoolJson },
+      { contract: this.USDx_USDC_pool, json: USDxUSDCPoolJson },
+      { contract: this.USDx_YUAN_pool, json: USDxYUANPoolJson },
+      { contract: this.ETH_YUAN_pool, json: ETHYUANPoolJson },
       // qin
-      { contract: this.USDC_ETH_pool, json: addressMapJSON.USDC_ETH },
-      { contract: this.DAI_ETH_pool, json: addressMapJSON.DAI_ETH },
-      { contract: this.USDT_ETH_pool, json: addressMapJSON.USDT_ETH },
-      { contract: this.USDx_ETH_pool, json: addressMapJSON.USDx_ETH },
+      // { contract: this.USDC_ETH_pool, json: addressMapJSON.USDC_ETH },
+      // { contract: this.DAI_ETH_pool, json: addressMapJSON.DAI_ETH },
+      // { contract: this.USDT_ETH_pool, json: addressMapJSON.USDT_ETH },
+      // { contract: this.USDx_ETH_pool, json: addressMapJSON.USDx_ETH },
+      { contract: this.USDC_ETH_pool, json: ETHUSDCPoolJson },
+      { contract: this.DAI_ETH_pool, json: ETHDAIPoolJson },
+      { contract: this.USDT_ETH_pool, json: ETHUSDTPoolJson },
+      { contract: this.USDx_ETH_pool, json: ETHUSDxPoolJson },
       // han
-      { contract: this.YAM_ETH_pool, json: addressMapJSON.YAM_ETH },
-      { contract: this.AMPL_ETH_pool, json: addressMapJSON.AMPL_ETH },
+      // { contract: this.YAM_ETH_pool, json: addressMapJSON.YAM_ETH },
+      // { contract: this.AMPL_ETH_pool, json: addressMapJSON.AMPL_ETH },
+      { contract: this.YAM_ETH_pool, json: ETHYAMPoolJson },
+      { contract: this.AMPL_ETH_pool, json: ETHAMPLPoolJson },
       // tang
-      { contract: this.YFI_ETH_pool, json: addressMapJSON.YFI_ETH },
-      { contract: this.DF_ETH_pool, json: addressMapJSON.DF_ETH },
-      { contract: this.UNI_ETH_pool, json: addressMapJSON.UNI_ETH },
-      { contract: this.LINK_ETH_pool, json: addressMapJSON.LINK_ETH },
-      { contract: this.BAND_ETH_pool, json: addressMapJSON.BAND_ETH },
-      { contract: this.YFII_ETH_pool, json: addressMapJSON.YFII_ETH },
+      // { contract: this.YFI_ETH_pool, json: addressMapJSON.YFI_ETH },
+      // { contract: this.DF_ETH_pool, json: addressMapJSON.DF_ETH },
+      // { contract: this.UNI_ETH_pool, json: addressMapJSON.UNI_ETH },
+      // { contract: this.LINK_ETH_pool, json: addressMapJSON.LINK_ETH },
+      // { contract: this.BAND_ETH_pool, json: addressMapJSON.BAND_ETH },
+      // { contract: this.YFII_ETH_pool, json: addressMapJSON.YFII_ETH },
+      { contract: this.YFI_ETH_pool, json: ETHYFIPoolJson },
+      { contract: this.DF_ETH_pool, json: ETHDFPoolJson },
+      { contract: this.UNI_ETH_pool, json: ETHUNIPoolJson },
+      { contract: this.LINK_ETH_pool, json: ETHLINKPoolJson },
+      { contract: this.BAND_ETH_pool, json: ETHBANDPoolJson },
+      { contract: this.YFII_ETH_pool, json: ETHYFIIPoolJson },
       // 远大征程
       { contract: this.YUAN_ETH_pool, json: addressMapJSON.YUAN_ETH },
       { contract: this.YUAN_USDx_pool, json: addressMapJSON.YUAN_USDx },

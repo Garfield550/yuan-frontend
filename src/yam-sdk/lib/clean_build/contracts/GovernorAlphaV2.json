@@ -676,5 +676,18 @@
       "type": "function"
     }
   ],
-  "networks": {}
+  "networks": {
+    "1": {
+      "address": "0x6D5556b3CbD13375FAa08831588005900A966c60",
+      "transactionHash": "0x71c01929922701e46bb6cee7ffa6a7a916013df3c8e8fe2d2d6e1fe8e5e8964e"
+    },
+    "42": {
+      "address": "0x7627773565e28756F9C9A486C4CD227Cd5607370",
+      "transactionHash": "0x71c01929922701e46bb6cee7ffa6a7a916013df3c8e8fe2d2d6e1fe8e5e8964e"
+    },
+    "97": {
+      "address": "0x8e91765A60ef8dd279286b10B817f02B5Fc6fEE6",
+      "transactionHash": "0xef4369849617611a2d7720e29ba7e83bfe8138f86ff884f87614488bbbb17eef"
+    }
+  }
 }

@@ -306,7 +306,7 @@ export const getStats = async (yam: Yam) => {
   const nextRebase = await getNextRebaseTimestamp(yam)
   const targetPrice = await getTargetPrice(yam)
   const totalSupply = await getTotalSupply(yam)
-  const scalingFactor =await getScalingFactor(yam)
+  const scalingFactor = await getScalingFactor(yam)
   return {
     circSupply,
     curPrice,

@@ -224,5 +224,14 @@
       "type": "function"
     }
   ],
-  "networks": {}
+  "networks": {
+    "1": {
+      "address": "0xCF27cA116dd5C7b4201c75B46489D1c075362087",
+      "transactionHash": "0x166d9e141aaa9ba16f95b2e4f33ec205b530e5c0ea97d2c3af75e830dc41d836"
+    },
+    "42": {
+      "address": "0x956663fC10C8f754d5D2F68575e12b630C27e0BF",
+      "transactionHash": "0x166d9e141aaa9ba16f95b2e4f33ec205b530e5c0ea97d2c3af75e830dc41d836"
+    }
+  }
 }
