@@ -16,7 +16,7 @@ const getCurrentPrice = async (yam: Yam): Promise<number> => {
 
 const getTargetPrice = async (yam: Yam): Promise<number> => {
   // FORBROCK: get target YAM price
-  return Number(gTP(yam))
+  return Number(await gTP(yam))
 }
 
 const getCirculatingSupply = async (yam: Yam): Promise<string> => {

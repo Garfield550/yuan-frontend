@@ -224,13 +224,23 @@ export const getCurrentPrice = async (yam: Yam) => {
   // FORBROCK: get current YAM price
   return yam.toBigN(await yam.contracts.rebaser.methods.getCurrentExchangeRate().call())
 }
+export const getCurrentPriceEETH = async (yam: Yam) => {
+  return yam.toBigN(await yam.contracts.eETHRebaser.methods.getCurrentTWAP().call())
+}
 
 export const getTargetPrice = async (yam: Yam) => {
+  return yam.toBigN(1).toFixed(2);
+}
+export const getTargetPriceEETH = async (yam: Yam) => {
   return yam.toBigN(1).toFixed(2);
 }
 
 export const getScalingFactor = async (yam: Yam) => {
   const scalingFactor = new BigNumber(await yam.contracts.yam.methods.yuansScalingFactor().call())
+  return scalingFactor.dividedBy(new BigNumber(10).pow(18)).toFixed(2)
+}
+export const getScalingFactorEETH = async (yam: Yam) => {
+  const scalingFactor = new BigNumber(await yam.contracts.eETH.methods.yuansScalingFactor().call())
   return scalingFactor.dividedBy(new BigNumber(10).pow(18)).toFixed(2)
 }
 
@@ -249,6 +259,22 @@ export const getCirculatingSupply = async (yam: Yam) => {
   let circulating = pool2Yams.plus(yamsDistributed).times(scalingFactor).div(10 ** 36).toFixed(2)
   return circulating
 }
+export const getCirculatingSupplyEETH = async (yam: Yam) => {
+  let now = await yam.web3.eth.getBlock('latest');
+  let scalingFactor = yam.toBigN(await yam.contracts.eETH.methods.yuansScalingFactor().call());
+  let starttime = yam.toBigN(await yam.contracts.USDx_USDC_pool.methods.starttime().call()).toNumber();
+  let timePassed = Number(now.timestamp) - starttime;
+  if (timePassed < 0) {
+    return '0';
+  }
+  let yamsDistributed = yam.toBigN(8 * timePassed * 250000 / 625000); //yams from first 8 pools
+  // let starttimePool2 = yam.toBigN(await yam.contracts.USDx_USDC_pool.methods.starttime().call()).toNumber();
+  timePassed = Number(now.timestamp) - starttime;
+  let pool2Yams = yam.toBigN(timePassed * 1500000 / 625000); // yams from second pool. note: just accounts for first week
+  let circulating = pool2Yams.plus(yamsDistributed).times(scalingFactor).div(10 ** 36).toFixed(2)
+  return circulating
+}
+
 //配置 rebase 时间轴
 export const interval = 43200
 //配置 rebase 时间轴
@@ -264,21 +290,66 @@ export const getNextRebaseTimestamp = async (yam: Yam): Promise<[number, boolean
     let secondsToRebase = 0;
     let windowLength = 3600;
     let rebasable = false;
-    if (await yam.contracts.rebaser.methods.rebasingActive().call()) {
+    const rebaserContract = yam.contracts.rebaser;
+    if (await rebaserContract.methods.rebasingActive().call()) {
       if (now % interval > offset) {
         secondsToRebase = (interval - (now % interval)) + offset;
       } else {
         secondsToRebase = offset - (now % interval);
       }
       // lastRebaseTimestampSec.add(minRebaseTimeIntervalSec) < now
-      let lastRebaseTimestamp = Number(await yam.contracts.rebaser.methods.lastRebaseTimestampSec().call())
+      let lastRebaseTimestamp = Number(await rebaserContract.methods.lastRebaseTimestampSec().call())
       if (now % interval >= offset && now % interval < offset + windowLength && lastRebaseTimestamp + interval < now) {
         rebasable = true;
       }
     } else {
-      let twap_init = yam.toBigN(await yam.contracts.rebaser.methods.timeOfTWAPInit().call()).toNumber();
+      let twap_init = yam.toBigN(await rebaserContract.methods.timeOfTWAPInit().call()).toNumber();
       if (twap_init > 0) {
-        let delay = yam.toBigN(await yam.contracts.rebaser.methods.rebaseDelay().call()).toNumber();
+        let delay = yam.toBigN(await rebaserContract.methods.rebaseDelay().call()).toNumber();
+        let endTime = twap_init + delay;
+        if (endTime % interval > offset) {
+          secondsToRebase = (interval - (endTime % interval)) + offset;
+        } else {
+          secondsToRebase = offset - (endTime % interval);
+        }
+        return [endTime + secondsToRebase, rebasable];
+      } else {
+        return [now + 13 * 60 * 60, rebasable]; // just know that its greater than 12 hours away
+      }
+    }
+    return [secondsToRebase, rebasable]
+  } catch (e) {
+    console.log(e)
+  }
+}
+export const getNextRebaseTimestampEETH = async (yam: Yam): Promise<[number, boolean]> =>  {
+  try {
+    let now = Number(await yam.web3.eth.getBlock('latest').then(res => res.timestamp));
+    // let interval = 1800; // 12 hours
+    // let offset = 300; // 8am/8pm utc
+    // let secondsToRebase = 0;
+    // let windowLength = 1200; // await rebaser.rebaseWindowLengthSec().call()
+    let interval = 43200; // 12 hours
+    let offset = 7200; // 8am/8pm utc
+    let secondsToRebase = 0;
+    let windowLength = 3600;
+    let rebasable = false;
+    const rebaserContract = yam.contracts.eETHRebaser;
+    if (await rebaserContract.methods.rebasingActive().call()) {
+      if (now % interval > offset) {
+        secondsToRebase = (interval - (now % interval)) + offset;
+      } else {
+        secondsToRebase = offset - (now % interval);
+      }
+      // lastRebaseTimestampSec.add(minRebaseTimeIntervalSec) < now
+      let lastRebaseTimestamp = Number(await rebaserContract.methods.lastRebaseTimestampSec().call())
+      if (now % interval >= offset && now % interval < offset + windowLength && lastRebaseTimestamp + interval < now) {
+        rebasable = true;
+      }
+    } else {
+      let twap_init = yam.toBigN(await rebaserContract.methods.timeOfTWAPInit().call()).toNumber();
+      if (twap_init > 0) {
+        let delay = yam.toBigN(await rebaserContract.methods.rebaseDelay().call()).toNumber();
         let endTime = twap_init + delay;
         if (endTime % interval > offset) {
           secondsToRebase = (interval - (endTime % interval)) + offset;
@@ -298,6 +369,9 @@ export const getNextRebaseTimestamp = async (yam: Yam): Promise<[number, boolean
 
 export const getTotalSupply = async (yam: Yam) => {
   return await yam.contracts.yam.methods.totalSupply().call();
+}
+export const getTotalSupplyEETH = async (yam: Yam) => {
+  return await yam.contracts.eETH.methods.totalSupply().call();
 }
 
 export const getStats = async (yam: Yam) => {

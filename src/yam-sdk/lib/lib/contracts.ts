@@ -56,6 +56,10 @@ import MigratorJson from "../clean_build/contracts/Migrator.json"
 import YAMv3Json from "../clean_build/contracts/YAMDelegatorV3.json"
 //增加 governance vote end
 
+// eETH
+import eETHRebaserJson from '../clean_build/contracts/YUANRebaserV2.json';
+import eETHJson from '../clean_build/contracts/eETHDelegator.json';
+
 export type Contract = Web3Contract & {
   setProvider?: (provider: Provider) => void
 }
@@ -67,6 +71,11 @@ export type AddressNames = {
 export type Pool = {
   tokenAddr: string
   poolAddr: string
+}
+
+export type ContractItem = {
+  contract: Contract
+  json: AddressMapJsonItem
 }
 
 export interface Contracts {
@@ -126,6 +135,9 @@ export class Contracts {
   public names: AddressNames;
   public blockGasLimit: number;
   public notifier: any;
+  // eETH
+  public eETH: Contract;
+  public eETHRebaser: Contract;
 
   constructor(provider: Provider, networkId: number, web3: Web3, options: any) {
     this.web3 = web3;
@@ -194,6 +206,10 @@ export class Contracts {
     this.migrator = new this.web3.eth.Contract(MigratorJson.abi as AbiItem[]);
     //增加 gov vote end
 
+    // eETH
+    this.eETH = new this.web3.eth.Contract(eETHJson.abi as AbiItem[]);
+    this.eETHRebaser = new this.web3.eth.Contract(eETHRebaserJson.abi as AbiItem[]);
+
     this.setProvider(provider, networkId);
     this.setDefaultAccount(this.web3.eth.defaultAccount);
   }
@@ -209,14 +225,16 @@ export class Contracts {
     this.gov003.setProvider(provider);
     this.timelock.setProvider(provider);
 
-    const contracts = [
+    const contracts: ContractItem[] = [
       { contract: this.yam, json: YUANJson },
       { contract: this.rebaser, json: YUANRebaserJson },
       { contract: this.reserves, json: YUANReservesJson },
       { contract: this.gov, json: YUANGovJson },
       { contract: this.gov003, json: YUANGovJson_YIP003 },
       { contract: this.timelock, json: YUANTimelockJson },
-
+      // eETH
+      { contract: this.eETH, json: eETHJson },
+      { contract: this.eETHRebaser, json: eETHRebaserJson },
       // (to be change)
       // 夏 商 周
       { contract: this.USDx_USDC_pool, json: USDxUSDCPoolJson },
