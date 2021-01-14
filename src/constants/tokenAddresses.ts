@@ -55,7 +55,7 @@ export const TOKEN_ADDRESS: TokenAddress = {
     eETH: {
         42: {
             yam: eETHJson.networks[42].address,
-            usdx: '0x5eCA15B12d959dfcf9c71c59F8B467Eb8c6efD0b', // WETH
+            usdx: '0xd0A1E359811322d97991E03f863a0C30C2cF029C', // WETH
             oracle: '',
             treasury: eETHTreasuryJson.networks[42].address
         }

@@ -226,6 +226,7 @@ export const getCurrentPrice = async (yam: Yam) => {
 }
 export const getCurrentPriceEETH = async (yam: Yam) => {
   return yam.toBigN(await yam.contracts.eETHRebaser.methods.getCurrentTWAP().call())
+  // return yam.toBigN(1)
 }
 
 export const getTargetPrice = async (yam: Yam) => {

@@ -13,7 +13,7 @@ import StatsBg from '../../../assets/img/Page/Stats.svg'
 interface StatsProps {
   circSupply?: string,
   curPrice?: number,
-  targetPrice?: number,
+  targetPrice?: string | number,
   totalSupply?: string,
   scalingFactor?: string,
   cur_language?: any
