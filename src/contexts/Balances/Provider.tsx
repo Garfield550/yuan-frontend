@@ -1,14 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import BigNumber from 'bignumber.js'
 import { useWallet } from 'use-wallet'
-import { provider } from 'web3-core'
+import { provider as Web3Provider } from 'web3-core'
 
-import {
-  Treasury as TreasuryAddress,
-  usdx_adress as USDX_Address,
-  yam as YUAN_Address,
-  oracle_address as ORACLE_address
-} from '../../constants/tokenAddresses'
+import { TOKEN_ADDRESS } from '../../constants/tokenAddresses'
 import { getBalance, getOraclePrice } from '../../utils'
 
 import Context from './Context'
@@ -18,22 +13,22 @@ const Provider: React.FC = ({ children }) => {
   const [yuanBalance, setYuanBalance] = useState<BigNumber>()
   const [oraclePrice, setoraclePrice] = useState<BigNumber>()
 
-  const { account, ethereum }: { account: string | null, ethereum: provider } = useWallet()
+  const { account, ethereum, chainId } = useWallet<Web3Provider>()
 
-  const fetchBalances = useCallback(async (userAddress: string, provider: provider) => {
+  const fetchBalances = useCallback(async (userAddress: string, provider: Web3Provider) => {
+    const treasuryAddress = TOKEN_ADDRESS.yuan[chainId].treasury;
+    const usdxAddress = TOKEN_ADDRESS.yuan[chainId].usdx;
+    const yuanAddress = TOKEN_ADDRESS.yuan[chainId].yam;
+    const oracleAddress = TOKEN_ADDRESS.yuan[chainId].oracle;
     const balances = await Promise.all([
-      await getBalance(provider, TreasuryAddress, USDX_Address),
-      await getBalance(provider, TreasuryAddress, YUAN_Address),
-      await getOraclePrice(provider, ORACLE_address, USDX_Address)
+      await getBalance(provider, treasuryAddress, usdxAddress),
+      await getBalance(provider, treasuryAddress, yuanAddress),
+      await getOraclePrice(provider, oracleAddress, usdxAddress, true)
     ])
     setUsdxBalance(new BigNumber(balances[0]).dividedBy(new BigNumber(10).pow(18)))
     setYuanBalance(new BigNumber(balances[1]).dividedBy(new BigNumber(10).pow(18)))
     setoraclePrice(new BigNumber(balances[2]).dividedBy(new BigNumber(10).pow(18)))
-  }, [
-    setUsdxBalance,
-    setYuanBalance,
-    setoraclePrice
-  ])
+  }, [chainId])
 
   useEffect(() => {
     if (account && ethereum) {

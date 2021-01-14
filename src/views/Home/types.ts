@@ -3,7 +3,7 @@ export interface OverviewData {
   curPrice?: number,
   nextRebase?: number,
   nextRebable?: boolean,
-  targetPrice?: number,
+  targetPrice?: string | number,
   totalSupply?: string,
   scalingFactor?: string
 }

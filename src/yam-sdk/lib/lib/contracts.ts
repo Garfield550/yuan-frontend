@@ -12,7 +12,7 @@ import YUANJson from '../clean_build/contracts/YUANDelegator.json';
 // import YAMRebaserJson from '../clean_build/contracts/YAMRebaser.json';
 import YUANRebaserJson from '../clean_build/contracts/YUANRebaser.json';
 // import YAMReservesJson from '../clean_build/contracts/YAMReserves.json';
-import YUANReservesJson from '../clean_build/contracts/YUANReserves.json';
+import YUANReservesJson from '../clean_build/contracts/YUANReservesV2.json';
 // import YAMGovJson from '../clean_build/contracts/GovernorAlpha.json';
 import YUANGovJson from '../clean_build/contracts/GovernorAlpha.json';
 // import YAMGovJson_YIP003 from '../clean_build/contracts/GovernorAlpha_YIP003.json';

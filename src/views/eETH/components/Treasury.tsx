@@ -23,7 +23,7 @@ import Spacer from '../../../components/Spacer'
 // import FancyValue from '../../../components/FancyValue'
 import Split from '../../../components/Split'
 
-import useTreasury from '../../../hooks/useTreasury'
+import { useTreasuryEETH } from '../../../hooks/useTreasury'
 // import { getDPIPrice } from 'yam-sdk/utils'
 // import { useWallet } from 'use-wallet'
 
@@ -40,7 +40,7 @@ interface TreasuryProps {
 const Treasury: React.FC<TreasuryProps> = ({cur_language}) => {
   // const { status } = useWallet();
   // const [dpiPrice, setDPIPrice] = useState<number>();
-  const { usdxBalance, yuanBalance, oraclePrice } = useTreasury()
+  const { usdxBalance, yuanBalance, oraclePrice } = useTreasuryEETH()
   
   // const fetchOnce = useCallback(async () => {
   //   const dpiPrice = await getDPIPrice();

@@ -1176,9 +1176,11 @@
     }
   ],
   "networks": {
+    "1": {
+      "address": "0x8ABb6cc2810c22Df468E5fC491AB693F0901c927"
+    },
     "42": {
-      "address": "0x06D0D044c3A954AC8154e0cD8fEb1AfcD8c433dC",
-      "transactionHash": "0xbc2d898f319a08654960eeb7d3fe92d4df51647945a007e67ce06832dbbe8055"
+      "address": "0x9E52c4CE059d0082D16E7DfFF48832DAe2734953"
     },
     "97": {
       "address": "0xf303889A1b834a8ab5d9CB90cda0D5f713B4d806",

@@ -7,7 +7,7 @@ import { AbiItem } from 'web3-utils'
 
 import ERC20ABI from '../constants/abi/ERC20.json'
 import OracleABI from '../constants/abi/Oracle.json'
-import { oracle_address } from '../constants/tokenAddresses'
+// import { oracle_address } from '../constants/tokenAddresses'
 
 export { default as formatAddress } from './formatAddress'
 
@@ -90,8 +90,8 @@ export const approve = async (
     return contract
   }
 
-  export const getOraclePrice = async (provider: provider, accountAddress: string, tokenAddress: string): Promise<string> => {
-    const isOracle = (accountAddress === oracle_address)
+  export const getOraclePrice = async (provider: provider, accountAddress: string, tokenAddress: string, isOracle: boolean = false): Promise<string> => {
+    // const isOracle = (accountAddress === oracle_address)
     const web3 = new Web3(provider)
     const contract = isOracle ? 
     new web3.eth.Contract(OracleABI.abi as unknown as AbiItem, accountAddress) 
@@ -102,6 +102,7 @@ export const approve = async (
       : await contract.methods.balanceOf(tokenAddress).call()
       return balance
     } catch (e) {
+      console.error('getOraclePrice::', e);
       return '0'
     }
   }
