@@ -57,7 +57,7 @@ import YAMv3Json from "../clean_build/contracts/YAMDelegatorV3.json"
 //增加 governance vote end
 
 // eETH
-import eETHRebaserJson from '../clean_build/contracts/YUANRebaserV2.json';
+import eETHRebaserJson from '../clean_build/contracts/eETHRebaser.json';
 import eETHJson from '../clean_build/contracts/eETHDelegator.json';
 
 export type Contract = Web3Contract & {
