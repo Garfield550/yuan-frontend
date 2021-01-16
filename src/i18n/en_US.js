@@ -87,5 +87,6 @@ const en_US = {
     eETH_In_Reserves:'eETH in reserves',
     BTC_USD:"BTC / USD",
     ETH_USD:"ETH / USD",
+    eETH_ETH:"eETH / ETH",
 }
 export default en_US;

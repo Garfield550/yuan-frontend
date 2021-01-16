@@ -87,5 +87,6 @@ const zh_CN = {
     eETH_In_Reserves:'eETH数量',
     BTC_USD:"BTC / USD",
     ETH_USD:"ETH / USD",
+    eETH_ETH:"eETH / ETH",
 }
 export default zh_CN;

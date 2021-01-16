@@ -32,15 +32,22 @@ import Label from '../../../components/Label'
 import StatsUsdx from '../../../assets/img/Page/StatsUsdx.svg'
 import StatsYUAN from '../../../assets/img/Page/StatsYUAN.svg'
 import StatsOracle from '../../../assets/img/Page/StatsOracle.svg'
+import { useWallet } from 'use-wallet'
+import { TOKEN_ADDRESS } from '../../../constants/tokenAddresses'
 
 interface TreasuryProps {
   cur_language?: any
 }
 
 const Treasury: React.FC<TreasuryProps> = ({cur_language}) => {
-  // const { status } = useWallet();
+  const { chainId } = useWallet();
   // const [dpiPrice, setDPIPrice] = useState<number>();
   const { usdxBalance, yuanBalance, oraclePrice } = useTreasuryEETH()
+
+  const yuanToken = TOKEN_ADDRESS.yuan[chainId].yam;
+  const eETHToken = TOKEN_ADDRESS.eETH[chainId].yam;
+  const scanLink = `https://etherscan.io/address/${eETHToken}`;
+  const uniswapLink = `https://app.uniswap.org/#/swap?inputCurrency=${eETHToken}&outputCurrency=${yuanToken}`;
   
   // const fetchOnce = useCallback(async () => {
   //   const dpiPrice = await getDPIPrice();
@@ -71,8 +78,8 @@ const Treasury: React.FC<TreasuryProps> = ({cur_language}) => {
     : '--'
   
   const oracleValue = typeof oraclePrice !== 'undefined'
-  ? numeral(oraclePrice).format('0,0.00')
-  : '--'
+    ? numeral(oraclePrice).format('0,0.00')
+    : '--'
 
   return (
     <Card>
@@ -84,7 +91,7 @@ const Treasury: React.FC<TreasuryProps> = ({cur_language}) => {
           <StyledStat>
             <StatIcon src={StatsUsdx} />
             <StatInfo>
-              <StyledValue>{usdxValue}</StyledValue>
+              <StyledValue>{yuanValue}</StyledValue>
               <Label cur_language={cur_language} text={'eETH_In_Reserves'} size={16}/>
             </StatInfo>
           </StyledStat>
@@ -94,7 +101,7 @@ const Treasury: React.FC<TreasuryProps> = ({cur_language}) => {
           <StyledStat>
             <StatIcon src={StatsYUAN} />
             <StatInfo>
-              <StyledValue>{yuanValue}</StyledValue>
+              <StyledValue>{usdxValue}</StyledValue>
               <Label cur_language={cur_language} text={'YUAN_In_Reserves'} size={16}/>
             </StatInfo>
           </StyledStat>
@@ -107,7 +114,7 @@ const Treasury: React.FC<TreasuryProps> = ({cur_language}) => {
               <StyledValue>
                 {oracleValue}
               </StyledValue>
-              <Label cur_language={cur_language} text={'ETH_USD'} size={16}/>
+              <Label cur_language={cur_language} text={'eETH_ETH'} size={16}/>
             </StatInfo>
           </StyledStat>
         </StyledStats>
@@ -132,7 +139,7 @@ const Treasury: React.FC<TreasuryProps> = ({cur_language}) => {
       {/* <CardActions> */}
         <Box row justifyContent="center">
           <Button
-            href="https://etherscan.io/address/0xB37C599fbDD3f1C30fcAe51194ec802E52f70f61"
+            href={scanLink}
             text="View_Etherscan"
             cur_language={cur_language}
             variant="secondary"
@@ -141,7 +148,7 @@ const Treasury: React.FC<TreasuryProps> = ({cur_language}) => {
             imageBg={'Rebase'}
           />
           <Button
-            href="https://app.uniswap.org/#/swap?inputCurrency=0xeb269732ab75a6fd61ea60b06fe994cd32a83549&outputCurrency=0x4a3e164684812dfb684ac36457e7fa805087c68e"
+            href={uniswapLink}
             text="Buy_Uniswap" 
             cur_language={cur_language}
             variant="secondary"

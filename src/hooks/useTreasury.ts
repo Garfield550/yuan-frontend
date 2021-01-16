@@ -40,8 +40,8 @@ export const useTreasuryEETH = () => {
   // const { yamTwap } = usePrices()
   const { chainId } = useWallet()
   const treasuryAddress = TOKEN_ADDRESS.eETH[chainId].treasury;
-  const usdxAddress = TOKEN_ADDRESS.eETH[chainId].usdx;
-  const yuanAddress = TOKEN_ADDRESS.eETH[chainId].yam;
+  const usdxAddress = TOKEN_ADDRESS.eETH[chainId].usdx; // YUAN
+  const yuanAddress = TOKEN_ADDRESS.eETH[chainId].yam; // eETH
   // const oracleAddress = TOKEN_ADDRESS.eETH[chainId].oracle;
   const usdxBalance = useTokenBalance(treasuryAddress, usdxAddress)
   const yuanBalance = useTokenBalance(treasuryAddress, yuanAddress)
