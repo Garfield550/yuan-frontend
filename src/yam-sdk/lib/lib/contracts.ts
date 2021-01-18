@@ -60,6 +60,10 @@ import YAMv3Json from "../clean_build/contracts/YAMDelegatorV3.json"
 import eETHRebaserJson from '../clean_build/contracts/eETHRebaser.json';
 import eETHJson from '../clean_build/contracts/eETHDelegator.json';
 
+// eBTC
+import eBTCRebaserJson from '../clean_build/contracts/eBTCRebaser.json';
+import eBTCJson from '../clean_build/contracts/eBTCDelegator.json';
+
 export type Contract = Web3Contract & {
   setProvider?: (provider: Provider) => void
 }
@@ -138,6 +142,9 @@ export class Contracts {
   // eETH
   public eETH: Contract;
   public eETHRebaser: Contract;
+  // eBTC
+  public eBTC: Contract;
+  public eBTCRebaser: Contract;
 
   constructor(provider: Provider, networkId: number, web3: Web3, options: any) {
     this.web3 = web3;
@@ -210,6 +217,10 @@ export class Contracts {
     this.eETH = new this.web3.eth.Contract(eETHJson.abi as AbiItem[]);
     this.eETHRebaser = new this.web3.eth.Contract(eETHRebaserJson.abi as AbiItem[]);
 
+    // eBTC
+    this.eBTC = new this.web3.eth.Contract(eBTCJson.abi as AbiItem[]);
+    this.eBTCRebaser = new this.web3.eth.Contract(eBTCRebaserJson.abi as AbiItem[]);
+
     this.setProvider(provider, networkId);
     this.setDefaultAccount(this.web3.eth.defaultAccount);
   }
@@ -235,6 +246,9 @@ export class Contracts {
       // eETH
       { contract: this.eETH, json: eETHJson },
       { contract: this.eETHRebaser, json: eETHRebaserJson },
+      // eBTC
+      { contract: this.eBTC, json: eBTCJson },
+      { contract: this.eBTCRebaser, json: eBTCRebaserJson },
       // (to be change)
       // 夏 商 周
       { contract: this.USDx_USDC_pool, json: USDxUSDCPoolJson },

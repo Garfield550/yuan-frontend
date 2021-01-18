@@ -1,12 +1,12 @@
 // import { Yam } from '../../yam'
 import { Yam } from '../../yam-sdk/lib'
 import {
-  getCurrentPrice as gCP,
-  getTargetPrice as gTP,
-  getCirculatingSupply as gCS,
-  getNextRebaseTimestamp as gNRT,
-  getTotalSupply as gTS,
-  getScalingFactor as gSF
+  getCurrentPriceEBTC as gCP,
+  getTargetPriceEBTC as gTP,
+  getCirculatingSupplyEBTC as gCS,
+  getNextRebaseTimestampEBTC as gNRT,
+  getTotalSupplyEBTC as gTS,
+  getScalingFactorEBTC as gSF
 } from '../../yamUtils'
 
 const getCurrentPrice = async (yam: Yam): Promise<number> => {
@@ -14,9 +14,9 @@ const getCurrentPrice = async (yam: Yam): Promise<number> => {
   return (await gCP(yam)).toNumber()
 }
 
-const getTargetPrice = async (yam: Yam): Promise<number> => {
+const getTargetPrice = async (yam: Yam): Promise<string> => {
   // FORBROCK: get target YAM price
-  return Number(await gTP(yam))
+  return await gTP(yam)
 }
 
 const getCirculatingSupply = async (yam: Yam): Promise<string> => {

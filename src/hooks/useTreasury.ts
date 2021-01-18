@@ -56,4 +56,24 @@ export const useTreasuryEETH = () => {
   }
 }
 
+export const useTreasuryEBTC = () => {
+  // const { yamTwap } = usePrices()
+  const { chainId } = useWallet()
+  const treasuryAddress = TOKEN_ADDRESS.eBTC[chainId].treasury;
+  const usdxAddress = TOKEN_ADDRESS.eBTC[chainId].usdx; // YUAN
+  const yuanAddress = TOKEN_ADDRESS.eBTC[chainId].yam; // eETH
+  // const oracleAddress = TOKEN_ADDRESS.eETH[chainId].oracle;
+  const usdxBalance = useTokenBalance(treasuryAddress, usdxAddress)
+  const yuanBalance = useTokenBalance(treasuryAddress, yuanAddress)
+  // const oraclePrice = useTokenBalance(usdxAddress, oracleAddress)
+  const oraclePrice = 0
+  console.log('treasuryAddress:', treasuryAddress, 'usdxBalance:', usdxBalance, 'yuanBalance:', yuanBalance, 'oraclePrice:', oraclePrice);
+
+  return {
+    usdxBalance,
+    yuanBalance,
+    oraclePrice,
+  }
+}
+
 export default useTreasury

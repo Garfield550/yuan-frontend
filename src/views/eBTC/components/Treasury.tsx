@@ -23,7 +23,7 @@ import Spacer from '../../../components/Spacer'
 // import FancyValue from '../../../components/FancyValue'
 import Split from '../../../components/Split'
 
-import useTreasury from '../../../hooks/useTreasury'
+import { useTreasuryEBTC } from '../../../hooks/useTreasury'
 // import { getDPIPrice } from 'yam-sdk/utils'
 // import { useWallet } from 'use-wallet'
 
@@ -40,7 +40,7 @@ interface TreasuryProps {
 const Treasury: React.FC<TreasuryProps> = ({cur_language}) => {
   // const { status } = useWallet();
   // const [dpiPrice, setDPIPrice] = useState<number>();
-  const { usdxBalance, yuanBalance, oraclePrice } = useTreasury()
+  const { usdxBalance, yuanBalance, oraclePrice } = useTreasuryEBTC()
   
   // const fetchOnce = useCallback(async () => {
   //   const dpiPrice = await getDPIPrice();
@@ -71,8 +71,8 @@ const Treasury: React.FC<TreasuryProps> = ({cur_language}) => {
     : '--'
   
   const oracleValue = typeof oraclePrice !== 'undefined'
-  ? numeral(oraclePrice).format('0,0.00')
-  : '--'
+    ? numeral(oraclePrice).format('0,0.00')
+    : '--'
 
   return (
     <Card>
@@ -84,7 +84,7 @@ const Treasury: React.FC<TreasuryProps> = ({cur_language}) => {
           <StyledStat>
             <StatIcon src={StatsUsdx} />
             <StatInfo>
-              <StyledValue>{usdxValue}</StyledValue>
+              <StyledValue>{yuanValue}</StyledValue>
               <Label cur_language={cur_language} text={'eBTC_In_Reserves'} size={16}/>
             </StatInfo>
           </StyledStat>
@@ -94,7 +94,7 @@ const Treasury: React.FC<TreasuryProps> = ({cur_language}) => {
           <StyledStat>
             <StatIcon src={StatsYUAN} />
             <StatInfo>
-              <StyledValue>{yuanValue}</StyledValue>
+              <StyledValue>{usdxValue}</StyledValue>
               <Label cur_language={cur_language} text={'YUAN_In_Reserves'} size={16}/>
             </StatInfo>
           </StyledStat>
@@ -107,7 +107,7 @@ const Treasury: React.FC<TreasuryProps> = ({cur_language}) => {
               <StyledValue>
                 {oracleValue}
               </StyledValue>
-              <Label cur_language={cur_language} text={'BTC_USD'} size={16}/>
+              <Label cur_language={cur_language} text={'eBTC_BTC'} size={16}/>
             </StatInfo>
           </StyledStat>
         </StyledStats>

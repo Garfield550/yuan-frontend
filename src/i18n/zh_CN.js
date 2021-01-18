@@ -88,5 +88,6 @@ const zh_CN = {
     BTC_USD:"BTC / USD",
     ETH_USD:"ETH / USD",
     eETH_ETH:"eETH / ETH",
+    eBTC_BTC:"eBTC / BTC",
 }
 export default zh_CN;

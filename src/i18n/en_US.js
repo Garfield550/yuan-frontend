@@ -88,5 +88,6 @@ const en_US = {
     BTC_USD:"BTC / USD",
     ETH_USD:"ETH / USD",
     eETH_ETH:"eETH / ETH",
+    eBTC_BTC:"eBTC / BTC",
 }
 export default en_US;

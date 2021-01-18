@@ -31,6 +31,11 @@
           "internalType": "uint256",
           "name": "public_goods_perc_",
           "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "ethAddress_",
+          "type": "address"
         }
       ],
       "payable": false,
@@ -363,6 +368,21 @@
     {
       "constant": true,
       "inputs": [],
+      "name": "isTwapToken0",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
       "name": "lastRebaseTimestampSec",
       "outputs": [
         {
@@ -668,6 +688,21 @@
         }
       ],
       "name": "uniSyncPairs",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "uniswapTwapPair",
       "outputs": [
         {
           "internalType": "address",
@@ -1114,12 +1149,8 @@
   ],
   "networks": {
     "42": {
-      "address": "0xDA4E479052e5CBcDE82fFB5c1Cc10b485Bf38C0b",
-      "transactionHash": "0x9ec2d7e0adc8db246f3aa88e1341358327151d538247792f63c3f03fa3c5c39a"
-    },
-    "97": {
-      "address": "0x9Af793e0Bc11F3B7b65B4b5B92424E09e3d67A2B",
-      "transactionHash": "0xf9bf10a793407f84339d7cb4e8340470261ee6e5a0533123a8407e3f96384f8a"
+      "address": "0x575D30A23F41116cE25e302e4d93c00e12741Dfe",
+      "transactionHash": "0x62a28994b89d6758b678687add2973f1dea5bd5f1466c8a7c3c4361b8631fb26"
     }
   }
 }

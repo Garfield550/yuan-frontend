@@ -3,6 +3,8 @@ import PriceOracleJson from '../yam-sdk/lib/clean_build/contracts/PriceOracle.js
 import YUANTreasuryJson from '../yam-sdk/lib/clean_build/contracts/YUANReservesV2.json';
 import eETHJson from '../yam-sdk/lib/clean_build/contracts/eETHDelegator.json';
 import eETHTreasuryJson from '../yam-sdk/lib/clean_build/contracts/eETHReserves.json';
+import eBTCJson from '../yam-sdk/lib/clean_build/contracts/eBTCDelegator.json';
+import eBTCTreasuryJson from '../yam-sdk/lib/clean_build/contracts/eBTCReserves.json';
 
 // (to be change)
 // YUAN kovan
@@ -34,6 +36,7 @@ export type TokenAddressItem = {
 export type TokenAddress = {
     yuan: TokenAddressItem
     eETH: TokenAddressItem
+    eBTC: TokenAddressItem
 }
 export const TOKEN_ADDRESS: TokenAddress = {
     yuan: {
@@ -58,6 +61,14 @@ export const TOKEN_ADDRESS: TokenAddress = {
             usdx: YUANJson.networks[42].address, // YUAN(eETH/YUAN)
             oracle: '',
             treasury: eETHTreasuryJson.networks[42].address
+        }
+    },
+    eBTC: {
+        42: {
+            yam: eBTCJson.networks[42].address,
+            usdx: YUANJson.networks[42].address, // YUAN(eBTC/YUAN)
+            oracle: '',
+            treasury: eBTCTreasuryJson.networks[42].address
         }
     }
 }
