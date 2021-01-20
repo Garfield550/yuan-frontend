@@ -235,6 +235,10 @@ export class Contracts {
     this.gov.setProvider(provider);
     this.gov003.setProvider(provider);
     this.timelock.setProvider(provider);
+    this.eETH.setProvider(provider);
+    this.eETHRebaser.setProvider(provider);
+    this.eBTC.setProvider(provider);
+    this.eBTCRebaser.setProvider(provider);
 
     const contracts: ContractItem[] = [
       { contract: this.yam, json: YUANJson },

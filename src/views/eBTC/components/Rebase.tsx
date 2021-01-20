@@ -37,7 +37,7 @@ const Rebase: React.FC<RebaseProps> = ({ nextRebase, nextRebable, yam, cur_langu
 
   const handleRebase = useCallback(async () => {
     try {
-      await yam.contracts.rebaser.methods.rebase().send({ from: account })
+      await yam.contracts.eBTCRebaser.methods.rebase().send({ from: account })
         // metamask 点击 confirm
         .on('transactionHash', function (hash: string) {
           console.log('transactionHash', hash)

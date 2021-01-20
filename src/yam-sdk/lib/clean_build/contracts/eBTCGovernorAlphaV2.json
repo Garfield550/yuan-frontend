@@ -678,8 +678,8 @@
   ],
   "networks": {
     "42": {
-      "address": "0xCf1Aa391337DcB786efD3F47bc57955eBaf3dAd6",
-      "transactionHash": "0x258fde7a6dd849410b5b7d6949a35d0b485d0d71d9fd5d808c6d438ac3fb2bd4"
+      "address": "0xd3fdE36e22472eBddded13E5B0D3627de943484e",
+      "transactionHash": "0xcdc9a9c0e16a1c367f1823b6dc205f9a0e143cf391d594ed40e310910314216c"
     }
   }
 }
