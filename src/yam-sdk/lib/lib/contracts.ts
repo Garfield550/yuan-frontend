@@ -4,7 +4,7 @@ import { provider as Provider } from 'web3-core';
 import { AbiItem } from 'web3-utils';
 import { Contract as Web3Contract } from 'web3-eth-contract';
 import * as Types from "./types.js";
-import { SUBTRACT_GAS_LIMIT, addressMap, addressMapJSON, AddressMapJsonItem } from './constants';
+import { SUBTRACT_GAS_LIMIT, addressMap, /* addressMapJSON,*/ AddressMapJsonItem } from './constants';
 
 import ERC20Json from '../clean_build/contracts/IERC20.json';
 // import YAMJson from '../clean_build/contracts/YAMDelegator.json';
@@ -256,22 +256,22 @@ export class Contracts {
       // (to be change)
       // 夏 商 周
       { contract: this.USDx_USDC_pool, json: USDxUSDCPoolJson },
-      { contract: this.USDx_YUAN_pool, json: USDxYUANPoolJson },
-      { contract: this.ETH_YUAN_pool, json: ETHYUANPoolJson },
+      // { contract: this.USDx_YUAN_pool, json: USDxYUANPoolJson },
+      // { contract: this.ETH_YUAN_pool, json: ETHYUANPoolJson },
       // qin
       // { contract: this.USDC_ETH_pool, json: addressMapJSON.USDC_ETH },
       // { contract: this.DAI_ETH_pool, json: addressMapJSON.DAI_ETH },
       // { contract: this.USDT_ETH_pool, json: addressMapJSON.USDT_ETH },
       // { contract: this.USDx_ETH_pool, json: addressMapJSON.USDx_ETH },
-      { contract: this.USDC_ETH_pool, json: ETHUSDCPoolJson },
-      { contract: this.DAI_ETH_pool, json: ETHDAIPoolJson },
-      { contract: this.USDT_ETH_pool, json: ETHUSDTPoolJson },
-      { contract: this.USDx_ETH_pool, json: ETHUSDxPoolJson },
+      // { contract: this.USDC_ETH_pool, json: ETHUSDCPoolJson },
+      // { contract: this.DAI_ETH_pool, json: ETHDAIPoolJson },
+      // { contract: this.USDT_ETH_pool, json: ETHUSDTPoolJson },
+      // { contract: this.USDx_ETH_pool, json: ETHUSDxPoolJson },
       // han
       // { contract: this.YAM_ETH_pool, json: addressMapJSON.YAM_ETH },
       // { contract: this.AMPL_ETH_pool, json: addressMapJSON.AMPL_ETH },
-      { contract: this.YAM_ETH_pool, json: ETHYAMPoolJson },
-      { contract: this.AMPL_ETH_pool, json: ETHAMPLPoolJson },
+      // { contract: this.YAM_ETH_pool, json: ETHYAMPoolJson },
+      // { contract: this.AMPL_ETH_pool, json: ETHAMPLPoolJson },
       // tang
       // { contract: this.YFI_ETH_pool, json: addressMapJSON.YFI_ETH },
       // { contract: this.DF_ETH_pool, json: addressMapJSON.DF_ETH },
@@ -279,15 +279,15 @@ export class Contracts {
       // { contract: this.LINK_ETH_pool, json: addressMapJSON.LINK_ETH },
       // { contract: this.BAND_ETH_pool, json: addressMapJSON.BAND_ETH },
       // { contract: this.YFII_ETH_pool, json: addressMapJSON.YFII_ETH },
-      { contract: this.YFI_ETH_pool, json: ETHYFIPoolJson },
-      { contract: this.DF_ETH_pool, json: ETHDFPoolJson },
-      { contract: this.UNI_ETH_pool, json: ETHUNIPoolJson },
-      { contract: this.LINK_ETH_pool, json: ETHLINKPoolJson },
-      { contract: this.BAND_ETH_pool, json: ETHBANDPoolJson },
-      { contract: this.YFII_ETH_pool, json: ETHYFIIPoolJson },
+      // { contract: this.YFI_ETH_pool, json: ETHYFIPoolJson },
+      // { contract: this.DF_ETH_pool, json: ETHDFPoolJson },
+      // { contract: this.UNI_ETH_pool, json: ETHUNIPoolJson },
+      // { contract: this.LINK_ETH_pool, json: ETHLINKPoolJson },
+      // { contract: this.BAND_ETH_pool, json: ETHBANDPoolJson },
+      // { contract: this.YFII_ETH_pool, json: ETHYFIIPoolJson },
       // 远大征程
-      { contract: this.YUAN_ETH_pool, json: addressMapJSON.YUAN_ETH },
-      { contract: this.YUAN_USDx_pool, json: addressMapJSON.YUAN_USDx },
+      // { contract: this.YUAN_ETH_pool, json: addressMapJSON.YUAN_ETH },
+      // { contract: this.YUAN_USDx_pool, json: addressMapJSON.YUAN_USDx },
     ]
 
     contracts.forEach(contract => this.setContractProvider(contract.contract, contract.json, provider, networkId));
@@ -300,27 +300,27 @@ export class Contracts {
     this.pools = [
       // (to be change)
       // 夏 商 周
-      { "tokenAddr": this.USDx_USDC.options.address, "poolAddr": this.USDx_USDC_pool.options.address },
-      { "tokenAddr": this.USDx_YUAN.options.address, "poolAddr": this.USDx_YUAN_pool.options.address },
-      { "tokenAddr": this.ETH_YUAN.options.address, "poolAddr": this.ETH_YUAN_pool.options.address },
-      // qin
-      { "tokenAddr": this.USDC_ETH_pool.options.address, "poolAddr": this.USDC_ETH_pool.options.address },
-      { "tokenAddr": this.DAI_ETH_pool.options.address, "poolAddr": this.DAI_ETH_pool.options.address },
-      { "tokenAddr": this.USDT_ETH_pool.options.address, "poolAddr": this.USDT_ETH_pool.options.address },
-      { "tokenAddr": this.USDx_ETH_pool.options.address, "poolAddr": this.USDx_ETH_pool.options.address },
-      // han
-      { "tokenAddr": this.YAM_ETH_pool.options.address, "poolAddr": this.YAM_ETH_pool.options.address },
-      { "tokenAddr": this.AMPL_ETH_pool.options.address, "poolAddr": this.AMPL_ETH_pool.options.address },
-      // tang
-      { "tokenAddr": this.YFI_ETH_pool.options.address, "poolAddr": this.YFI_ETH_pool.options.address },
-      { "tokenAddr": this.DF_ETH_pool.options.address, "poolAddr": this.DF_ETH_pool.options.address },
-      { "tokenAddr": this.UNI_ETH_pool.options.address, "poolAddr": this.UNI_ETH_pool.options.address },
-      { "tokenAddr": this.LINK_ETH_pool.options.address, "poolAddr": this.LINK_ETH_pool.options.address },
-      { "tokenAddr": this.BAND_ETH_pool.options.address, "poolAddr": this.BAND_ETH_pool.options.address },
-      { "tokenAddr": this.YFII_ETH_pool.options.address, "poolAddr": this.YFII_ETH_pool.options.address },
-      // 远大征程
-      { "tokenAddr": this.YUAN_ETH_pool.options.address, "poolAddr": this.YUAN_ETH_pool.options.address },
-      { "tokenAddr": this.YUAN_USDx_pool.options.address, "poolAddr": this.YUAN_USDx_pool.options.address },
+      { tokenAddr: this.USDx_USDC.options.address, poolAddr: this.USDx_USDC_pool.options.address },
+      // { tokenAddr: this.USDx_YUAN.options.address, poolAddr: this.USDx_YUAN_pool.options.address },
+      // { tokenAddr: this.ETH_YUAN.options.address, poolAddr: this.ETH_YUAN_pool.options.address },
+      // // qin
+      // { tokenAddr: this.USDC_ETH_pool.options.address, poolAddr: this.USDC_ETH_pool.options.address },
+      // { tokenAddr: this.DAI_ETH_pool.options.address, poolAddr: this.DAI_ETH_pool.options.address },
+      // { tokenAddr: this.USDT_ETH_pool.options.address, poolAddr: this.USDT_ETH_pool.options.address },
+      // { tokenAddr: this.USDx_ETH_pool.options.address, poolAddr: this.USDx_ETH_pool.options.address },
+      // // han
+      // { tokenAddr: this.YAM_ETH_pool.options.address, poolAddr: this.YAM_ETH_pool.options.address },
+      // { tokenAddr: this.AMPL_ETH_pool.options.address, poolAddr: this.AMPL_ETH_pool.options.address },
+      // // tang
+      // { tokenAddr: this.YFI_ETH_pool.options.address, poolAddr: this.YFI_ETH_pool.options.address },
+      // { tokenAddr: this.DF_ETH_pool.options.address, poolAddr: this.DF_ETH_pool.options.address },
+      // { tokenAddr: this.UNI_ETH_pool.options.address, poolAddr: this.UNI_ETH_pool.options.address },
+      // { tokenAddr: this.LINK_ETH_pool.options.address, poolAddr: this.LINK_ETH_pool.options.address },
+      // { tokenAddr: this.BAND_ETH_pool.options.address, poolAddr: this.BAND_ETH_pool.options.address },
+      // { tokenAddr: this.YFII_ETH_pool.options.address, poolAddr: this.YFII_ETH_pool.options.address },
+      // // 远大征程
+      // { tokenAddr: this.YUAN_ETH_pool.options.address, poolAddr: this.YUAN_ETH_pool.options.address },
+      // { tokenAddr: this.YUAN_USDx_pool.options.address, poolAddr: this.YUAN_USDx_pool.options.address },
     ]
 
     this.names = {};

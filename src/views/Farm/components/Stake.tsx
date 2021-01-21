@@ -103,8 +103,9 @@ const Stake: React.FC<StakeProps> = ({ poolContract, tokenContract, tokenName, c
     try {
       if(poolContract){
         const crruteTime = new Date().getTime()
-        const  DisabledAddVariable = await poolContract.methods.periodFinish().call()
-        const status = (DisabledAddVariable*1000 - crruteTime) > 0 ? false : true
+        const disabledAddVariable = await poolContract.methods.periodFinish().call()
+        console.log("disabledAddVariable:", disabledAddVariable, "crruteTime:", crruteTime, "(disabledAddVariable*1000 - crruteTime):", (disabledAddVariable*1000 - crruteTime))
+        const status = (disabledAddVariable*1000 - crruteTime) > 0 ? false : true
         setDisabledAddAction(status)
       }  
     } catch (e) {
@@ -148,7 +149,7 @@ const Stake: React.FC<StakeProps> = ({ poolContract, tokenContract, tokenName, c
 
               <StyledActionSpacer />
 
-              <IconButton onClick={!disabledAddAction && onPresentDeposit} disabledAddAction={disabledAddAction}>
+              <IconButton onClick={disabledAddAction ? undefined : onPresentDeposit} disabledAddAction={disabledAddAction}>
                 <AddIcon />
               </IconButton>
             </>

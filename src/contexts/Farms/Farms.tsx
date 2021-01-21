@@ -14,22 +14,22 @@ import { Farm } from './types'
 // no_web3 定义的 数据 对象
 const NO_WEB3_FOR_POOL: { [key: string]: string } = {
   USDx_USDC_pool: '',
-  USDx_YUAN_pool: '',
-  ETH_YUAN_pool: '',
-  USDC_ETH_pool: '',
-  DAI_ETH_pool: '',
-  USDT_ETH_pool: '',
-  USDx_ETH_pool: '',
-  DF_ETH_pool: '',
-  YFI_ETH_pool: '',
-  YAM_ETH_pool: '',
-  AMPL_ETH_pool: '',
-  UNI_ETH_pool: '',
-  LINK_ETH_pool: '',
-  BAND_ETH_pool: '',
-  YFII_ETH_pool: '',
-  YUAN_ETH_pool: '',
-  YUAN_USDx_pool: ''
+  // USDx_YUAN_pool: '',
+  // ETH_YUAN_pool: '',
+  // USDC_ETH_pool: '',
+  // DAI_ETH_pool: '',
+  // USDT_ETH_pool: '',
+  // USDx_ETH_pool: '',
+  // DF_ETH_pool: '',
+  // YFI_ETH_pool: '',
+  // YAM_ETH_pool: '',
+  // AMPL_ETH_pool: '',
+  // UNI_ETH_pool: '',
+  // LINK_ETH_pool: '',
+  // BAND_ETH_pool: '',
+  // YFII_ETH_pool: '',
+  // YUAN_ETH_pool: '',
+  // YUAN_USDx_pool: ''
 }
 
 const NAME_FOR_POOL: { [key: string]: string } = {
@@ -147,7 +147,7 @@ const Farms: React.FC = ({ children }) => {
           name: NAME_FOR_POOL[poolKey],
           depositToken: tokenKey,
           depositTokenAddress: tokenAddress,
-          earnToken: 'yuan',
+          earnToken: 'eBTC - eETH',
           earnTokenAddress: yamAddress,
           icon: ICON_FOR_POOL[poolKey],
           href_link: HREF_FOR_POOL[poolKey],
