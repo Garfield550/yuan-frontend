@@ -304,7 +304,7 @@ export const getCirculatingSupplyEBTC = async (yam: Yam) => {
 }
 
 //配置 rebase 时间轴
-export const interval = 43200
+export const interval = 1800
 //配置 rebase 时间轴
 export const getNextRebaseTimestamp = async (yam: Yam): Promise<[number, boolean]> =>  {
   try {
@@ -396,26 +396,27 @@ export const getNextRebaseTimestampEETH = async (yam: Yam): Promise<[number, boo
 }
 export const getNextRebaseTimestampEBTC = async (yam: Yam): Promise<[number, boolean]> =>  {
   try {
-    let now = Number(await yam.web3.eth.getBlock('latest').then(res => res.timestamp));
+    const now = Number(await yam.web3.eth.getBlock('latest').then(res => res.timestamp));
     // let interval = 1800; // 12 hours
     // let offset = 300; // 8am/8pm utc
     // let secondsToRebase = 0;
     // let windowLength = 1200; // await rebaser.rebaseWindowLengthSec().call()
-    let interval = 43200; // 12 hours
-    let offset = 7200; // 8am/8pm utc
-    let secondsToRebase = 0;
-    let windowLength = 3600;
-    let rebasable = false;
     const rebaserContract = yam.contracts.eBTCRebaser;
+    const minRebaseTimeIntervalSec = Number(await rebaserContract.methods.minRebaseTimeIntervalSec().call()); // 12 hours
+    const rebaseWindowOffsetSec = Number(await rebaserContract.methods.rebaseWindowOffsetSec().call()); // 8am/8pm utc
+    const rebaseWindowLengthSec = Number(await rebaserContract.methods.rebaseWindowLengthSec().call());
+    console.log('minRebaseTimeIntervalSec:', minRebaseTimeIntervalSec, 'rebaseWindowOffsetSec:', rebaseWindowOffsetSec, 'rebaseWindowLengthSec:', rebaseWindowLengthSec)
+    let secondsToRebase = 0;
+    let rebasable = false;
     if (await rebaserContract.methods.rebasingActive().call()) {
-      if (now % interval > offset) {
-        secondsToRebase = (interval - (now % interval)) + offset;
+      if (now % minRebaseTimeIntervalSec > rebaseWindowOffsetSec) {
+        secondsToRebase = (minRebaseTimeIntervalSec - (now % minRebaseTimeIntervalSec)) + rebaseWindowOffsetSec;
       } else {
-        secondsToRebase = offset - (now % interval);
+        secondsToRebase = rebaseWindowOffsetSec - (now % minRebaseTimeIntervalSec);
       }
       // lastRebaseTimestampSec.add(minRebaseTimeIntervalSec) < now
       let lastRebaseTimestamp = Number(await rebaserContract.methods.lastRebaseTimestampSec().call())
-      if (now % interval >= offset && now % interval < offset + windowLength && lastRebaseTimestamp + interval < now) {
+      if (now % minRebaseTimeIntervalSec >= rebaseWindowOffsetSec && now % minRebaseTimeIntervalSec < rebaseWindowOffsetSec + rebaseWindowLengthSec && lastRebaseTimestamp + minRebaseTimeIntervalSec < now) {
         rebasable = true;
       }
     } else {
@@ -423,10 +424,10 @@ export const getNextRebaseTimestampEBTC = async (yam: Yam): Promise<[number, boo
       if (twap_init > 0) {
         let delay = yam.toBigN(await rebaserContract.methods.rebaseDelay().call()).toNumber();
         let endTime = twap_init + delay;
-        if (endTime % interval > offset) {
-          secondsToRebase = (interval - (endTime % interval)) + offset;
+        if (endTime % minRebaseTimeIntervalSec > rebaseWindowOffsetSec) {
+          secondsToRebase = (minRebaseTimeIntervalSec - (endTime % minRebaseTimeIntervalSec)) + rebaseWindowOffsetSec;
         } else {
-          secondsToRebase = offset - (endTime % interval);
+          secondsToRebase = rebaseWindowOffsetSec - (endTime % minRebaseTimeIntervalSec);
         }
         return [endTime + secondsToRebase, rebasable];
       } else {

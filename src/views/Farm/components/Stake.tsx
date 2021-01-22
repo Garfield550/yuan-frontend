@@ -104,7 +104,6 @@ const Stake: React.FC<StakeProps> = ({ poolContract, tokenContract, tokenName, c
       if(poolContract){
         const crruteTime = new Date().getTime()
         const disabledAddVariable = await poolContract.methods.periodFinish().call()
-        console.log("disabledAddVariable:", disabledAddVariable, "crruteTime:", crruteTime, "(disabledAddVariable*1000 - crruteTime):", (disabledAddVariable*1000 - crruteTime))
         const status = (disabledAddVariable*1000 - crruteTime) > 0 ? false : true
         setDisabledAddAction(status)
       }  
