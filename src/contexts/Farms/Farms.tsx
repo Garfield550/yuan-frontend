@@ -30,6 +30,7 @@ const NO_WEB3_FOR_POOL: { [key: string]: string } = {
   // YFII_ETH_pool: '',
   // YUAN_ETH_pool: '',
   // YUAN_USDx_pool: ''
+  eBTC_YUAN_pool: '',
 }
 
 const NAME_FOR_POOL: { [key: string]: string } = {
@@ -59,7 +60,8 @@ const ICON_FOR_POOL: { [key: string]: string } = {
   YFII_ETH_pool: 'tang',
 
   YUAN_ETH_pool: 'zhengcheng',
-  YUAN_USDx_pool: 'zhengcheng'
+  YUAN_USDx_pool: 'zhengcheng',
+  eBTC_YUAN_pool: 'zhengcheng',
 }
 
 const HREF_FOR_POOL: { [key: string]: string } = {
@@ -107,7 +109,8 @@ const SORT_FOR_POOL: { [key: string]: number } = {
   YFII_ETH_pool: 14,
 
   YUAN_USDx_pool: 15,
-  YUAN_ETH_pool: 16
+  YUAN_ETH_pool: 16,
+  eBTC_YUAN_pool: 17,
 }
 
 const Farms: React.FC = ({ children }) => {

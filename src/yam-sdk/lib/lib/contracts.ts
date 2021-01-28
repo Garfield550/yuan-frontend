@@ -64,6 +64,9 @@ import eETHJson from '../clean_build/contracts/eETHDelegator.json';
 import eBTCRebaserJson from '../clean_build/contracts/eBTCRebaser.json';
 import eBTCJson from '../clean_build/contracts/eBTCDelegator.json';
 
+// eBTC Pools
+import eBTCYUANIncentivizerJson from '../clean_build/contracts/eBTCYUANIncentivizer.json';
+
 export type Contract = Web3Contract & {
   setProvider?: (provider: Provider) => void
 }
@@ -145,6 +148,8 @@ export class Contracts {
   // eBTC
   public eBTC: Contract;
   public eBTCRebaser: Contract;
+  // eBTC Pools
+  public eBTC_YUAN_pool: Contract;
 
   constructor(provider: Provider, networkId: number, web3: Web3, options: any) {
     this.web3 = web3;
@@ -221,6 +226,8 @@ export class Contracts {
     this.eBTC = new this.web3.eth.Contract(eBTCJson.abi as AbiItem[]);
     this.eBTCRebaser = new this.web3.eth.Contract(eBTCRebaserJson.abi as AbiItem[]);
 
+    this.eBTC_YUAN_pool = new this.web3.eth.Contract(eBTCYUANIncentivizerJson.abi as AbiItem[]);
+
     this.setProvider(provider, networkId);
     this.setDefaultAccount(this.web3.eth.defaultAccount);
   }
@@ -288,6 +295,7 @@ export class Contracts {
       // 远大征程
       // { contract: this.YUAN_ETH_pool, json: addressMapJSON.YUAN_ETH },
       // { contract: this.YUAN_USDx_pool, json: addressMapJSON.YUAN_USDx },
+      { contract: this.eBTC_YUAN_pool, json: eBTCYUANIncentivizerJson }
     ]
 
     contracts.forEach(contract => this.setContractProvider(contract.contract, contract.json, provider, networkId));
@@ -321,6 +329,7 @@ export class Contracts {
       // // 远大征程
       // { tokenAddr: this.YUAN_ETH_pool.options.address, poolAddr: this.YUAN_ETH_pool.options.address },
       // { tokenAddr: this.YUAN_USDx_pool.options.address, poolAddr: this.YUAN_USDx_pool.options.address },
+      { tokenAddr: this.eBTC_YUAN_pool.options.address, poolAddr: this.eBTC_YUAN_pool.options.address },
     ]
 
     this.names = {};

@@ -162,7 +162,7 @@ const FarmCards: React.FC<FarmCardsProps> = ({ cur_language, is_staking }) => {
                   </StyledLongLine>
                   <StyledRow key={i + 3}>
                     {farmRow.map((farm, j) => {
-                      if (j > 8 && j < 15) {
+                      if (j > 8 && j < 16) {
                         return (
                           <React.Fragment key={j}>
                             <FarmCard farm={farm} cur_language={cur_language} show_images={true} is_staking={is_staking} />
