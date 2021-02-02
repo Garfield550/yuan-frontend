@@ -49,10 +49,12 @@ const Farm: React.FC<HomeProps> = ({ cur_language }) => {
     return earnToken.toUpperCase()
   }, [earnToken])
 
+  const srcLogoList = ['YUAN-USDX', 'YUAN-ETH', 'EBTC-YUAN'];
+
   return (
     <>
       <PageHeader
-        src_logo={depositTokenName === 'YUAN-USDX' || depositTokenName === 'YUAN-ETH' ? true : false}
+        src_logo={srcLogoList.includes(depositTokenName) ? true : false}
         icon={icon}
         cur_language={cur_language}
         // subtitle={`Deposit_${depositTokenName}__earn_${earnTokenName}`}

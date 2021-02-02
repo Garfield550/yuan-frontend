@@ -197,12 +197,14 @@ export const approve = async (tokenContract: Web3Contract, poolContract: Web3Con
     });
 }
 
+type ContractObj = {
+  [contractName: string]: Contract
+}
+
 export const getPoolContracts = async (yam: Yam) => {
   const pools = Object.keys(yam.contracts)
     .filter(c => c.indexOf('_pool') !== -1)
-    .reduce((acc: {
-      [contractName: string]: Contract
-    }, cur) => {
+    .reduce((acc: ContractObj, cur) => {
       const newAcc = { ...acc }
       newAcc[cur] = yam.contracts[cur]
       return newAcc

@@ -4,9 +4,7 @@ import { IntlProvider, FormattedMessage } from 'react-intl'
 import Spacer from '../../components/Spacer'
 import en_US from '../../i18n/en_US.js'
 import zh_CN from '../../i18n/zh_CN.js'
-
-import YUAN_USDx from '../../assets/img/Page/YUAN-USDx.svg'
-import YUAN_ETH from '../../assets/img/Page/YUAN-ETH.svg'
+import { JSON_IMAGES } from '../../assets'
 
 interface PageHeaderProps {
   icon?: string,
@@ -18,10 +16,6 @@ interface PageHeaderProps {
   deposit_tit3?: any,
   deposit_tit4?: any,
   src_logo?: any
-}
-const json_image: any = {
-  'YUAN_ETH': YUAN_ETH,
-  'YUAN_USDX': YUAN_USDx
 }
 
 const PageHeader: React.FC<PageHeaderProps> = ({
@@ -46,7 +40,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
         }
         {
           src_logo &&
-          <img src={json_image[deposit_tit2.replace('-', '_')]} alt="" />
+          <img src={JSON_IMAGES[deposit_tit2.replace('-', '_')]} alt="" />
         }
         {title && <StyledTitle><FormattedMessage id={title} /></StyledTitle>}
         <Spacer size="sm" />

@@ -22,39 +22,8 @@ import { getAPYContract } from '../../../utils/erc20js'
 import { abi } from '../../../utils/apy.json'
 import { networks } from '../../../utils/apy.json'
 // import long_line from '../../../assets/img/Page/long-line.png'
-import USDC_ETH from '../../../assets/img/Page/USDC-ETH.svg'
-import USDT_ETH from '../../../assets/img/Page/USDT-ETH.svg'
-import USDx_ETH from '../../../assets/img/Page/USDx-ETH.svg'
-import DAI_ETH from '../../../assets/img/Page/DAI-ETH.svg'
-import UNI_ETH from '../../../assets/img/Page/UNI-ETH.svg'
-import YFI_ETH from '../../../assets/img/Page/YFI-ETH.svg'
-import LINK_ETH from '../../../assets/img/Page/LINK-ETH.svg'
-import BAND_ETH from '../../../assets/img/Page/BAND-ETH.svg'
-import DF_ETH from '../../../assets/img/Page/DF-ETH.svg'
-import YFII_ETH from '../../../assets/img/Page/YFII-ETH.svg'
-import YAM_ETH from '../../../assets/img/Page/YAM-ETH.svg'
-import AMPL_ETH from '../../../assets/img/Page/AMPL-ETH.svg'
 import long_line_left from '../../../assets/img/Page/long-line-left.svg'
-import YUAN_USDx from '../../../assets/img/Page/YUAN-USDx.svg'
-import YUAN_ETH from '../../../assets/img/Page/YUAN-ETH.svg'
-
-
-const json_image: any = {
-  'USDC_ETH': USDC_ETH,
-  'USDT_ETH': USDT_ETH,
-  'USDx_ETH': USDx_ETH,
-  'DAI_ETH': DAI_ETH,
-  'UNI_ETH': UNI_ETH,
-  'YFI_ETH': YFI_ETH,
-  'LINK_ETH': LINK_ETH,
-  'BAND_ETH': BAND_ETH,
-  'DF_ETH': DF_ETH,
-  'YFII_ETH': YFII_ETH,
-  'YAM_ETH': YAM_ETH,
-  'AMPL_ETH': AMPL_ETH,
-  'YUAN_ETH': YUAN_ETH,
-  'YUAN_USDx': YUAN_USDx
-}
+import { JSON_IMAGES } from '../../../assets'
 
 interface FarmCardsProps {
   cur_language?: any,
@@ -62,6 +31,7 @@ interface FarmCardsProps {
 }
 const FarmCards: React.FC<FarmCardsProps> = ({ cur_language, is_staking }) => {
   const [farms] = useFarms()
+  const rowOneIconName = ['xia', 'shang', 'zhou'];
 
   const rows = farms.reduce<Farm[][]>((farmRows, farm) => {
     const newFarmRows = [...farmRows]
@@ -90,7 +60,7 @@ const FarmCards: React.FC<FarmCardsProps> = ({ cur_language, is_staking }) => {
       {
         !!rows[0].length ?
           rows.map((farmRow, i) => (
-            <>
+            <React.Fragment key={`root-${i}`}>
               {/* 夏 商 周 */}
               {
                 is_staking &&
@@ -100,19 +70,12 @@ const FarmCards: React.FC<FarmCardsProps> = ({ cur_language, is_staking }) => {
                       <FormattedMessage id={'title_shiqian'} />
                     </StyledLongLineText>
                   </StyledLongLine>
-                  <StyledRow key={i}>
-                    {farmRow.map((farm, j) => {
-                      if (j > 2) {
-                        return <></>;
-                      } else {
-                        return (
-                          <React.Fragment key={j}>
-                            <FarmCard farm={farm} cur_language={cur_language} is_staking={is_staking} />
-                            {(j === 0 || j === 1) && <StyledSpacer />}
-                          </React.Fragment>
-                        )
-                      }
-                    })}
+                  <StyledRow key={`row-${i}`}>
+                    {farmRow.map((farm, j) => rowOneIconName.includes(farm.icon) && (
+                      <React.Fragment key={`shiqian-${j}`}>
+                        <FarmCard farm={farm} cur_language={cur_language} is_staking={is_staking} />
+                      </React.Fragment>
+                    ))}
                   </StyledRow>
 
                   <StyledLongLine>
@@ -120,19 +83,12 @@ const FarmCards: React.FC<FarmCardsProps> = ({ cur_language, is_staking }) => {
                       <FormattedMessage id={'title_qin'} />
                     </StyledLongLineText>
                   </StyledLongLine>
-                  <StyledRow key={i + 1}>
-                    {farmRow.map((farm, j) => {
-                      if (j > 2 && j < 7) {
-                        return (
-                          <React.Fragment key={j}>
-                            <FarmCard farm={farm} cur_language={cur_language} show_images={true} is_staking={is_staking} />
-                            {(j === 3 || j === 4) && <StyledSpacer />}
-                          </React.Fragment>
-                        )
-                      } else {
-                        return <></>
-                      }
-                    })}
+                  <StyledRow key={`row-${i + 1}`}>
+                    {farmRow.map((farm, j) => farm.icon === 'qin' && (
+                      <React.Fragment key={`qin-${j}`}>
+                        <FarmCard farm={farm} cur_language={cur_language} show_images={true} is_staking={is_staking} />
+                      </React.Fragment>
+                    ))}
                   </StyledRow>
 
                   <StyledLongLine>
@@ -140,19 +96,12 @@ const FarmCards: React.FC<FarmCardsProps> = ({ cur_language, is_staking }) => {
                       <FormattedMessage id={'title_han'} />
                     </StyledLongLineText>
                   </StyledLongLine>
-                  <StyledRow key={i + 2}>
-                    {farmRow.map((farm, j) => {
-                      if (j > 6 && j < 9) {
-                        return (
-                          <React.Fragment key={j}>
-                            <FarmCard farm={farm} cur_language={cur_language} show_images={true} is_staking={is_staking} />
-                            {(j === 6 || j === 7) && <StyledSpacer />}
-                          </React.Fragment>
-                        )
-                      } else {
-                        return <></>
-                      }
-                    })}
+                  <StyledRow key={`row-${i + 2}`}>
+                    {farmRow.map((farm, j) => farm.icon === 'han' && (
+                      <React.Fragment key={`han-${j}`}>
+                        <FarmCard farm={farm} cur_language={cur_language} show_images={true} is_staking={is_staking} />
+                      </React.Fragment>
+                    ))}
                   </StyledRow>
 
                   <StyledLongLine>
@@ -160,23 +109,15 @@ const FarmCards: React.FC<FarmCardsProps> = ({ cur_language, is_staking }) => {
                       <FormattedMessage id={'title_tang'} />
                     </StyledLongLineText>
                   </StyledLongLine>
-                  <StyledRow key={i + 3}>
-                    {farmRow.map((farm, j) => {
-                      if (j > 8 && j < 16) {
-                        return (
-                          <React.Fragment key={j}>
-                            <FarmCard farm={farm} cur_language={cur_language} show_images={true} is_staking={is_staking} />
-                            {(j === 9 || j === 10 || j === 12 || j === 13) && <StyledSpacer />}
-                          </React.Fragment>
-                        )
-                      } else {
-                        return <></>
-                      }
-                    })}
+                  <StyledRow key={`row-${i + 3}`}>
+                    {farmRow.map((farm, j) => farm.icon === 'tang' && (
+                      <React.Fragment key={`tang-${j}`}>
+                        <FarmCard farm={farm} cur_language={cur_language} show_images={true} is_staking={is_staking} />
+                      </React.Fragment>
+                    ))}
                   </StyledRow>
                 </>
               }
-
 
               {
                 !is_staking &&
@@ -186,24 +127,17 @@ const FarmCards: React.FC<FarmCardsProps> = ({ cur_language, is_staking }) => {
                       <FormattedMessage id={'zhengcheng'} />
                     </StyledLongLineText>
                   </StyledLongLine>
-                  <StyledRow key={i + 4}>
-                    {farmRow.map((farm, j) => {
-                      if (j > 14) {
-                        return (
-                          <React.Fragment key={j}>
-                            <FarmCard farm={farm} cur_language={cur_language} show_images={true} is_staking={is_staking} />
-                            {(j === 15) && <StyledSpacer />}
-                          </React.Fragment>
-                        )
-                      } else {
-                        return <></>
-                      }
-                    })}
+                  <StyledRow key={`row-${i + 4}`}>
+                    {farmRow.map((farm, j) => farm.icon === 'zhengcheng' && (
+                      <React.Fragment key={`zhengcheng-${j}`}>
+                        <FarmCard farm={farm} cur_language={cur_language} show_images={true} is_staking={is_staking} />
+                      </React.Fragment>
+                    ))}
                   </StyledRow>
                 </>
               }
 
-            </>
+            </React.Fragment>
           ))
           :
           <StyledLoadingWrapper>
@@ -278,7 +212,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, cur_language, show_images, is
         {
           show_images &&
           <StyledTokens>
-            <img src={json_image[str_token]} alt="" />
+            <img src={JSON_IMAGES[str_token]} alt="" />
           </StyledTokens>
         }
         <StyledDetails>
@@ -324,42 +258,42 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, cur_language, show_images, is
 
 
 const StyledA = styled.a`
-color: #476065 !important;
+  color: #476065 !important;
 `
 
 const StyledTokens = styled.div`
-margin-top: 20px;
-margin-bottom: 14px;
+  margin-top: 20px;
+  margin-bottom: 14px;
 `
 
 const StyledLongLine = styled.div`
-margin-top: 50px;
-width: 100%;
-background: url(${long_line_left}) no-repeat 0 10px;
-position: relative;
+  margin-top: 50px;
+  width: 100%;
+  background: url(${long_line_left}) no-repeat 0 10px;
+  position: relative;
 `
 const StyledLongLineText = styled.div`
   display: inline-block;
   margin-left: 40px;
   text-align: center;
-font-size: 30px;
-color: #476065;
-line-height: 33px;
+  font-size: 30px;
+  color: #476065;
+  line-height: 33px;
 `
 
 const StyledAPY = styled.div`
-height: 22px;
-font-size: 20px;
-font-weight: normal;
-color: rgba(71, 96, 101, 0.8);
-line-height: 22px;
-margin-top: 16px;
-width: 100%;
-display: flex;
-justify-content: space-between;
-@media(max-width: 767px) {
-  margin-top: 0px;
-}
+  height: 22px;
+  font-size: 20px;
+  font-weight: normal;
+  color: rgba(71, 96, 101, 0.8);
+  line-height: 22px;
+  margin-top: 16px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  @media(max-width: 767px) {
+    margin-top: 0px;
+  }
 `
 
 const StyledCardAccent = styled.div`
@@ -418,12 +352,14 @@ const StyledLoadingWrapper = styled.div`
 `
 
 const StyledRow = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 15px;
   margin-bottom: ${props => props.theme.spacing[4]}px;
   @media(max-width: 767px) {
+    display: flex;
     flex-direction: column;
   }
-  flex-wrap: wrap;
 `
 
 const StyledCardWrapper = styled.div`
@@ -455,11 +391,6 @@ const StyledContent = styled.div`
   background:url(${pool_bg});
   background-repeat: no-repeat;
   background-size:100% 104%;
-`
-
-const StyledSpacer = styled.div`
-  height: 15px;
-  width: 15px;
 `
 
 const StyledDetails = styled.div`
