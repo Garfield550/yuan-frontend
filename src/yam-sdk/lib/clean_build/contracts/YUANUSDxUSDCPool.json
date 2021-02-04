@@ -25,7 +25,13 @@
         {
           "indexed": false,
           "internalType": "uint256",
-          "name": "reward",
+          "name": "eBTCReward",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "eETHReward",
           "type": "uint256"
         }
       ],
@@ -143,7 +149,67 @@
     {
       "constant": true,
       "inputs": [],
+      "name": "eBTC",
+      "outputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "eETH",
+      "outputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
       "name": "halveInterval",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "initialEBTCRewardRate",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "initialEETHRewardRate",
       "outputs": [
         {
           "internalType": "uint256",
@@ -256,7 +322,13 @@
     },
     {
       "constant": true,
-      "inputs": [],
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
       "name": "rewardPerTokenStored",
       "outputs": [
         {
@@ -272,6 +344,11 @@
     {
       "constant": true,
       "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
         {
           "internalType": "address",
           "name": "",
@@ -372,6 +449,11 @@
           "internalType": "address",
           "name": "",
           "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
         }
       ],
       "name": "userRewardPerTokenPaid",
@@ -380,21 +462,6 @@
           "internalType": "uint256",
           "name": "",
           "type": "uint256"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [],
-      "name": "yuan",
-      "outputs": [
-        {
-          "internalType": "contract IERC20",
-          "name": "",
-          "type": "address"
         }
       ],
       "payable": false,
@@ -425,6 +492,11 @@
           "internalType": "uint256",
           "name": "",
           "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
         }
       ],
       "payable": false,
@@ -442,6 +514,11 @@
       ],
       "name": "earned",
       "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
         {
           "internalType": "uint256",
           "name": "",
@@ -503,8 +580,13 @@
     {
       "constant": true,
       "inputs": [],
-      "name": "getrewardPerTokenAmount",
+      "name": "getRewardPerTokenAmount",
       "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
         {
           "internalType": "uint256",
           "name": "",
@@ -552,11 +634,37 @@
       "type": "function"
     },
     {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "getFixedRewardRatePerToken",
+      "outputs": [
+        {
+          "internalType": "uint256[]",
+          "name": "",
+          "type": "uint256[]"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
       "constant": false,
       "inputs": [
         {
           "internalType": "uint256",
-          "name": "reward",
+          "name": "eBTCReward",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "eETHReward",
           "type": "uint256"
         }
       ],
@@ -573,8 +681,8 @@
       "transactionHash": "0xa509530fe862ba42bf84f4c05fb4231dd57b244771d9fb3a8687ec34d13ffbaa"
     },
     "42": {
-      "address": "0x43E08129f5F864cC5708D6a4Ca83da3B25942E76",
-      "transactionHash": "0xc37b04717fce3c547c1afc409761e466c4752d736c2f29ad7ee3d8cafa3e0634"
+      "address": "0x37Acef6b17430b7415a2ec673e861d503617398b",
+      "transactionHash": "0x281be8c6bed4a1486b9102006c7f510877d343882b1073ac7bc3d48139e2a9d5"
     },
     "97": {
       "address": "0xaB0F0c2C9A8D547bf971fA74EFCD1234704Cf861",

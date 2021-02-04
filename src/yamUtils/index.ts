@@ -214,7 +214,8 @@ export const getPoolContracts = async (yam: Yam) => {
 
 export const getEarned = async (yam: Yam, pool: Web3Contract, account: string) => {
   const scalingFactor = new BigNumber(await yam.contracts.yam.methods.yuansScalingFactor().call())
-  const earned = new BigNumber(await pool.methods.earned(account).call())
+  const earnedCall = await pool.methods.earned(account).call();
+  const earned = typeof earnedCall === 'string' ? new BigNumber(earnedCall) : new BigNumber(earnedCall[0])
   return earned.multipliedBy(scalingFactor.dividedBy(new BigNumber(10).pow(18)))
 }
 
