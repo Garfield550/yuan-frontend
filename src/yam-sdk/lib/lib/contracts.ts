@@ -27,7 +27,7 @@ import LENDPoolJson from '../clean_build/contracts/YAMLENDPool.json';
 
 // (to be change)
 // import MKRPoolJson from '../clean_build/contracts/YAMMKRPool.json';
-import USDxUSDCPoolJson from '../clean_build/contracts/YUANUSDxUSDCPool.json';
+import USDxUSDCPoolJson from '../clean_build/contracts/eUSDxUSDCPool.json';
 // import DFPoolJson from '../clean_build/contracts/YAMDFPool.json';
 import USDxYUANPoolJson from '../clean_build/contracts/YUANUSDxYUANPool.json';
 // import DUSDTPoolJson from '../clean_build/contracts/YAMdUSDTPool.json';

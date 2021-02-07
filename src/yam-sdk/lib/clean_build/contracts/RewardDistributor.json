@@ -248,5 +248,10 @@
       "type": "function"
     }
   ],
-  "networks": {}
+  "networks": {
+    "42": {
+      "address": "0xdaEcc7Ba2C9C9c63c236adDD4Fb6505E31b67dcD",
+      "transactionHash": "0x82290fd49be69ce98c1859bd1c63f6f0c4046be233cf974b2f5e8bcf0c06e26f"
+    }
+  }
 }

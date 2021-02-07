@@ -276,8 +276,8 @@
   ],
   "networks": {
     "42": {
-      "address": "0xFE84a18a79831E628D60Bd4dC4b5ed2086Ce3984",
-      "transactionHash": "0xdb05246af3d80001cf6f397cf759a44bc5bbd017865fda01d035b08071fae51b"
+      "address": "0xfd320c861FEb5888a129e09FD175d50d08a4f01c",
+      "transactionHash": "0x9135438dd5991373b770ba65452bcb900bd4ec7e38e6f246a04510543e9d8112"
     }
   }
 }

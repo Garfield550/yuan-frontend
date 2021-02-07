@@ -468,12 +468,8 @@
       "transactionHash": "0xd526e7a9f7398c9bd63493da61c1d73edff818d0eadb57162000f78478176350"
     },
     "42": {
-      "address": "0xBBD883773a40b69aF339105f5b1Cedd493009c15",
-      "transactionHash": "0xd526e7a9f7398c9bd63493da61c1d73edff818d0eadb57162000f78478176350"
-    },
-    "97": {
-      "address": "0x9c9E907840e38a7E3f0826dF6cc9f400657d2955",
-      "transactionHash": "0xd8e98fd1cb9e1dc08c188eb2dbb5484cb7dea9c2b123f0782fc759a990bfe9cb"
+      "address": "0xa02Fd157cecF618b55B3117e8Bc0954d7d1F48c3",
+      "transactionHash": "0x97fa827a8e906ad006cf2de2dd75050c67a87d8d48d6570a3962c5b68db3eace"
     }
   }
 }
