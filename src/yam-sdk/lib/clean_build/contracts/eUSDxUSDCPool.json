@@ -129,6 +129,36 @@
     },
     {
       "constant": true,
+      "inputs": [],
+      "name": "_eBTC",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "_eETH",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
       "inputs": [
         {
           "internalType": "address",
@@ -157,36 +187,6 @@
           "internalType": "uint256",
           "name": "",
           "type": "uint256"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [],
-      "name": "eBTC",
-      "outputs": [
-        {
-          "internalType": "contract IERC20",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [],
-      "name": "eETH",
-      "outputs": [
-        {
-          "internalType": "contract IERC20",
-          "name": "",
-          "type": "address"
         }
       ],
       "payable": false,
@@ -611,9 +611,14 @@
       "name": "getFixedRewardRatePerToken",
       "outputs": [
         {
-          "internalType": "uint256[]",
+          "internalType": "uint256",
           "name": "",
-          "type": "uint256[]"
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
         }
       ],
       "payable": false,
@@ -643,8 +648,8 @@
   ],
   "networks": {
     "42": {
-      "address": "0xD61e95D608f2d6ba31B833953eab1fc3706632d5",
-      "transactionHash": "0x53d59ccb5cc66c90c34df765231b57aacea0f2902e4607c8011d675019db5873"
+      "address": "0xe96939970aB450DEeF521Bf00F98A93403f498b6",
+      "transactionHash": "0x933fc8169f9b8a8e2e97d3271f733de242522581228ac4190434c3e5d04d68cd"
     }
   }
 }
